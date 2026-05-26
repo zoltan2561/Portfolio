@@ -212,15 +212,21 @@ function setupMenu() {
     return;
   }
 
+  function setMenuOpen(isOpen) {
+    nav.classList.toggle('active', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+  }
+
   function toggleMenu() {
-    nav.classList.toggle('active');
+    setMenuOpen(!nav.classList.contains('active'));
   }
 
   function closeMenu() {
-    nav.classList.remove('active');
+    setMenuOpen(false);
   }
 
   window.toggleMenu = toggleMenu;
+  hamburger.addEventListener('click', toggleMenu);
 
   nav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);
@@ -235,6 +241,13 @@ function setupMenu() {
   document.addEventListener('click', (event) => {
     if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
       closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeMenu();
+      hamburger.focus();
     }
   });
 }

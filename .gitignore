@@ -17,6 +17,8 @@
 /public/build
 /public/hot
 /public/storage
+/public/icons/originals/
+/public/icons/og-test-*.jpg
 /storage/*.key
 /storage/app/stats/*.json
 /storage/pail

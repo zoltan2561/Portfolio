@@ -2,6 +2,7 @@
 
 return [
     'base_url' => env('PORTFOLIO_BASE_URL', 'https://pzoli.com'),
+    'statistics_password' => env('STATISTICS_PASSWORD'),
     'site_name' => 'Papp Zoltán Portfólió',
     'person' => [
         'name' => 'Papp Zoltán',

@@ -1,11 +1,35 @@
 @extends('layouts.portfolio')
 
 @section('content')
+    @php
+    $heroNote = $lang === 'hu'
+        ? 'Kevesebb kézi munka, gyorsabb ügyfélút, tisztább admin folyamat az első cél minden projektben.'
+        : 'Less manual work, faster client flow, cleaner admin process in every project.';
+    $ctaPrimary = $lang === 'hu'
+        ? 'Beszéljünk a vállalkozásodról'
+        : "Let's align your next project";
+    $ctaSecondary = $lang === 'hu' ? 'Mutasd a szakmai hátteret' : 'See technical background';
+    $ctaTertiary = $lang === 'hu' ? 'Nézd meg az eddigi munkáimat' : 'See selected projects';
+    $contactLead = $lang === 'hu'
+        ? 'Írd le, hol csúszik a folyamat ma, és együtt átalakítjuk gyorsabb és átláthatóbb működésre.'
+        : 'Tell me where your process is slowing down, and we will make it faster and easier to operate.';
+@endphp
     <div class="foreground" id="rolam">
-        <img src="{{ $assets['profile'] }}" alt="{{ $page['profile_alt'] }}" loading="lazy" width="150" height="150">
+        <picture>
+            <source
+                type="image/webp"
+                srcset="{{ $assets['profileWebp320'] }} 320w, {{ $assets['profileWebp480'] }} 480w, {{ $assets['profileWebp720'] }} 720w"
+                sizes="220px">
+            <img
+                src="{{ $assets['profileFallback'] }}"
+                alt="{{ $page['profile_alt'] }}"
+                loading="lazy"
+                width="150"
+                height="150">
+        </picture>
         <h1>{{ $page['hero_title'] }}</h1>
         <p class="hero-intro">{{ $page['hero_text'] }}</p>
-        <p class="hero-note">{{ $page['hero_note'] }}</p>
+        <p class="hero-note">{{ $heroNote }}</p>
 
         <div class="hero-highlights fade-in">
             @foreach ($page['highlights'] as $highlight)
@@ -16,14 +40,14 @@
         <div class="hero-proof-panel fade-in" aria-label="{{ $lang === 'hu' ? 'Miért dolgozz velem' : 'Why work with me' }}">
             <div class="hero-proof-copy">
                 <span class="section-chip">{{ $page['proof_chip'] }}</span>
-                <h3>{{ $page['proof_title'] }}</h3>
+                <h2>{{ $page['proof_title'] }}</h2>
                 <p>{{ $page['proof_text'] }}</p>
             </div>
 
             <div class="hero-proof-grid">
                 @foreach ($page['proof_cards'] as $proofCard)
                     <article class="hero-proof-card">
-                        <h4>{{ $proofCard['title'] }}</h4>
+                        <h3>{{ $proofCard['title'] }}</h3>
                         <p>{{ $proofCard['text'] }}</p>
                     </article>
                 @endforeach
@@ -33,9 +57,9 @@
         </div>
 
         <div class="hero-actions">
-            <a href="{{ $links['contact'] }}" class="cta-button">{{ $page['actions']['primary'] }}</a>
-            <a href="{{ $skillsUrl }}" class="cta-button">{{ $page['actions']['secondary'] }}</a>
-            <a href="{{ $links['projects'] }}" class="cta-button">{{ $page['actions']['tertiary'] }}</a>
+            <a href="{{ $links['contact'] }}" class="cta-button">{{ $ctaPrimary }}</a>
+            <a href="{{ $skillsUrl }}" class="cta-button">{{ $ctaSecondary }}</a>
+            <a href="{{ $links['projects'] }}" class="cta-button">{{ $ctaTertiary }}</a>
         </div>
     </div>
 
@@ -84,15 +108,15 @@
 
     <section id="kapcsolat">
         <h2>{{ $page['contact']['title'] }}</h2>
-        <p class="contact-lead">{{ $page['contact']['lead'] }}</p>
+        <p class="contact-lead">{{ $contactLead }}</p>
 
         <div class="contact-info">
-            <p>📧 <strong>{{ $page['contact']['email_label'] }}:</strong> <a href="mailto:{{ $person['contact']['email'] }}">{{ $person['contact']['email'] }}</a></p>
-            <p>💼 <strong>{{ $page['contact']['linkedin_label'] }}:</strong> <a href="{{ $person['contact']['linkedin'] }}" target="_blank" rel="noopener noreferrer">{{ $page['contact']['linkedin_link'] }}</a></p>
-            <p>💻 <strong>{{ $page['contact']['github_label'] }}:</strong> <a href="{{ $person['contact']['github'] }}" target="_blank" rel="noopener noreferrer">{{ $page['contact']['github_link'] }}</a></p>
-            <p>📷 <strong>{{ $page['contact']['instagram_label'] }}:</strong> <a href="{{ $person['contact']['instagram'] }}" target="_blank" rel="noopener noreferrer">@zoltan.ppp</a></p>
-            <p>📘 <strong>{{ $page['contact']['facebook_label'] }}:</strong> <a href="{{ $person['contact']['facebook'] }}" target="_blank" rel="noopener noreferrer">facebook.com/ztech20</a></p>
-            <p>📘 <strong>{{ $page['contact']['facebook_label'] }}:</strong> <a href="{{ $person['contact']['facebook_business'] }}" target="_blank" rel="noopener noreferrer">facebook.com/pzinformatika</a></p>
+            <p><strong>{{ $page['contact']['email_label'] }}:</strong> <a href="mailto:{{ $person['contact']['email'] }}">{{ $person['contact']['email'] }}</a></p>
+            <p><strong>{{ $page['contact']['linkedin_label'] }}:</strong> <a href="{{ $person['contact']['linkedin'] }}" target="_blank" rel="noopener noreferrer">{{ $page['contact']['linkedin_link'] }}</a></p>
+            <p><strong>{{ $page['contact']['github_label'] }}:</strong> <a href="{{ $person['contact']['github'] }}" target="_blank" rel="noopener noreferrer">{{ $page['contact']['github_link'] }}</a></p>
+            <p><strong>{{ $page['contact']['instagram_label'] }}:</strong> <a href="{{ $person['contact']['instagram'] }}" target="_blank" rel="noopener noreferrer">@zoltan.ppp</a></p>
+            <p><strong>{{ $page['contact']['facebook_label'] }}:</strong> <a href="{{ $person['contact']['facebook'] }}" target="_blank" rel="noopener noreferrer">facebook.com/ztech20</a></p>
+            <p><strong>{{ $page['contact']['facebook_label'] }}:</strong> <a href="{{ $person['contact']['facebook_business'] }}" target="_blank" rel="noopener noreferrer">facebook.com/pzinformatika</a></p>
 
             @if (session('contact_status') === 'success')
                 <p class="form-success">{{ $page['contact']['success'] }}</p>
@@ -106,11 +130,16 @@
             <h3>{{ $page['contact']['form_title'] }}</h3>
 
             <input type="hidden" name="lang" value="{{ $lang }}">
-            <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
-            <input type="text" name="name" placeholder="{{ $page['contact']['name'] }}" value="{{ old('name') }}" required>
-            <input type="email" name="email" placeholder="E-mail" value="{{ old('email') }}" required>
-            <textarea name="message" rows="5" placeholder="{{ $page['contact']['message'] }}" required>{{ old('message') }}</textarea>
+            <label class="sr-only" for="contact-website">Website</label>
+            <input id="contact-website" type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+            <label class="sr-only" for="contact-name">{{ $page['contact']['name'] }}</label>
+            <input id="contact-name" type="text" name="name" placeholder="{{ $page['contact']['name'] }}" value="{{ old('name') }}" required>
+            <label class="sr-only" for="contact-email">E-mail</label>
+            <input id="contact-email" type="email" name="email" placeholder="E-mail" value="{{ old('email') }}" required>
+            <label class="sr-only" for="contact-message">{{ $page['contact']['message'] }}</label>
+            <textarea id="contact-message" name="message" rows="5" placeholder="{{ $page['contact']['message'] }}" required>{{ old('message') }}</textarea>
             <button type="submit">{{ $page['contact']['submit'] }}</button>
         </form>
     </section>
 @endsection
+

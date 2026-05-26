@@ -47,12 +47,18 @@
     <canvas id="matrix"></canvas>
 
     <div class="language-switch">
-        <a href="{{ $pageName === 'home' ? $homeHuUrl : ($pageName === 'skills' ? $skillsHuUrl : $statisticsHuUrl) }}" class="{{ $lang === 'hu' ? 'active' : '' }}">HUN</a> |
-        <a href="{{ $pageName === 'home' ? $homeEnUrl : ($pageName === 'skills' ? $skillsEnUrl : $statisticsEnUrl) }}" class="{{ $lang === 'en' ? 'active' : '' }}">ENG</a>
+        <a href="{{ $pageName === 'home' ? $homeHuUrl : ($pageName === 'skills' ? $skillsHuUrl : $statisticsHuUrl) }}" class="{{ $lang === 'hu' ? 'active' : '' }}" aria-label="Magyar nyelv">HUN</a>
+        <a href="{{ $pageName === 'home' ? $homeEnUrl : ($pageName === 'skills' ? $skillsEnUrl : $statisticsEnUrl) }}" class="{{ $lang === 'en' ? 'active' : '' }}" aria-label="English language">ENG</a>
     </div>
 
     <div class="nav-container">
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <button
+            type="button"
+            class="hamburger"
+            aria-controls="main-nav"
+            aria-expanded="false"
+            aria-label="{{ $lang === 'hu' ? 'Navigáció megnyitása' : 'Open navigation' }}"
+        >☰</button>
         <nav id="main-nav">
             <a href="{{ $links['about'] }}">{{ $nav['about'] }}</a>
             <a href="{{ $links['services'] }}">{{ $nav['services'] }}</a>

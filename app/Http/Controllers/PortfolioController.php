@@ -32,7 +32,7 @@ class PortfolioController extends Controller
         if (! $request->session()->get(self::STATISTICS_SESSION_KEY, false)) {
             return view('portfolio.statistics-login', [
                 'lang' => $lang,
-                'passwordHint' => app()->environment('local') ? env('STATISTICS_PASSWORD', 'zoliadmin') : null,
+                'passwordHint' => app()->environment('local') ? config('portfolio.statistics_password') : null,
             ]);
         }
 
@@ -53,7 +53,11 @@ class PortfolioController extends Controller
             'lang' => ['nullable', 'in:hu,en'],
         ]);
 
-        $configuredPassword = (string) env('STATISTICS_PASSWORD', 'zoliadmin');
+        $configuredPassword = (string) config('portfolio.statistics_password', '');
+
+        if (trim($configuredPassword) === '') {
+            abort(503, 'Statistics password is not configured.');
+        }
 
         if (! hash_equals($configuredPassword, (string) $request->input('password'))) {
             return redirect()
@@ -147,17 +151,20 @@ class PortfolioController extends Controller
             'schemaJson' => json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
             'typewriterLines' => $typewriterLines,
             'preloaderLines' => $preloaderLines,
-            'ogImage' => asset('icons/og.jpg'),
+            'ogImage' => asset('icons/og-1200x630.jpg'),
             'ogImageAlt' => $lang === 'en'
                 ? 'Papp Zoltan portfolio preview image'
                 : 'Papp Zoltan portfolio elonezeti kep',
-            'ogImageWidth' => 1254,
-            'ogImageHeight' => 1254,
+            'ogImageWidth' => 1200,
+            'ogImageHeight' => 630,
             'favicon' => asset('ico.png'),
             'assets' => [
                 'css' => asset('Style.css'),
                 'js' => asset('script.js'),
-                'profile' => asset($person['image']),
+                'profileWebp320' => asset('icons/profile-bw-320.webp'),
+                'profileWebp480' => asset('icons/profile-bw-480.webp'),
+                'profileWebp720' => asset('icons/profile-bw-720.webp'),
+                'profileFallback' => asset('icons/profile-bw-720.jpg'),
                 'cv' => asset('cv.pdf'),
             ],
             'links' => [

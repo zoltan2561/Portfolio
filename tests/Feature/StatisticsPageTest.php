@@ -17,8 +17,10 @@ class StatisticsPageTest extends TestCase
 
     public function test_statistics_dashboard_can_be_opened_with_correct_password(): void
     {
+        config(['portfolio.statistics_password' => 'audit-secret']);
+
         $response = $this->post('/statistics/login', [
-            'password' => 'zoliadmin',
+            'password' => 'audit-secret',
             'lang' => 'hu',
         ]);
 
@@ -32,6 +34,8 @@ class StatisticsPageTest extends TestCase
 
     public function test_statistics_dashboard_rejects_invalid_password(): void
     {
+        config(['portfolio.statistics_password' => 'audit-secret']);
+
         $response = $this->from('/statistics')->post('/statistics/login', [
             'password' => 'hibas',
             'lang' => 'hu',
@@ -42,5 +46,17 @@ class StatisticsPageTest extends TestCase
         $followed = $this->followingRedirects()->get('/statistics');
 
         $followed->assertSee('Hibas jelszo.');
+    }
+
+    public function test_statistics_dashboard_does_not_use_default_password_when_unconfigured(): void
+    {
+        config(['portfolio.statistics_password' => null]);
+
+        $response = $this->from('/statistics')->post('/statistics/login', [
+            'password' => 'zoliadmin',
+            'lang' => 'hu',
+        ]);
+
+        $response->assertStatus(503);
     }
 }

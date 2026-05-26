@@ -33,4 +33,13 @@ class PortfolioProjectsTest extends TestCase
         $response->assertSee('AI');
         $response->assertSee('Laravel');
     }
+
+    public function test_homepage_shows_github_contact_link(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertOk();
+        $response->assertSee('GitHub');
+        $response->assertSee('https://github.com/zoltan2561');
+    }
 }

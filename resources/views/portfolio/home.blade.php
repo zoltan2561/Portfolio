@@ -89,6 +89,7 @@
         <div class="contact-info">
             <p>📧 <strong>{{ $page['contact']['email_label'] }}:</strong> <a href="mailto:{{ $person['contact']['email'] }}">{{ $person['contact']['email'] }}</a></p>
             <p>💼 <strong>{{ $page['contact']['linkedin_label'] }}:</strong> <a href="{{ $person['contact']['linkedin'] }}" target="_blank" rel="noopener noreferrer">{{ $page['contact']['linkedin_link'] }}</a></p>
+            <p>💻 <strong>{{ $page['contact']['github_label'] }}:</strong> <a href="{{ $person['contact']['github'] }}" target="_blank" rel="noopener noreferrer">{{ $page['contact']['github_link'] }}</a></p>
             <p>📷 <strong>{{ $page['contact']['instagram_label'] }}:</strong> <a href="{{ $person['contact']['instagram'] }}" target="_blank" rel="noopener noreferrer">@zoltan.ppp</a></p>
             <p>📘 <strong>{{ $page['contact']['facebook_label'] }}:</strong> <a href="{{ $person['contact']['facebook'] }}" target="_blank" rel="noopener noreferrer">facebook.com/ztech20</a></p>
             <p>📘 <strong>{{ $page['contact']['facebook_label'] }}:</strong> <a href="{{ $person['contact']['facebook_business'] }}" target="_blank" rel="noopener noreferrer">facebook.com/pzinformatika</a></p>

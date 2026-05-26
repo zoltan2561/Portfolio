@@ -138,6 +138,20 @@ return [
                             'link' => 'Weboldal megtekintése',
                         ],
                         [
+                            'tag' => 'Sportoldal + MLSZ automatizálás',
+                            'title' => '⚽ TiszaszalkaSE.com',
+                            'text' => 'Sportegyesületi weboldal automatikus MLSZ eredményfrissítéssel: az oldal lehúzza és megjeleníti a meccseredményeket, így a friss tartalom nem kézi adminon múlik.',
+                            'url' => 'https://tiszaszalkase.com',
+                            'link' => 'Weboldal megtekintése',
+                        ],
+                        [
+                            'tag' => 'AI + Laravel híroldal',
+                            'title' => '📰 NapiInfo.com',
+                            'text' => 'Teljesen automatizált híroldal AI- és Laravel-alapokon. A monetizációs és automatizálási tudásom koncentrált projektje: egy okos rendszer, amely önállóan dolgozik, tanul és folyamatosan építi a tartalmat.',
+                            'url' => 'https://napiinfo.com',
+                            'link' => 'Weboldal megtekintése',
+                        ],
+                        [
                             'tag' => 'Hardver + stabilitás',
                             'title' => '🧰 Hardveres megoldások',
                             'text' => 'Egyedi gépépítés, bővítés és diagnosztika úgy, hogy a végeredmény tartósan megbízható legyen.',
@@ -304,6 +318,20 @@ return [
                             'title' => '💈 ZCutzBarber',
                             'text' => 'Barbershop site with online booking, strong visuals, and a smoother client journey.',
                             'url' => 'https://zcutzbarber.com',
+                            'link' => 'View Website',
+                        ],
+                        [
+                            'tag' => 'Sports site + MLSZ automation',
+                            'title' => '⚽ TiszaszalkaSE.com',
+                            'text' => 'Sports club website with automatic MLSZ result updates: it pulls and displays match results from the MLSZ site, keeping the page current with less manual admin.',
+                            'url' => 'https://tiszaszalkase.com',
+                            'link' => 'View Website',
+                        ],
+                        [
+                            'tag' => 'AI + Laravel news',
+                            'title' => '📰 NapiInfo.com',
+                            'text' => 'A fully automated AI-powered news site built on Laravel. It concentrates my current monetization and automation knowledge into a smart system that works, learns, and keeps building content on its own.',
+                            'url' => 'https://napiinfo.com',
                             'link' => 'View Website',
                         ],
                         [

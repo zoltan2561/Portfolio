@@ -15,14 +15,22 @@
     <meta property="og:title" content="{{ $meta['title'] }}">
     <meta property="og:description" content="{{ $meta['description'] }}">
     <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:image:secure_url" content="{{ $ogImage }}">
+    <meta property="og:image:alt" content="{{ $ogImageAlt }}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="{{ $ogImageWidth }}">
+    <meta property="og:image:height" content="{{ $ogImageHeight }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ $currentUrl }}">
+    <meta property="og:site_name" content="{{ config('portfolio.site_name') }}">
     <meta property="og:locale" content="{{ $lang === 'hu' ? 'hu_HU' : 'en_US' }}">
+    <meta property="og:logo" content="{{ asset('images/logo.png') }}">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $meta['title'] }}">
     <meta name="twitter:description" content="{{ $meta['description'] }}">
     <meta name="twitter:image" content="{{ $ogImage }}">
+    <meta name="twitter:image:alt" content="{{ $ogImageAlt }}">
 
     <link rel="icon" href="{{ $favicon }}" type="image/png">
     <script type="application/ld+json">{!! $schemaJson !!}</script>
@@ -50,7 +58,6 @@
             <a href="{{ $links['services'] }}">{{ $nav['services'] }}</a>
             <a href="{{ $links['projects'] }}">{{ $nav['projects'] }}</a>
             <a href="{{ $skillsUrl }}" class="{{ $pageName === 'skills' ? 'active' : '' }}">{{ $nav['skills'] }}</a>
-            <a href="{{ $statisticsUrl }}" class="{{ $pageName === 'statistics' ? 'active' : '' }}">{{ $nav['statistics'] }}</a>
             <a href="{{ $links['contact'] }}">{{ $nav['contact'] }}</a>
         </nav>
     </div>

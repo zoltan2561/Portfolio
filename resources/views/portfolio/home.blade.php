@@ -91,6 +91,7 @@
             <p>💼 <strong>{{ $page['contact']['linkedin_label'] }}:</strong> <a href="{{ $person['contact']['linkedin'] }}" target="_blank" rel="noopener noreferrer">{{ $page['contact']['linkedin_link'] }}</a></p>
             <p>📷 <strong>{{ $page['contact']['instagram_label'] }}:</strong> <a href="{{ $person['contact']['instagram'] }}" target="_blank" rel="noopener noreferrer">@zoltan.ppp</a></p>
             <p>📘 <strong>{{ $page['contact']['facebook_label'] }}:</strong> <a href="{{ $person['contact']['facebook'] }}" target="_blank" rel="noopener noreferrer">facebook.com/ztech20</a></p>
+            <p>📘 <strong>{{ $page['contact']['facebook_label'] }}:</strong> <a href="{{ $person['contact']['facebook_business'] }}" target="_blank" rel="noopener noreferrer">facebook.com/pzinformatika</a></p>
 
             @if (session('contact_status') === 'success')
                 <p class="form-success">{{ $page['contact']['success'] }}</p>

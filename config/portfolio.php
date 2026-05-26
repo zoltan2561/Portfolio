@@ -12,11 +12,13 @@ return [
             'linkedin' => 'https://linkedin.com/in/papp-zoltán-41a7a4172/',
             'instagram' => 'https://www.instagram.com/zoltan.ppp/',
             'facebook' => 'https://facebook.com/ztech20',
+            'facebook_business' => 'https://www.facebook.com/pzinformatika/',
         ],
         'same_as' => [
             'https://linkedin.com/in/papp-zoltán-41a7a4172/',
             'https://www.instagram.com/zoltan.ppp/',
             'https://facebook.com/ztech20',
+            'https://www.facebook.com/pzinformatika/',
         ],
     ],
     'service_types' => [

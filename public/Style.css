@@ -429,6 +429,7 @@ section h2 {
   align-items: flex-start;
   gap: 0.8rem;
   text-align: left;
+  overflow: hidden;
 }
 
 .service h3,

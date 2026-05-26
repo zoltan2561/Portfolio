@@ -148,6 +148,11 @@ class PortfolioController extends Controller
             'typewriterLines' => $typewriterLines,
             'preloaderLines' => $preloaderLines,
             'ogImage' => asset('icons/og.jpg'),
+            'ogImageAlt' => $lang === 'en'
+                ? 'Papp Zoltan portfolio preview image'
+                : 'Papp Zoltan portfolio elonezeti kep',
+            'ogImageWidth' => 1254,
+            'ogImageHeight' => 1254,
             'favicon' => asset('ico.png'),
             'assets' => [
                 'css' => asset('Style.css'),

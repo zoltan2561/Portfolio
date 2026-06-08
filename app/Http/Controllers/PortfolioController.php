@@ -159,8 +159,8 @@ class PortfolioController extends Controller
             'ogImageHeight' => 630,
             'favicon' => asset('ico.png'),
             'assets' => [
-                'css' => asset('Style.css'),
-                'js' => asset('script.js'),
+                'css' => $this->versionedAsset('Style.css'),
+                'js' => $this->versionedAsset('script.js'),
                 'profileWebp320' => asset('icons/profile-bw-320.webp'),
                 'profileWebp480' => asset('icons/profile-bw-480.webp'),
                 'profileWebp720' => asset('icons/profile-bw-720.webp'),
@@ -175,6 +175,18 @@ class PortfolioController extends Controller
                 'contact' => $homeUrl.'#kapcsolat',
             ],
         ];
+    }
+
+    private function versionedAsset(string $path): string
+    {
+        $url = asset($path);
+        $file = public_path($path);
+
+        if (! is_file($file)) {
+            return $url;
+        }
+
+        return $url.'?v='.filemtime($file);
     }
 
     private function resolveMeta(string $lang, string $page): array

@@ -47,6 +47,7 @@ return [
                 'services' => 'Szolgáltatások',
                 'projects' => 'Projektek',
                 'skills' => 'Technológiák',
+                'faq' => 'GYIK',
                 'contact' => 'Kapcsolat',
             ],
             'home' => [
@@ -172,6 +173,44 @@ return [
                         ],
                     ],
                 ],
+                'faq' => [
+                    'title' => 'Gyakran Ismételt Kérdések',
+                    'lead' => 'Rövid válaszok a weboldalakkal, automatizálással és technikai beállításokkal kapcsolatos gyakori kérdésekre.',
+                    'items' => [
+                        [
+                            'question' => 'Mennyi idő alatt készül el egy weboldal?',
+                            'answer' => 'Ez nagyban függ a weboldal típusától és a szükséges funkcióktól. Egy egyszerű bemutatkozó vagy kapcsolatfelvételi oldal akár 2–3 nap alatt is elkészülhet. Egy összetettebb, több funkcióval rendelkező oldal általában 5–7 nap, míg egy nagyobb webshop vagy egyedi rendszer fejlesztése jellemzően 2–3 hét vagy több is lehet.',
+                        ],
+                        [
+                            'question' => 'Mennyibe kerül egy weboldal?',
+                            'answer' => 'Ez mindig az igényektől függ. Egy rövid, pár perces egyeztetés után általában már tudok mondani egy körülbelüli árkategóriát, így gyorsan kiderül, milyen nagyságrenddel érdemes számolni.',
+                        ],
+                        [
+                            'question' => 'Mit lehet automatizálni egy vállalkozásban?',
+                            'answer' => 'Szinte bármilyen gépies, ismétlődő munkafolyamat automatizálható. Például termékek bevételezése, időpontfoglalások naplózása, ügyfelek felkeresése, riportok készítése, Facebook-posztok előkészítése vagy akár belső adminisztrációs folyamatok egyszerűsítése. Ha elmeséled, hogyan működik a vállalkozásod, nagy eséllyel találok olyan pontot, ahol időt vagy pénzt tudunk spórolni.',
+                        ],
+                        [
+                            'question' => 'Számlaképes vagy?',
+                            'answer' => 'Igen, természetesen számlaképesen dolgozom.',
+                        ],
+                        [
+                            'question' => 'Csak weboldalakat készítesz?',
+                            'answer' => 'Nem. Weboldalak mellett kisebb egyedi programokat, admin felületeket, automatizációkat, riportokat és belső vállalkozási eszközöket is tudok készíteni. A cél mindig az, hogy a megoldás valóban segítsen a napi működésben.',
+                        ],
+                        [
+                            'question' => 'Tudsz meglévő weboldalt javítani vagy továbbfejleszteni?',
+                            'answer' => 'Igen. Meglévő weboldalak hibajavításában, gyorsításában, kisebb átalakításában, új funkciók hozzáadásában vagy modernizálásában is tudok segíteni.',
+                        ],
+                        [
+                            'question' => 'Készítesz mobilbarát weboldalakat?',
+                            'answer' => 'Igen. Alap elvárás, hogy az elkészült oldal mobilon, tableten és asztali gépen is jól használható legyen.',
+                        ],
+                        [
+                            'question' => 'Segítesz domain, tárhely vagy email beállításban is?',
+                            'answer' => 'Igen. Tudok segíteni domain, tárhely, céges email, alap SEO, kapcsolatfelvételi űrlap és egyéb technikai beállításokban is.',
+                        ],
+                    ],
+                ],
                 'contact' => [
                     'title' => 'Kapcsolat',
                     'lead' => 'Ha van egy ötleted, elakadásod vagy kinőtt rendszered, írj nyugodtan. Átnézem, megmondom mi lehet a jó irány, és közösen kitaláljuk a következő lépést.',
@@ -232,6 +271,7 @@ return [
                 'services' => 'Services',
                 'projects' => 'Projects',
                 'skills' => 'Tech Stack',
+                'faq' => 'FAQ',
                 'contact' => 'Contact',
             ],
             'home' => [
@@ -354,6 +394,44 @@ return [
                             'text' => 'Ongoing troubleshooting, maintenance, and practical support to keep work moving.',
                             'url' => null,
                             'link' => null,
+                        ],
+                    ],
+                ],
+                'faq' => [
+                    'title' => 'Frequently Asked Questions',
+                    'lead' => 'Short answers to common questions about websites, automation, and technical setup.',
+                    'items' => [
+                        [
+                            'question' => 'How long does it take to build a website?',
+                            'answer' => 'It depends heavily on the type of website and the required features. A simple landing page or contact website can often be completed within 2–3 days. A more advanced website with custom features usually takes around 5–7 days, while a larger webshop or custom system may take 2–3 weeks or more.',
+                        ],
+                        [
+                            'question' => 'How much does a website cost?',
+                            'answer' => 'The price always depends on the requirements. After a short discussion, I can usually give you an estimated price range, so you quickly know what budget level to expect.',
+                        ],
+                        [
+                            'question' => 'What can be automated in a business?',
+                            'answer' => 'Almost any repetitive, manual or time-consuming process can be automated. For example: product intake, appointment logging, customer follow-ups, report generation, Facebook post preparation, or internal administrative workflows. Tell me how your business works, and I may find a way to save you time or money.',
+                        ],
+                        [
+                            'question' => 'Can you issue invoices?',
+                            'answer' => 'Yes, of course. I can work with proper invoicing.',
+                        ],
+                        [
+                            'question' => 'Do you only build websites?',
+                            'answer' => 'No. Besides websites, I can also build smaller custom tools, admin panels, automations, reports and internal business systems. The goal is always to create something that actually helps daily operations.',
+                        ],
+                        [
+                            'question' => 'Can you fix or improve an existing website?',
+                            'answer' => 'Yes. I can help with bug fixes, performance improvements, smaller redesigns, new features or modernization of an existing website.',
+                        ],
+                        [
+                            'question' => 'Do you build mobile-friendly websites?',
+                            'answer' => 'Yes. Every website should work properly on mobile, tablet and desktop devices.',
+                        ],
+                        [
+                            'question' => 'Can you help with domain, hosting or email setup?',
+                            'answer' => 'Yes. I can help with domain setup, hosting, business email, basic SEO, contact forms and other technical configuration tasks.',
                         ],
                     ],
                 ],

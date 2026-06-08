@@ -171,6 +171,7 @@ class PortfolioController extends Controller
                 'about' => $homeUrl.'#rolam',
                 'services' => $homeUrl.'#szolgaltatasok',
                 'projects' => $homeUrl.'#projektek',
+                'faq' => $homeUrl.'#faq',
                 'contact' => $homeUrl.'#kapcsolat',
             ],
         ];

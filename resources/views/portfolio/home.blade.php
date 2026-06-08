@@ -106,6 +106,8 @@
         </div>
     </section>
 
+    @include('portfolio.partials.faq')
+
     <section id="kapcsolat">
         <h2>{{ $page['contact']['title'] }}</h2>
         <p class="contact-lead">{{ $contactLead }}</p>
@@ -142,4 +144,3 @@
         </form>
     </section>
 @endsection
-

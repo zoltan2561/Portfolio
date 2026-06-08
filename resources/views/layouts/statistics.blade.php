@@ -4,8 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $lang === 'en' ? 'Statistics Login' : 'Statisztika Belepes' }}</title>
-    <link rel="stylesheet" href="{{ asset('Style.css') }}">
+    <title>{{ $meta['title'] ?? ($lang === 'en' ? 'Statistics Login' : 'Statisztika Belepes') }}</title>
+    <meta name="description" content="{{ $meta['description'] ?? '' }}">
+    <meta name="robots" content="{{ $robotsMeta ?? 'noindex, nofollow' }}">
+    @isset($canonicalUrl)
+        <link rel="canonical" href="{{ $canonicalUrl }}">
+    @endisset
+    <link rel="stylesheet" href="{{ $assets['css'] ?? asset('Style.css') }}">
 </head>
 
 <body>
@@ -19,7 +24,7 @@
         const typewriterLines = [];
         const preloaderLines = [];
     </script>
-    <script src="{{ asset('script.js') }}"></script>
+    <script src="{{ $assets['js'] ?? asset('script.js') }}"></script>
 </body>
 
 </html>

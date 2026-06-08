@@ -77,6 +77,39 @@
         </div>
     </section>
 
+    <section class="workflow-section fade-in" aria-labelledby="workflow-title">
+        <span class="section-chip">{{ $lang === 'hu' ? 'FOLYAMAT' : 'PROCESS' }}</span>
+        <h2 id="workflow-title">{{ $page['workflow']['title'] }}</h2>
+        <p class="section-lead">{{ $page['workflow']['lead'] }}</p>
+
+        <div class="workflow-steps">
+            @foreach ($page['workflow']['steps'] as $step)
+                <article class="workflow-step">
+                    <span class="workflow-step-number">{{ $loop->iteration }}</span>
+                    <div>
+                        <h3>{{ $step['title'] }}</h3>
+                        <p>{{ $step['text'] }}</p>
+                    </div>
+                </article>
+            @endforeach
+        </div>
+    </section>
+
+    <section class="audience-section" aria-labelledby="audience-title">
+        <span class="section-chip">{{ $lang === 'hu' ? 'KINEK' : 'FOR WHO' }}</span>
+        <h2 id="audience-title">{{ $page['audience']['title'] }}</h2>
+        <p class="section-lead">{{ $page['audience']['lead'] }}</p>
+
+        <div class="audience-grid">
+            @foreach ($page['audience']['cards'] as $audienceCard)
+                <article class="audience-card fade-in">
+                    <h3>{{ $audienceCard['title'] }}</h3>
+                    <p>{{ $audienceCard['text'] }}</p>
+                </article>
+            @endforeach
+        </div>
+    </section>
+
     <section id="projektek">
         <h2>{{ $page['projects']['title'] }}</h2>
         <p class="section-lead">{{ $page['projects']['lead'] }}</p>
@@ -103,6 +136,19 @@
                     </article>
                 @endforeach
             </div>
+        </div>
+    </section>
+
+    <section class="delivery-section fade-in" aria-labelledby="delivery-title">
+        <div class="delivery-panel">
+            <span class="section-chip">{{ $lang === 'hu' ? 'ÁTADÁS' : 'DELIVERY' }}</span>
+            <h2 id="delivery-title">{{ $page['delivery']['title'] }}</h2>
+
+            <ul class="delivery-list">
+                @foreach ($page['delivery']['items'] as $deliveryItem)
+                    <li>{{ $deliveryItem }}</li>
+                @endforeach
+            </ul>
         </div>
     </section>
 

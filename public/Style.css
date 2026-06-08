@@ -515,6 +515,115 @@ section h2 {
   background: rgba(0, 255, 204, 0.14);
 }
 
+.workflow-section,
+.audience-section,
+.delivery-section {
+  text-align: center;
+}
+
+.workflow-section > .section-chip,
+.audience-section > .section-chip,
+.delivery-panel > .section-chip {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.workflow-steps {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.workflow-step {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 1rem 1.15rem;
+  text-align: left;
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.66), rgba(0, 16, 8, 0.72));
+  box-shadow: 0 14px 30px rgba(0, 255, 140, 0.06);
+}
+
+.workflow-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  background: rgba(0, 255, 204, 0.12);
+  border: 1px solid rgba(0, 255, 204, 0.26);
+  color: #8effdf;
+  font-weight: bold;
+}
+
+.workflow-step h3,
+.audience-card h3 {
+  margin: 0 0 0.45rem;
+  color: #76ffd6;
+}
+
+.workflow-step p,
+.audience-card p {
+  margin: 0;
+  color: #d8fff5;
+  line-height: 1.75;
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.audience-card {
+  padding: 1.15rem;
+  min-width: 0;
+  text-align: left;
+  border: 1px solid rgba(0, 255, 102, 0.2);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.66), rgba(0, 18, 8, 0.72));
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+.delivery-panel {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.delivery-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 0.8rem;
+  margin: 1.2rem auto 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.delivery-list li {
+  position: relative;
+  padding: 0.85rem 0.95rem 0.85rem 2.25rem;
+  border: 1px solid rgba(0, 255, 204, 0.18);
+  border-radius: 14px;
+  background: rgba(0, 255, 204, 0.055);
+  color: #e2fff7;
+}
+
+.delivery-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0.9rem;
+  color: #66ffe0;
+  font-weight: bold;
+}
+
 .faq-section {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.84), rgba(0, 18, 9, 0.82)),
@@ -1302,6 +1411,21 @@ section h2 {
     width: min(84vw, 320px);
     min-height: 100%;
     scroll-snap-align: center;
+  }
+
+  .workflow-steps,
+  .audience-grid,
+  .delivery-list {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-step,
+  .audience-card {
+    padding: 0.95rem;
+  }
+
+  .workflow-step {
+    gap: 0.8rem;
   }
 
   .faq-section {

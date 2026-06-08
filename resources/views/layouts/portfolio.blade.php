@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $meta['title'] }}</title>
     <meta name="description" content="{{ $meta['description'] }}">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="robots" content="{{ $robotsMeta }}">
     <link rel="canonical" href="{{ $canonicalUrl }}">
     <link rel="alternate" hreflang="hu" href="{{ $pageName === 'home' ? $homeHuUrl : ($pageName === 'skills' ? $skillsHuUrl : $statisticsHuUrl) }}">
     <link rel="alternate" hreflang="en" href="{{ $pageName === 'home' ? $homeEnUrl : ($pageName === 'skills' ? $skillsEnUrl : $statisticsEnUrl) }}">

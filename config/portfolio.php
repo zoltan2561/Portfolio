@@ -34,8 +34,8 @@ return [
         'hu' => [
             'meta' => [
                 'home' => [
-                    'title' => 'Papp Zoltán – Webfejlesztő és digitális megoldások vállalkozásoknak',
-                    'description' => 'Weboldalak, webshopok, foglalási rendszerek és automatizálás vállalkozásoknak. Nem csak szép felületet készítek, hanem átgondolt, működő digitális megoldást.',
+                    'title' => 'Papp Zoltán – Weboldal készítés, automatizálás és IT megoldások vállalkozásoknak',
+                    'description' => 'Modern weboldalak, webshopok, foglalási rendszerek és automatizálás kisvállalkozásoknak. Gyors, átlátható és üzletileg használható digitális megoldások.',
                 ],
                 'skills' => [
                     'title' => 'Papp Zoltán – Technológiák és szakmai háttér',
@@ -173,6 +173,74 @@ return [
                         ],
                     ],
                 ],
+                'workflow' => [
+                    'title' => 'Hogyan dolgozom?',
+                    'lead' => 'Egyszerű, átlátható folyamatban haladunk, hogy gyorsan kiderüljön, mire van szükséged, mennyibe kerülhet, és hogyan lesz belőle működő megoldás.',
+                    'steps' => [
+                        [
+                            'title' => 'Rövid egyeztetés',
+                            'text' => 'Pár perc alatt átbeszéljük, mire van szükséged, milyen problémát kell megoldani, és mi lenne a cél.',
+                        ],
+                        [
+                            'title' => 'Irány és becslés',
+                            'text' => 'Adok egy érthető javaslatot, várható időtartamot és körülbelüli árkategóriát.',
+                        ],
+                        [
+                            'title' => 'Fejlesztés',
+                            'text' => 'Elkészítem a weboldalt, rendszert vagy automatizációt úgy, hogy közben a gyakorlati használhatóság legyen a fókuszban.',
+                        ],
+                        [
+                            'title' => 'Tesztelés és finomítás',
+                            'text' => 'Átnézzük, kipróbáljuk, javítjuk, amit kell, hogy átadáskor stabil és használható legyen.',
+                        ],
+                        [
+                            'title' => 'Átadás és támogatás',
+                            'text' => 'Segítek az indulásban, beállításokban, és igény esetén későbbi karbantartásban is.',
+                        ],
+                    ],
+                ],
+                'audience' => [
+                    'title' => 'Kinek tudok segíteni?',
+                    'lead' => 'Leginkább olyan vállalkozásoknak, ahol fontos a gyorsabb ügyfélút, az egyszerűbb adminisztráció és a megbízható online jelenlét.',
+                    'cards' => [
+                        [
+                            'title' => 'Éttermek és büfék',
+                            'text' => 'Online rendelés, menü, kapcsolatfelvétel, kiszállítási információk.',
+                        ],
+                        [
+                            'title' => 'Fodrászok, barber shopok, szépségipari szolgáltatók',
+                            'text' => 'Bemutatkozó oldal, online időpontfoglalás, szolgáltatáslista.',
+                        ],
+                        [
+                            'title' => 'Helyi kisvállalkozások',
+                            'text' => 'Modern weboldal, ajánlatkérés, Google-barát alapok.',
+                        ],
+                        [
+                            'title' => 'Sportegyesületek és közösségek',
+                            'text' => 'Hírek, események, eredmények, automatizált frissítések.',
+                        ],
+                        [
+                            'title' => 'Webshopot vagy rendelési rendszert tervezők',
+                            'text' => 'Termékek, kosár, rendelési folyamat, admin felület.',
+                        ],
+                        [
+                            'title' => 'Adminisztrációval küzdő cégek',
+                            'text' => 'Riportok, értesítések, adatkezelés és ismétlődő munkák automatizálása.',
+                        ],
+                    ],
+                ],
+                'delivery' => [
+                    'title' => 'Mit kapsz az átadáskor?',
+                    'items' => [
+                        'Mobilbarát, gyors weboldal',
+                        'Alap SEO beállítások',
+                        'Kapcsolatfelvételi űrlap vagy ajánlatkérő',
+                        'Domain, tárhely és email beállításban segítség',
+                        'Rövid használati útmutató',
+                        'Biztonsági és karbantartási alapok',
+                        'Igény esetén további fejlesztés vagy support',
+                    ],
+                ],
                 'faq' => [
                     'title' => 'Gyakran Ismételt Kérdések',
                     'lead' => 'Rövid válaszok a weboldalakkal, automatizálással és technikai beállításokkal kapcsolatos gyakori kérdésekre.',
@@ -258,8 +326,8 @@ return [
         'en' => [
             'meta' => [
                 'home' => [
-                    'title' => 'Papp Zoltán – Web Developer and Digital Solutions for Businesses',
-                    'description' => 'Websites, webshops, booking systems, and automation for businesses. I do not just build a nice interface, but a practical digital solution that actually works.',
+                    'title' => 'Papp Zoltán – Website Development, Automation and IT Solutions for Businesses',
+                    'description' => 'Modern websites, webshops, booking systems and business automation. Clear, fast and practical digital solutions for small businesses.',
                 ],
                 'skills' => [
                     'title' => 'Papp Zoltán – Technologies and Technical Background',
@@ -395,6 +463,74 @@ return [
                             'url' => null,
                             'link' => null,
                         ],
+                    ],
+                ],
+                'workflow' => [
+                    'title' => 'How I work',
+                    'lead' => 'We move through a simple and transparent process, so it becomes clear what you need, what it may cost, and how it turns into a working solution.',
+                    'steps' => [
+                        [
+                            'title' => 'Short discussion',
+                            'text' => 'We quickly go through what you need, what problem should be solved, and what the goal is.',
+                        ],
+                        [
+                            'title' => 'Direction and estimate',
+                            'text' => 'I give you a clear suggestion, expected timeline, and an estimated price range.',
+                        ],
+                        [
+                            'title' => 'Development',
+                            'text' => 'I build the website, system, or automation with practical usability in focus.',
+                        ],
+                        [
+                            'title' => 'Testing and refinement',
+                            'text' => 'We review, test, and adjust what is needed before launch.',
+                        ],
+                        [
+                            'title' => 'Delivery and support',
+                            'text' => 'I help with launch, setup, and optional later maintenance if needed.',
+                        ],
+                    ],
+                ],
+                'audience' => [
+                    'title' => 'Who I can help',
+                    'lead' => 'I mainly help businesses where faster customer flow, simpler administration, and a reliable online presence matter.',
+                    'cards' => [
+                        [
+                            'title' => 'Restaurants and food businesses',
+                            'text' => 'Online ordering, menu pages, contact options, delivery information.',
+                        ],
+                        [
+                            'title' => 'Barbers, hairdressers, and beauty services',
+                            'text' => 'Presentation website, online booking, service list.',
+                        ],
+                        [
+                            'title' => 'Local small businesses',
+                            'text' => 'Modern website, quote request, Google-friendly basics.',
+                        ],
+                        [
+                            'title' => 'Sports clubs and communities',
+                            'text' => 'News, events, results, and automated updates.',
+                        ],
+                        [
+                            'title' => 'Webshops and ordering systems',
+                            'text' => 'Products, cart, order flow, and admin panel.',
+                        ],
+                        [
+                            'title' => 'Businesses with too much manual admin',
+                            'text' => 'Reports, notifications, data handling, and repetitive task automation.',
+                        ],
+                    ],
+                ],
+                'delivery' => [
+                    'title' => 'What you get at delivery',
+                    'items' => [
+                        'Mobile-friendly, fast website',
+                        'Basic SEO setup',
+                        'Contact or quote request form',
+                        'Help with domain, hosting, and email setup',
+                        'Short usage guide',
+                        'Basic security and maintenance setup',
+                        'Optional further development or support',
                     ],
                 ],
                 'faq' => [

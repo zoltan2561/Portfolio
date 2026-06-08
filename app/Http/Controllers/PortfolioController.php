@@ -30,10 +30,10 @@ class PortfolioController extends Controller
         $lang = $this->resolveLocale($request);
 
         if (! $request->session()->get(self::STATISTICS_SESSION_KEY, false)) {
-            return view('portfolio.statistics-login', [
-                'lang' => $lang,
-                'passwordHint' => app()->environment('local') ? config('portfolio.statistics_password') : null,
-            ]);
+            return view('portfolio.statistics-login', array_merge(
+                $this->buildPageData($lang, 'statistics-login'),
+                ['passwordHint' => app()->environment('local') ? config('portfolio.statistics_password') : null]
+            ));
         }
 
         $counter->track($request);
@@ -86,7 +86,7 @@ class PortfolioController extends Controller
 
     private function resolveLocale(Request $request): string
     {
-        $lang = $request->query('lang') === 'en' ? 'en' : 'hu';
+        $lang = $request->query('lang') === 'en' || $request->input('lang') === 'en' ? 'en' : 'hu';
 
         app()->setLocale($lang);
 
@@ -114,29 +114,28 @@ class PortfolioController extends Controller
         $currentUrl = match ($page) {
             'home' => $lang === 'en' ? $homeEnUrl : $homeHuUrl,
             'skills' => $lang === 'en' ? $skillsEnUrl : $skillsHuUrl,
-            'statistics' => $lang === 'en' ? $statisticsEnUrl : $statisticsHuUrl,
+            'statistics', 'statistics-login' => $lang === 'en' ? $statisticsEnUrl : $statisticsHuUrl,
         };
-        $canonicalUrl = match ($page) {
-            'home' => $homeHuUrl,
-            'skills' => $skillsHuUrl,
-            'statistics' => $statisticsHuUrl,
-        };
+        $canonicalUrl = $currentUrl;
+        $robotsMeta = $this->resolveRobotsMeta($page);
+        $pageContent = $this->resolvePageContent($lang, $page);
 
-        $typewriterSets = $this->resolvePageContent($lang, $page)['typewriter_sets'];
+        $typewriterSets = $pageContent['typewriter_sets'];
         $typewriterLines = $typewriterSets[array_rand($typewriterSets)];
 
         $preloaderSets = $page === 'home' ? $localeContent['home']['preloader_sets'] : [];
         $preloaderLines = $preloaderSets ? $preloaderSets[array_rand($preloaderSets)] : [];
 
-        $schema = $this->buildSchema($baseUrl, $currentUrl, $page, $meta, $person);
+        $schema = $this->buildSchema($baseUrl, $currentUrl, $page, $meta, $person, $lang, $pageContent);
 
         return [
             'lang' => $lang,
             'pageName' => $page,
             'meta' => $meta,
+            'robotsMeta' => $robotsMeta,
             'person' => $person,
             'nav' => $this->resolveNav($lang),
-            'page' => $this->resolvePageContent($lang, $page),
+            'page' => $pageContent,
             'homeUrl' => $homeUrl,
             'skillsUrl' => $skillsUrl,
             'statisticsUrl' => $statisticsUrl,
@@ -208,6 +207,13 @@ class PortfolioController extends Controller
             ];
     }
 
+    private function resolveRobotsMeta(string $page): string
+    {
+        return in_array($page, ['statistics', 'statistics-login'], true)
+            ? 'noindex, nofollow'
+            : 'index, follow, max-image-preview:large';
+    }
+
     private function resolveNav(string $lang): array
     {
         $localeContent = config("portfolio.locales.{$lang}");
@@ -272,8 +278,9 @@ class PortfolioController extends Controller
             ];
     }
 
-    private function buildSchema(string $baseUrl, string $currentUrl, string $page, array $meta, array $person): array
+    private function buildSchema(string $baseUrl, string $currentUrl, string $page, array $meta, array $person, string $lang, array $pageContent): array
     {
+        $languageCode = $this->schemaLanguage($lang);
         $graph = [
             [
                 '@type' => 'Person',
@@ -291,6 +298,15 @@ class PortfolioController extends Controller
                 'name' => config('portfolio.site_name'),
                 'inLanguage' => ['hu-HU', 'en-US'],
             ],
+            [
+                '@type' => 'WebPage',
+                '@id' => $currentUrl.'#webpage',
+                'url' => $currentUrl,
+                'name' => $meta['title'],
+                'description' => $meta['description'],
+                'isPartOf' => ['@id' => $baseUrl.'#website'],
+                'inLanguage' => $languageCode,
+            ],
         ];
 
         if ($page === 'home') {
@@ -300,23 +316,75 @@ class PortfolioController extends Controller
                 'name' => 'Papp Zoltán digitális szolgáltatások',
                 'url' => $baseUrl,
                 'provider' => ['@id' => $baseUrl.'#person'],
-                'areaServed' => 'HU',
+                'areaServed' => 'Hungary',
+                'availableLanguage' => ['Hungarian', 'English'],
                 'serviceType' => config('portfolio.service_types'),
+                'hasOfferCatalog' => $this->buildOfferCatalog($lang),
             ];
-        } else {
-            $graph[] = [
-                '@type' => 'WebPage',
-                '@id' => $currentUrl.'#webpage',
-                'url' => $currentUrl,
-                'name' => $meta['title'],
-                'description' => $meta['description'],
-                'isPartOf' => ['@id' => $baseUrl.'#website'],
-            ];
+
+            if (isset($pageContent['faq']['items'])) {
+                $graph[] = [
+                    '@type' => 'FAQPage',
+                    '@id' => $currentUrl.'#faq',
+                    'url' => $currentUrl.'#faq',
+                    'inLanguage' => $languageCode,
+                    'mainEntity' => array_map(
+                        static fn (array $faqItem): array => [
+                            '@type' => 'Question',
+                            'name' => $faqItem['question'],
+                            'acceptedAnswer' => [
+                                '@type' => 'Answer',
+                                'text' => $faqItem['answer'],
+                            ],
+                        ],
+                        $pageContent['faq']['items']
+                    ),
+                ];
+            }
         }
 
         return [
             '@context' => 'https://schema.org',
             '@graph' => $graph,
+        ];
+    }
+
+    private function schemaLanguage(string $lang): string
+    {
+        return $lang === 'en' ? 'en-US' : 'hu-HU';
+    }
+
+    private function buildOfferCatalog(string $lang): array
+    {
+        $offers = $lang === 'en'
+            ? [
+                'Website development',
+                'Webshop development',
+                'Online booking system',
+                'Business automation',
+                'Technical IT support',
+            ]
+            : [
+                'Weboldal készítés',
+                'Webshop fejlesztés',
+                'Online foglalási rendszer',
+                'Üzleti automatizálás',
+                'IT technikai támogatás',
+            ];
+
+        return [
+            '@type' => 'OfferCatalog',
+            'name' => $lang === 'en' ? 'Digital service offers' : 'Digitális szolgáltatások',
+            'itemListElement' => array_map(
+                static fn (string $offer): array => [
+                    '@type' => 'Offer',
+                    'itemOffered' => [
+                        '@type' => 'Service',
+                        'name' => $offer,
+                    ],
+                ],
+                $offers
+            ),
         ];
     }
 }

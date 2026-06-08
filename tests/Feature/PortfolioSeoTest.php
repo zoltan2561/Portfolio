@@ -63,8 +63,9 @@ class PortfolioSeoTest extends TestCase
         $this->assertTrue($graph->contains(fn (array $node): bool => $node['@type'] === 'FAQPage'));
 
         $faqPage = $graph->first(fn (array $node): bool => $node['@type'] === 'FAQPage');
-        $this->assertCount(8, $faqPage['mainEntity']);
+        $this->assertCount(9, $faqPage['mainEntity']);
         $this->assertSame('How long does it take to build a website?', $faqPage['mainEntity'][0]['name']);
+        $this->assertSame('Do I get a business email address with the website?', $faqPage['mainEntity'][8]['name']);
 
         $service = $graph->first(fn (array $node): bool => $node['@type'] === 'ProfessionalService');
         $this->assertSame(['Hungarian', 'English'], $service['availableLanguage']);
@@ -78,15 +79,16 @@ class PortfolioSeoTest extends TestCase
             ->assertOk()
             ->assertSee('Hogyan dolgozom?')
             ->assertSee('Kinek tudok segíteni?')
-            ->assertSee('Mit kapsz az átadáskor?')
-            ->assertSee('Átadás és támogatás');
+            ->assertSee('Kevesebb manuális munka')
+            ->assertSee('Keress bátran bármelyik felületen')
+            ->assertDontSee('Mit kapsz az átadáskor?');
 
         $this->get('/?lang=en')
             ->assertOk()
             ->assertSee('How I work')
             ->assertSee('Who I can help')
-            ->assertSee('What you get at delivery')
-            ->assertSee('Delivery and support');
+            ->assertSee('Reach out on any channel')
+            ->assertDontSee('What you get at delivery');
     }
 
     public function test_sitemap_contains_only_public_language_urls_with_hreflang_alternates(): void

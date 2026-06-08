@@ -229,18 +229,6 @@ return [
                         ],
                     ],
                 ],
-                'delivery' => [
-                    'title' => 'Mit kapsz az átadáskor?',
-                    'items' => [
-                        'Mobilbarát, gyors weboldal',
-                        'Alap SEO beállítások',
-                        'Kapcsolatfelvételi űrlap vagy ajánlatkérő',
-                        'Domain, tárhely és email beállításban segítség',
-                        'Rövid használati útmutató',
-                        'Biztonsági és karbantartási alapok',
-                        'Igény esetén további fejlesztés vagy support',
-                    ],
-                ],
                 'faq' => [
                     'title' => 'Gyakran Ismételt Kérdések',
                     'lead' => 'Rövid válaszok a weboldalakkal, automatizálással és technikai beállításokkal kapcsolatos gyakori kérdésekre.',
@@ -276,6 +264,10 @@ return [
                         [
                             'question' => 'Segítesz domain, tárhely vagy email beállításban is?',
                             'answer' => 'Igen. Tudok segíteni domain, tárhely, céges email, alap SEO, kapcsolatfelvételi űrlap és egyéb technikai beállításokban is.',
+                        ],
+                        [
+                            'question' => 'Jár céges email cím a weboldal mellé?',
+                            'answer' => 'Igen. Minden elkészült weboldal mellé ingyenesen segítek beállítani egy @cégnév.com végződésű céges email címet, hogy az online jelenléted egységesebb és bizalomkeltőbb legyen.',
                         ],
                     ],
                 ],
@@ -521,18 +513,6 @@ return [
                         ],
                     ],
                 ],
-                'delivery' => [
-                    'title' => 'What you get at delivery',
-                    'items' => [
-                        'Mobile-friendly, fast website',
-                        'Basic SEO setup',
-                        'Contact or quote request form',
-                        'Help with domain, hosting, and email setup',
-                        'Short usage guide',
-                        'Basic security and maintenance setup',
-                        'Optional further development or support',
-                    ],
-                ],
                 'faq' => [
                     'title' => 'Frequently Asked Questions',
                     'lead' => 'Short answers to common questions about websites, automation, and technical setup.',
@@ -568,6 +548,10 @@ return [
                         [
                             'question' => 'Can you help with domain, hosting or email setup?',
                             'answer' => 'Yes. I can help with domain setup, hosting, business email, basic SEO, contact forms and other technical configuration tasks.',
+                        ],
+                        [
+                            'question' => 'Do I get a business email address with the website?',
+                            'answer' => 'Yes. Every completed website includes free help setting up a business email address ending in @companyname.com, so your online presence feels more professional and trustworthy.',
                         ],
                     ],
                 ],

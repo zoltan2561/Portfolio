@@ -3,7 +3,7 @@
 @section('content')
     @php
     $heroNote = $lang === 'hu'
-        ? 'Kevesebb kézi munka, gyorsabb ügyfélút, tisztább admin folyamat az első cél minden projektben.'
+        ? 'Kevesebb manuális munka, gyorsabb ügyfélút, tisztább admin folyamat az első cél minden projektben.'
         : 'Less manual work, faster client flow, cleaner admin process in every project.';
     $ctaPrimary = $lang === 'hu'
         ? 'Beszéljünk a vállalkozásodról'
@@ -11,8 +11,8 @@
     $ctaSecondary = $lang === 'hu' ? 'Mutasd a szakmai hátteret' : 'See technical background';
     $ctaTertiary = $lang === 'hu' ? 'Nézd meg az eddigi munkáimat' : 'See selected projects';
     $contactLead = $lang === 'hu'
-        ? 'Írd le, hol csúszik a folyamat ma, és együtt átalakítjuk gyorsabb és átláthatóbb működésre.'
-        : 'Tell me where your process is slowing down, and we will make it faster and easier to operate.';
+        ? 'Írd le, mivel foglalkozol és hol akadtál el. Keress bátran bármelyik felületen: egy ingyenes felmérés keretein belül átnézem az igényeidet, és segítek megtalálni a következő jó lépést.'
+        : 'Tell me what you do and where you are stuck. Reach out on any channel: in a free discovery chat I will review your needs and help you find the right next step.';
 @endphp
     <div class="foreground" id="rolam">
         <picture>
@@ -136,19 +136,6 @@
                     </article>
                 @endforeach
             </div>
-        </div>
-    </section>
-
-    <section class="delivery-section fade-in" aria-labelledby="delivery-title">
-        <div class="delivery-panel">
-            <span class="section-chip">{{ $lang === 'hu' ? 'ÁTADÁS' : 'DELIVERY' }}</span>
-            <h2 id="delivery-title">{{ $page['delivery']['title'] }}</h2>
-
-            <ul class="delivery-list">
-                @foreach ($page['delivery']['items'] as $deliveryItem)
-                    <li>{{ $deliveryItem }}</li>
-                @endforeach
-            </ul>
         </div>
     </section>
 

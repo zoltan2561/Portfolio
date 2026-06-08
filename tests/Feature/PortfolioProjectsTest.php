@@ -55,6 +55,7 @@ class PortfolioProjectsTest extends TestCase
         $response->assertSee('Gyakran Ismételt Kérdések');
         $response->assertSee('Mennyi idő alatt készül el egy weboldal?');
         $response->assertSee('Segítesz domain, tárhely vagy email beállításban is?');
+        $response->assertSee('@cégnév.com');
     }
 
     public function test_homepage_shows_english_faq_section_and_navigation(): void
@@ -67,5 +68,6 @@ class PortfolioProjectsTest extends TestCase
         $response->assertSee('Frequently Asked Questions');
         $response->assertSee('How long does it take to build a website?');
         $response->assertSee('Can you help with domain, hosting or email setup?');
+        $response->assertSee('@companyname.com');
     }
 }

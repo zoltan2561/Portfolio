@@ -1,6 +1,15 @@
 <section id="technologiak">
   <h2>🧠 Technologies I Work With</h2>
 
+  <h3>🤖 Artificial Intelligence / AI</h3>
+  <ul>
+    <li>OpenAI / ChatGPT-based workflows and automation ideas</li>
+    <li>Practical testing and comparison of GPT models, Claude, and Gemini by task type</li>
+    <li>Prompt design, system prompts, content structures, and response quality tuning</li>
+    <li>AI-powered content generation, automated news workflows, and faster admin processes</li>
+    <li>Laravel + AI integrations, API-based automations, and business support tools</li>
+  </ul>
+
   <h3>🌐 Frontend</h3>
   <ul>
     <li>HTML5, CSS3, JavaScript (ES6+)</li>

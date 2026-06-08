@@ -44,7 +44,9 @@ return [
             ],
             'nav' => [
                 'about' => 'Rólam',
+                'workflow' => 'Folyamat',
                 'services' => 'Szolgáltatások',
+                'audience' => 'Kinek',
                 'projects' => 'Projektek',
                 'skills' => 'Technológiák',
                 'faq' => 'GYIK',
@@ -328,7 +330,9 @@ return [
             ],
             'nav' => [
                 'about' => 'About',
+                'workflow' => 'Process',
                 'services' => 'Services',
+                'audience' => 'Who',
                 'projects' => 'Projects',
                 'skills' => 'Tech Stack',
                 'faq' => 'FAQ',

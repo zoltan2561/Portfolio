@@ -9,6 +9,15 @@
     <li>Linux (Debian / Ubuntu), DevOps alapú üzemeltetés</li>
   </ul>
 
+  <h3>🤖 Mesterséges intelligencia / AI</h3>
+  <ul>
+    <li>OpenAI / ChatGPT alapú munkafolyamatok és automatizálási ötletek kidolgozása</li>
+    <li>GPT modellek, Claude és Gemini gyakorlati tesztelése és összehasonlítása feladattípusok szerint</li>
+    <li>Prompt tervezés, rendszerpromptok, tartalomstruktúrák és válaszminőség finomítása</li>
+    <li>AI-alapú tartalomgenerálás, híroldal automatizálás és adminisztrációs folyamatok gyorsítása</li>
+    <li>Laravel + AI integrációk, API-alapú automatizálások és üzleti segédeszközök tervezése</li>
+  </ul>
+
   <h3>🌐 Frontend</h3>
   <ul>
     <li>HTML5, CSS3, JavaScript (ES6+)</li>

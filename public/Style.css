@@ -1192,7 +1192,7 @@ section h2 {
   word-break: break-word;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1180px) {
   #main-nav {
     gap: 0.45rem;
     padding: 0.85rem 7rem 0.85rem 0.75rem;

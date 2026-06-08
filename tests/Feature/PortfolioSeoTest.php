@@ -75,20 +75,46 @@ class PortfolioSeoTest extends TestCase
 
     public function test_homepage_shows_new_conversion_sections_in_both_languages(): void
     {
-        $this->get('/')
+        $hungarian = $this->get('/');
+
+        $hungarian
             ->assertOk()
+            ->assertSee('href="'.route('home').'#folyamat"', false)
+            ->assertSee('href="'.route('home').'#kinek"', false)
             ->assertSee('Hogyan dolgozom?')
             ->assertSee('Kinek tudok segíteni?')
             ->assertSee('Kevesebb manuális munka')
             ->assertSee('Keress bátran bármelyik felületen')
             ->assertDontSee('Mit kapsz az átadáskor?');
 
+        $this->assertLessThan(
+            strpos($hungarian->getContent(), 'id="szolgaltatasok"'),
+            strpos($hungarian->getContent(), 'id="folyamat"')
+        );
+
         $this->get('/?lang=en')
             ->assertOk()
+            ->assertSee('href="'.route('home', ['lang' => 'en']).'#folyamat"', false)
+            ->assertSee('href="'.route('home', ['lang' => 'en']).'#kinek"', false)
             ->assertSee('How I work')
             ->assertSee('Who I can help')
             ->assertSee('Reach out on any channel')
             ->assertDontSee('What you get at delivery');
+    }
+
+    public function test_skills_page_shows_ai_section_in_both_languages(): void
+    {
+        $this->get('/skills')
+            ->assertOk()
+            ->assertSee('Mesterséges intelligencia / AI')
+            ->assertSee('GPT modellek')
+            ->assertSee('Laravel + AI integrációk');
+
+        $this->get('/skills?lang=en')
+            ->assertOk()
+            ->assertSee('Artificial Intelligence / AI')
+            ->assertSee('GPT models')
+            ->assertSee('Laravel + AI integrations');
     }
 
     public function test_sitemap_contains_only_public_language_urls_with_hreflang_alternates(): void

@@ -61,7 +61,9 @@
         >☰</button>
         <nav id="main-nav">
             <a href="{{ $links['about'] }}">{{ $nav['about'] }}</a>
+            <a href="{{ $links['workflow'] }}">{{ $nav['workflow'] }}</a>
             <a href="{{ $links['services'] }}">{{ $nav['services'] }}</a>
+            <a href="{{ $links['audience'] }}">{{ $nav['audience'] }}</a>
             <a href="{{ $links['projects'] }}">{{ $nav['projects'] }}</a>
             <a href="{{ $skillsUrl }}" class="{{ $pageName === 'skills' ? 'active' : '' }}">{{ $nav['skills'] }}</a>
             <a href="{{ $links['faq'] }}">{{ $nav['faq'] }}</a>

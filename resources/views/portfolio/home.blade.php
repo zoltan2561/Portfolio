@@ -63,21 +63,7 @@
         </div>
     </div>
 
-    <section id="szolgaltatasok">
-        <h2>{{ $page['services']['title'] }}</h2>
-        <p class="section-lead">{{ $page['services']['lead'] }}</p>
-
-        <div class="services">
-            @foreach ($page['services']['items'] as $service)
-                <div class="service">
-                    <h3>{{ $service['title'] }}</h3>
-                    <p>{{ $service['text'] }}</p>
-                </div>
-            @endforeach
-        </div>
-    </section>
-
-    <section class="workflow-section fade-in" aria-labelledby="workflow-title">
+    <section id="folyamat" class="workflow-section fade-in" aria-labelledby="workflow-title">
         <span class="section-chip">{{ $lang === 'hu' ? 'FOLYAMAT' : 'PROCESS' }}</span>
         <h2 id="workflow-title">{{ $page['workflow']['title'] }}</h2>
         <p class="section-lead">{{ $page['workflow']['lead'] }}</p>
@@ -95,7 +81,21 @@
         </div>
     </section>
 
-    <section class="audience-section" aria-labelledby="audience-title">
+    <section id="szolgaltatasok">
+        <h2>{{ $page['services']['title'] }}</h2>
+        <p class="section-lead">{{ $page['services']['lead'] }}</p>
+
+        <div class="services">
+            @foreach ($page['services']['items'] as $service)
+                <div class="service">
+                    <h3>{{ $service['title'] }}</h3>
+                    <p>{{ $service['text'] }}</p>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    <section id="kinek" class="audience-section" aria-labelledby="audience-title">
         <span class="section-chip">{{ $lang === 'hu' ? 'KINEK' : 'FOR WHO' }}</span>
         <h2 id="audience-title">{{ $page['audience']['title'] }}</h2>
         <p class="section-lead">{{ $page['audience']['lead'] }}</p>

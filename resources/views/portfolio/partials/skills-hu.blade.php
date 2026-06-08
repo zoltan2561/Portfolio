@@ -11,11 +11,11 @@
 
   <h3>🤖 Mesterséges intelligencia / AI</h3>
   <ul>
-    <li>OpenAI / ChatGPT alapú munkafolyamatok és automatizálási ötletek kidolgozása</li>
-    <li>GPT modellek, Claude és Gemini gyakorlati tesztelése és összehasonlítása feladattípusok szerint</li>
-    <li>Prompt tervezés, rendszerpromptok, tartalomstruktúrák és válaszminőség finomítása</li>
-    <li>AI-alapú tartalomgenerálás, híroldal automatizálás és adminisztrációs folyamatok gyorsítása</li>
-    <li>Laravel + AI integrációk, API-alapú automatizálások és üzleti segédeszközök tervezése</li>
+    <li>OpenAI API bekötése weboldalakba, Laravel rendszerekbe és automatizált folyamatokba</li>
+    <li>Ollama és LM Studio használata helyi AI modellek futtatásához és teszteléséhez</li>
+    <li>GPT-4o, GPT-4.1, Claude, Gemini, Llama és Mistral modellek gyakorlati kipróbálása</li>
+    <li>AI chatbotok, tartalomgeneráló modulok és adminisztrációt segítő webes funkciók tervezése</li>
+    <li>Prompt tervezés, rendszerpromptok, API-válaszok feldolgozása és AI-alapú riportok előkészítése</li>
   </ul>
 
   <h3>🌐 Frontend</h3>

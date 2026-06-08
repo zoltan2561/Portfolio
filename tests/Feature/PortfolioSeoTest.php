@@ -107,14 +107,20 @@ class PortfolioSeoTest extends TestCase
         $this->get('/skills')
             ->assertOk()
             ->assertSee('Mesterséges intelligencia / AI')
-            ->assertSee('GPT modellek')
-            ->assertSee('Laravel + AI integrációk');
+            ->assertSee('OpenAI API')
+            ->assertSee('Ollama')
+            ->assertSee('LM Studio')
+            ->assertSee('GPT-4o')
+            ->assertSee('Mistral');
 
         $this->get('/skills?lang=en')
             ->assertOk()
             ->assertSee('Artificial Intelligence / AI')
-            ->assertSee('GPT models')
-            ->assertSee('Laravel + AI integrations');
+            ->assertSee('OpenAI API')
+            ->assertSee('Ollama')
+            ->assertSee('LM Studio')
+            ->assertSee('GPT-4o')
+            ->assertSee('Mistral');
     }
 
     public function test_sitemap_contains_only_public_language_urls_with_hreflang_alternates(): void

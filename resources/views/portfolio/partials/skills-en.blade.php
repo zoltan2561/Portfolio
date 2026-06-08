@@ -3,11 +3,11 @@
 
   <h3>🤖 Artificial Intelligence / AI</h3>
   <ul>
-    <li>OpenAI / ChatGPT-based workflows and automation ideas</li>
-    <li>Practical testing and comparison of GPT models, Claude, and Gemini by task type</li>
-    <li>Prompt design, system prompts, content structures, and response quality tuning</li>
-    <li>AI-powered content generation, automated news workflows, and faster admin processes</li>
-    <li>Laravel + AI integrations, API-based automations, and business support tools</li>
+    <li>OpenAI API integration into websites, Laravel systems, and automated workflows</li>
+    <li>Ollama and LM Studio for running and testing local AI models</li>
+    <li>Practical testing of GPT-4o, GPT-4.1, Claude, Gemini, Llama, and Mistral models</li>
+    <li>AI chatbots, content generation modules, and web features that support admin work</li>
+    <li>Prompt design, system prompts, API response handling, and AI-assisted report preparation</li>
   </ul>
 
   <h3>🌐 Frontend</h3>

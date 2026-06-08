@@ -11,7 +11,7 @@ return [
         'contact' => [
             'email' => 'melo@pzoli.com',
             'linkedin' => 'https://linkedin.com/in/papp-zoltán-41a7a4172/',
-            'github' => 'https://github.com/zoltan2561',
+            'github' => 'https://github.com/pzoltan2561',
             'instagram' => 'https://www.instagram.com/zoltan.ppp/',
             'facebook' => 'https://facebook.com/ztech20',
             'facebook_business' => 'https://www.facebook.com/pzinformatika/',

@@ -123,9 +123,6 @@ class PortfolioController extends Controller
         $typewriterSets = $pageContent['typewriter_sets'];
         $typewriterLines = $typewriterSets[array_rand($typewriterSets)];
 
-        $preloaderSets = $page === 'home' ? $localeContent['home']['preloader_sets'] : [];
-        $preloaderLines = $preloaderSets ? $preloaderSets[array_rand($preloaderSets)] : [];
-
         $schema = $this->buildSchema($baseUrl, $currentUrl, $page, $meta, $person, $lang, $pageContent);
 
         return [
@@ -149,7 +146,6 @@ class PortfolioController extends Controller
             'currentUrl' => $currentUrl,
             'schemaJson' => json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT),
             'typewriterLines' => $typewriterLines,
-            'preloaderLines' => $preloaderLines,
             'ogImage' => asset('icons/og-1200x630.jpg'),
             'ogImageAlt' => $lang === 'en'
                 ? 'Papp Zoltan portfolio preview image'
@@ -160,10 +156,10 @@ class PortfolioController extends Controller
             'assets' => [
                 'css' => $this->versionedAsset('Style.css'),
                 'js' => $this->versionedAsset('script.js'),
-                'profileWebp320' => asset('icons/profile-bw-320.webp'),
-                'profileWebp480' => asset('icons/profile-bw-480.webp'),
-                'profileWebp720' => asset('icons/profile-bw-720.webp'),
-                'profileFallback' => asset('icons/profile-bw-720.jpg'),
+                'profileWebp320' => asset('icons/profile-2026-320.webp'),
+                'profileWebp480' => asset('icons/profile-2026-480.webp'),
+                'profileWebp720' => asset('icons/profile-2026-720.webp'),
+                'profileFallback' => asset('icons/profile-2026-720.jpg'),
                 'cv' => asset('cv.pdf'),
             ],
             'links' => [

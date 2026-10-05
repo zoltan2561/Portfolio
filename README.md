@@ -1,5 +1,11 @@
 # Papp Zoltan Portfolio
 
+## Személyes randimeghívó
+
+A külön `/randi` minialkalmazás mentés nélküli demóval, személyes linkekkel, külön SQLite-adatbázissal és védett `/randi/admin` kezelőfelülettel működik. Telepítés, adminjelszóhash, mentés/visszaállítás, tesztek és az első elküldhető link lépései: [docs/RANDI_SETUP.md](docs/RANDI_SETUP.md).
+
+A titkos link birtokosa válaszolhat: ez nem igazolja a címzett személyazonosságát. Csak a token lenyomatát tároljuk, de a tárhely hozzáférési naplói tartalmazhatják a teljes megosztott URL-t. A címzettnek az adminban készült személyes linket küldd, ne a `/randi` demót.
+
 Szia, Zoli vagyok, webfejleszto. Ez az oldal a sajat portfolio oldalam, ahol igyekszem megmutatni, milyen szemlelettel dolgozom, milyen skillekben mozgok otthonosan, es hogyan tudok valodi segitseget adni ugyfeleknek.
 
 A technologia, a programozas es ugy altalaban az IT vilaga regota kozel all hozzam. Nem csak az erdekel, hogy valami mukodjon, hanem az is, hogy gyors, atlathato, stabil es hosszu tavon is vallalhato legyen. Szeretek olyan megoldasokat epiteni, ahol a jo megjelenes, a technikai hatter es a gyakorlati hasznossag egyutt ad ki egy eros vegeredmenyt.

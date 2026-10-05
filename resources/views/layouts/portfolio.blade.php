@@ -35,12 +35,32 @@
     <link rel="icon" href="{{ $favicon }}" type="image/png">
     <script type="application/ld+json">{!! $schemaJson !!}</script>
     <link rel="stylesheet" href="{{ $assets['css'] }}">
+    @if ($pageName === 'home')
+        <script>
+            (() => {
+                let finished = false;
+                const hide = () => {
+                    finished = true;
+                    const loader = document.getElementById('preloader');
+                    if (loader) loader.hidden = true;
+                };
+                window.addEventListener('load', hide, { once: true });
+                window.addEventListener('pageshow', hide);
+                window.setTimeout(() => {
+                    if (finished || document.readyState === 'complete') return;
+                    const loader = document.getElementById('preloader');
+                    if (loader) loader.hidden = false;
+                }, 700);
+                window.setTimeout(hide, 8000);
+            })();
+        </script>
+    @endif
 </head>
 
 <body>
-    @if ($preloaderLines)
-        <div id="preloader">
-            <pre id="preloader-text"></pre>
+    @if ($pageName === 'home')
+        <div id="preloader" hidden role="status" aria-label="{{ $lang === 'hu' ? 'Betöltés' : 'Loading' }}">
+            <span class="preloader-spinner" aria-hidden="true"></span>
         </div>
     @endif
 
@@ -79,7 +99,6 @@
 
     <script>
         const typewriterLines = @json($typewriterLines);
-        const preloaderLines = @json($preloaderLines);
     </script>
     <script src="{{ $assets['js'] }}"></script>
 </body>

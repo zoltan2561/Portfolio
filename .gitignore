@@ -27,3 +27,13 @@ laravel_scaffold/
 Homestead.json
 Homestead.yaml
 Thumbs.db
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.db-journal
+*.db-wal
+*.db-shm
+/storage/app/private/randi/
+/storage/app/private/randi-backups/
+/artifacts/randi/

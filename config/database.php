@@ -32,6 +32,16 @@ return [
 
     'connections' => [
 
+        'randi' => [
+            'driver' => 'sqlite',
+            'database' => env('RANDI_DB_PATH', storage_path('app/private/randi/randi.sqlite')),
+            'prefix' => '',
+            'foreign_key_constraints' => true,
+            'busy_timeout' => 5000,
+            'journal_mode' => null,
+            'synchronous' => null,
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),

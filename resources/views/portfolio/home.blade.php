@@ -23,7 +23,8 @@
             <img
                 src="{{ $assets['profileFallback'] }}"
                 alt="{{ $page['profile_alt'] }}"
-                loading="lazy"
+                loading="eager"
+                fetchpriority="high"
                 width="150"
                 height="150">
         </picture>

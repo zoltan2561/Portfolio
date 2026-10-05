@@ -358,126 +358,30 @@ function setupFlashMessages() {
 
 function setupTypewriter() {
   const typewriterEl = document.getElementById('typewriter');
-  const preloaderEl = document.getElementById('preloader-text');
-  const preloaderWrap = document.getElementById('preloader');
-
   const typedLines = typeof typewriterLines !== 'undefined' && Array.isArray(typewriterLines) ? typewriterLines : [];
-  const preloadLines = typeof preloaderLines !== 'undefined' && Array.isArray(preloaderLines) ? preloaderLines : [];
-
+  if (!typewriterEl) return;
+  if (prefersReducedMotion) {
+    typewriterEl.textContent = typedLines.join('\n');
+    return;
+  }
   let lineIndex = 0;
   let charIndex = 0;
-  let preloadIndex = 0;
-  let preloadChar = 0;
-  let typewriterStarted = false;
-
   function typeLine() {
-    if (!typewriterEl || lineIndex >= typedLines.length) {
-      return;
-    }
-
+    if (lineIndex >= typedLines.length) return;
     const currentLine = typedLines[lineIndex];
-
     if (charIndex < currentLine.length) {
-      typewriterEl.textContent += currentLine.charAt(charIndex);
-      charIndex += 1;
+      typewriterEl.textContent += currentLine.charAt(charIndex++);
       window.setTimeout(typeLine, 20);
       return;
     }
-
     typewriterEl.textContent += '\n';
     lineIndex += 1;
     charIndex = 0;
     window.setTimeout(typeLine, 350);
   }
-
-  function startTypewriter() {
-    if (typewriterStarted) {
-      return;
-    }
-
-    typewriterStarted = true;
-
-    if (preloaderWrap) {
-      preloaderWrap.style.display = 'none';
-    }
-
-    if (typewriterEl) {
-      typewriterEl.textContent = '';
-    }
-
-    typeLine();
-  }
-
-  function typePreloader() {
-    if (!preloaderEl || !preloaderWrap || !preloadLines.length) {
-      startTypewriter();
-      return;
-    }
-
-    if (preloadIndex < preloadLines.length) {
-      const line = preloadLines[preloadIndex];
-
-      if (preloadChar < line.length) {
-        preloaderEl.textContent += line.charAt(preloadChar);
-        preloadChar += 1;
-        window.setTimeout(typePreloader, 40);
-        return;
-      }
-
-      preloaderEl.textContent += '\n';
-      preloadIndex += 1;
-      preloadChar = 0;
-      window.setTimeout(typePreloader, 250);
-      return;
-    }
-
-    window.setTimeout(() => {
-      if (preloaderWrap) {
-        preloaderWrap.style.display = 'none';
-      }
-      window.scrollTo(0, 0);
-      startTypewriter();
-    }, 700);
-  }
-
-  function hasSeenPreloader() {
-    try {
-      return localStorage.getItem('pz_preloader_seen') === '1';
-    } catch (error) {
-      return false;
-    }
-  }
-
-  function markPreloaderSeen() {
-    try {
-      localStorage.setItem('pz_preloader_seen', '1');
-    } catch (error) {
-      // ignore storage issues
-    }
-  }
-
-  window.addEventListener(
-    'load',
-    () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const shouldSkipPreloader =
-        urlParams.has('success') ||
-        urlParams.has('error') ||
-        prefersReducedMotion ||
-        hasSeenPreloader();
-
-      if (shouldSkipPreloader) {
-        startTypewriter();
-        return;
-      }
-
-      markPreloaderSeen();
-      typePreloader();
-    },
-    { once: true }
-  );
+  typewriterEl.textContent = '';
+  typeLine();
 }
-
 setupMatrix();
 setupMenu();
 setupFadeIns();

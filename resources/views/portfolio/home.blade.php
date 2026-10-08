@@ -128,7 +128,13 @@
                     <p>{{ $page['contact']['lead'] }}</p>
                     <a href="mailto:{{ $person['contact']['email'] }}" class="v2-email">{{ $person['contact']['email'] }}</a>
                     <div class="v2-actions"><a href="mailto:{{ $person['contact']['email'] }}" class="v2-button">{{ $page['contact']['button'] }}</a></div>
-                    <p class="v2-profiles"><a href="{{ $person['contact']['github'] }}" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="{{ $person['contact']['linkedin'] }}" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></p>
+                    <ul class="v2-profiles">
+                        <li><a href="{{ $person['contact']['linkedin'] }}" target="_blank" rel="noopener noreferrer"><strong>LinkedIn</strong><span>{{ $page['contact']['profile_link'] }} ↗</span></a></li>
+                        <li><a href="{{ $person['contact']['github'] }}" target="_blank" rel="noopener noreferrer"><strong>GitHub</strong><span>{{ $page['contact']['profile_link'] }} ↗</span></a></li>
+                        <li><a href="{{ $person['contact']['instagram'] }}" target="_blank" rel="noopener noreferrer"><strong>Instagram</strong><span>@zoltan.ppp ↗</span></a></li>
+                        <li><a href="{{ $person['contact']['facebook'] }}" target="_blank" rel="noopener noreferrer"><strong>Facebook</strong><span>facebook.com/ztech20 ↗</span></a></li>
+                        <li><a href="{{ $person['contact']['facebook_business'] }}" target="_blank" rel="noopener noreferrer"><strong>Facebook</strong><span>facebook.com/szoftlab ↗</span></a></li>
+                    </ul>
                 </div>
                 <div>
                     @if (session('contact_status') === 'success')

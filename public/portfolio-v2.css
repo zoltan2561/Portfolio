@@ -101,8 +101,12 @@
 .portfolio-v2 .v2-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
 .portfolio-v2 .v2-contact p { color: #b9d1c4; }
 .portfolio-v2 .v2-email { font-size: 1.1rem; }
-.portfolio-v2 .v2-profiles { display: flex; flex-wrap: wrap; gap: 24px; }
-.portfolio-v2 .v2-profiles a { font-size: 0.9rem; min-height: 44px; display: inline-flex; align-items: center; }
+.portfolio-v2 .v2-profiles { list-style: none; padding: 0; margin: 0; }
+.portfolio-v2 .v2-profiles li { border-bottom: 1px solid #244331; }
+.portfolio-v2 .v2-profiles li:last-child { border-bottom: 0; }
+.portfolio-v2 .v2-profiles a { font-size: 0.9rem; min-height: 44px; display: grid; grid-template-columns: 92px minmax(0, 1fr); align-items: center; gap: 14px; padding-block: 10px; text-decoration: none; }
+.portfolio-v2 .v2-profiles strong { color: #bdd6c6; font-size: 0.82rem; }
+.portfolio-v2 .v2-profiles span { min-width: 0; overflow-wrap: anywhere; }
 .portfolio-v2 .v2-form { display: flex; flex-direction: column; align-items: stretch; gap: 9px; width: 100%; max-width: none; margin: 0; padding: 0; border: none; border-radius: 0; background: none; box-shadow: none; text-align: left; }
 .portfolio-v2 .v2-form label { color: #bdd6c6; font-size: 0.87rem; }
 .portfolio-v2 .v2-form input, .portfolio-v2 .v2-form textarea { width: 100%; min-width: 0; min-height: 48px; padding: 12px; margin: 0 0 8px; border: 1px solid #355c42; border-radius: 6px; background: #07160c; color: #e4fff0; font-family: inherit; font-size: 1rem; }

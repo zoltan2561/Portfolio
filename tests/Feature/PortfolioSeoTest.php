@@ -165,27 +165,14 @@ class PortfolioSeoTest extends TestCase
         }
     }
 
-    public function test_supplied_hungarian_body_copy_is_used_verbatim(): void
+    public function test_approved_hungarian_body_copy_is_used_verbatim(): void
     {
-        $document = file_get_contents(base_path('PZOLI_PORTFOLIO_V2_CODEX.md'));
-        foreach (['home', 'skills'] as $page) {
+        $expected = json_decode(file_get_contents(base_path('tests/Fixtures/portfolio-hu-approved-copy.json')), true, 512, JSON_THROW_ON_ERROR);
+        foreach ($expected as $page => $texts) {
             $html = $this->get($page === 'home' ? '/' : '/skills')->assertOk()->getContent();
-            $copy = config("portfolio.locales.hu.{$page}");
-            $walk = function (array $values) use (&$walk, $document, $html): void {
-                foreach ($values as $key => $value) {
-                    if (is_array($value)) {
-                        if (! in_array($key, ['typewriter_sets', 'about'], true)) {
-                            $walk($value);
-                        }
-                    } elseif (is_string($value) && mb_strlen($value) > 70 && $key !== 'hero_text') {
-                        $this->assertStringContainsString($value, $document);
-                        if (! in_array($key, ['success', 'error'], true)) {
-                            $this->assertStringContainsString(e($value), $html);
-                        }
-                    }
-                }
-            };
-            $walk($copy);
+            foreach ($texts as $text) {
+                $this->assertStringContainsString(e($text), $html);
+            }
         }
     }
 

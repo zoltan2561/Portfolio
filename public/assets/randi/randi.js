@@ -454,6 +454,7 @@
     let lastMove = -Infinity;
     let keyboard = false;
     let suppressPointerClickUntil = 0;
+    let recentPositions = [];
     document.addEventListener("keydown", (event) => {
         if (event.key === "Tab") keyboard = true;
     });
@@ -485,8 +486,10 @@
         const maxX = Math.max(0, bounds.width - current.width);
         const maxY = Math.max(0, bounds.height - current.height - 10);
         const candidates = [];
-        for (const y of [maxY, 0, maxY / 2]) {
-            for (const x of [0, maxX, maxX / 2, maxX / 3, (maxX * 2) / 3]) {
+        for (let row = 0; row <= 4; row++) {
+            const y = (maxY * row) / 4;
+            for (let column = 0; column <= 6; column++) {
+                const x = (maxX * column) / 6;
                 const target = {
                     left: bounds.left + x,
                     top: bounds.top + y,
@@ -504,7 +507,7 @@
                     event.clientY >= target.top - 10 &&
                     event.clientY <= target.bottom + 10;
                 if (
-                    distance > 25 &&
+                    distance > 45 &&
                     !coversPointer &&
                     !forbidden.some((rect) => intersects(target, rect))
                 )
@@ -512,8 +515,15 @@
             }
         }
         if (!candidates.length) return;
-        candidates.sort((a, b) => b.distance - a.distance);
-        const destination = candidates[0];
+        const fresh = candidates.filter((candidate) =>
+            !recentPositions.some((position) =>
+                Math.hypot(candidate.x - position.x, candidate.y - position.y) < 28,
+            ),
+        );
+        const choices = fresh.length ? fresh : candidates;
+        const destination = choices[Math.floor(Math.random() * choices.length)];
+        recentPositions.push({ x: destination.x, y: destination.y });
+        recentPositions = recentPositions.slice(-4);
         no.style.left = `${destination.x}px`;
         no.style.top = `${destination.y}px`;
         no.style.right = "auto";
@@ -527,6 +537,7 @@
         no.style.top = "";
         no.style.right = "";
         lastMove = -Infinity;
+        recentPositions = [];
     }
 
     no.addEventListener("pointerenter", (event) => {

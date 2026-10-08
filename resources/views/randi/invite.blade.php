@@ -34,7 +34,7 @@
         <section data-step="joy" @if($step !== 'joy') hidden @endif>
             @include('randi.partials.cat')
             <p class="eyebrow">Ezt most elteszem a jó pillanatok közé.</p>
-            <h1 tabindex="-1">Na jó, most mosolygok a telefonomra. 🥹</h1>
+            <h1 tabindex="-1">Na jó, most mosolygok. 🥹</h1>
             <p class="lead">Ez határozottan jó fordulat a napomban.</p>
             <button class="button primary full-width" type="submit" name="action" value="date" data-go="date">Akkor találjunk egy időpontot <span aria-hidden="true">→</span></button>
         </section>
@@ -93,7 +93,7 @@
         </section>
         <section data-step="declined" @if($step !== 'declined') hidden @endif>
             @include('randi.partials.cat')
-            <h1 tabindex="-1">Rendben, köszi,<br>hogy jelezted. 🙂</h1><p class="lead">Semmi gond.</p>
+            <h1 tabindex="-1">Rendben, köszi,<br>hogy jelezted.</h1><p class="lead">Semmi gond.</p>
             <p class="quiet-note">{{ $demo ? 'Bemutató: ezt a választ nem mentettük el.' : 'A válaszodat elmentettem.' }}</p>
         </section>
     </form>

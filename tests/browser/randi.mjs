@@ -124,7 +124,7 @@ try {
             page.on("request", (req) => {
                 if (!req.url().startsWith(base)) external.push(req.url());
             });
-            await page.goto(`${base}/randi`);
+            await page.goto(`${base}/randi/demo`);
             for (const width of [320, 390, 430, 1280, 844, 390]) {
                 await page.mouse.move(0, 0);
                 await page.setViewportSize({
@@ -411,7 +411,7 @@ try {
 
     await check("Demo completion stays explicitly unsaved", async () => {
         const { page } = await newPage();
-        await begin(page, `${base}/randi`);
+        await begin(page, `${base}/randi/demo`);
         await discussLater(page);
         await page.locator('[name="activity"][value="surprise"]').check();
         await page.getByRole("button", { name: "Nézzük a tervet" }).click();

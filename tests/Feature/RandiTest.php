@@ -59,6 +59,78 @@ class RandiTest extends TestCase
         $this->withSession(['randi.admin' => hash('sha256', config('randi.admin_password_hash'))]);
     }
 
+    public function test_root_asks_for_a_name_and_generates_a_persistent_personal_link(): void
+    {
+        $this->get('/randi')->assertOk()->assertSee('A meghívott keresztneve')->assertDontSee('id="randi-app"', false);
+        $this->head('/randi')->assertOk();
+        $this->assertDatabaseCount('date_invites', 0, 'randi');
+        $response = $this->withHeader('Host', 'untrusted.example')->post('/randi', [
+            'recipient_name' => '  Anna  ', 'sender_name' => 'Someone else', 'expires_days' => 90,
+        ]);
+        $response->assertCreated()->assertSee('Anna névre készült')->assertSee('Link másolása')->assertSee('Új meghívó készítése');
+        preg_match('~https://pzoli.com/randi/([A-Za-z0-9_-]{43})~', $response->getContent(), $matches);
+        $this->assertCount(2, $matches);
+        $invite = DB::connection('randi')->table('date_invites')->first();
+        $this->assertSame('Anna', $invite->recipient_name);
+        $this->assertSame('Zoli', $invite->sender_name);
+        $this->assertSame('2026-11-01 12:00:00', $invite->expires_at);
+        $this->assertSame(hash('sha256', $matches[1]), $invite->token_hash);
+        $this->assertStringNotContainsString($matches[1], json_encode(session()->all()));
+        $this->get('/randi/'.$matches[1])->assertOk()->assertSee('Szia, Anna!')->assertSee('Na jó, most mosolygok. 🥹')->assertDontSee('a telefonomra');
+        $key = session('randi.keys.'.$invite->token_hash.'.key');
+        $this->postJson('/randi/'.$matches[1].'/response', $this->accepted($key))->assertOk();
+        DB::purge('randi');
+        $this->assertDatabaseHas('date_responses', ['invite_id' => $invite->id, 'decision' => 'accepted'], 'randi');
+        $this->admin();
+        $this->get('/randi/admin')->assertOk()->assertSee('Anna')->assertSee('Van randiterv');
+    }
+
+    public function test_generator_validates_names_without_polluting_invitation_drafts(): void
+    {
+        foreach (['', '   ', str_repeat('é', 81), ['Anna']] as $name) {
+            $this->post('/randi', ['recipient_name' => $name])->assertRedirect('/randi')->assertSessionHasErrors('recipient_name');
+        }
+        $this->assertNull(session('randi.drafts'));
+        $this->assertDatabaseCount('date_invites', 0, 'randi');
+        $this->get('/randi')->assertOk()->assertSee('role="alert"', false);
+    }
+
+    public function test_same_name_invites_keep_separate_responses_and_names_are_escaped(): void
+    {
+        $links = [];
+        foreach (['Anna', 'Anna', '<img src=x onerror=alert(1)>'] as $name) {
+            $response = $this->post('/randi', ['recipient_name' => $name])->assertCreated();
+            preg_match('~/randi/([A-Za-z0-9_-]{43})~', $response->getContent(), $matches);
+            $links[] = $matches[1];
+            if ($name !== 'Anna') {
+                $response->assertSee($name)->assertDontSee($name, false);
+                $this->get('/randi/'.$matches[1])->assertSee($name)->assertDontSee($name, false);
+            }
+        }
+        $this->assertNotSame($links[0], $links[1]);
+        $invite = app(InviteStore::class)->find($links[0]);
+        $key = $this->key(['token' => $links[0]]);
+        $this->postJson('/randi/'.$links[0].'/response', ['submission_key' => $key, 'decision' => 'declined'])->assertOk();
+        $this->get('/randi/'.$links[0])->assertSee('data-current-step="declined"', false)->assertSee('cat-eyes-sad');
+        $this->assertDatabaseHas('date_responses', ['invite_id' => $invite->id, 'decision' => 'declined'], 'randi');
+        $this->get('/randi/'.$links[1])->assertOk()->assertSee('Szia, Anna!')->assertSee('data-current-step="invite"', false);
+        $this->assertDatabaseCount('date_responses', 1, 'randi');
+    }
+
+    public function test_generator_is_rate_limited_and_never_claims_a_link_when_storage_fails(): void
+    {
+        DB::connection('randi')->statement('PRAGMA query_only = ON');
+        $this->post('/randi', ['recipient_name' => 'Anna'])->assertStatus(503)->assertDontSee('id="created-link"', false);
+        $this->assertNull(session('randi.drafts'));
+        $this->assertDatabaseCount('date_invites', 0, 'randi');
+        DB::connection('randi')->statement('PRAGMA query_only = OFF');
+        for ($i = 0; $i < 4; $i++) {
+            $this->post('/randi', ['recipient_name' => 'Anna'])->assertCreated();
+        }
+        $this->post('/randi', ['recipient_name' => 'Anna'])->assertTooManyRequests();
+        $this->assertDatabaseCount('date_invites', 4, 'randi');
+    }
+
     public function test_tokens_are_random_hashed_and_links_are_shown_only_once(): void
     {
         $this->admin();
@@ -217,9 +289,9 @@ class RandiTest extends TestCase
         $this->key($invite);
         $this->head('/randi/'.$invite['token'])->assertOk();
         $this->post('/randi/'.$invite['token'].'/form', ['action' => 'start'])->assertRedirect();
-        $this->get('/randi')->assertOk()->assertSee('válaszodat nem mentjük');
+        $this->get('/randi/demo')->assertOk()->assertSee('válaszodat nem mentjük');
         $key = session('randi.keys.demo.key');
-        $this->postJson('/randi/response', $this->accepted($key))->assertOk()->assertJsonPath('demo', true);
+        $this->postJson('/randi/demo/response', $this->accepted($key))->assertOk()->assertJsonPath('demo', true);
         $this->assertDatabaseCount('date_invites', 1, 'randi');
         $this->assertDatabaseCount('date_responses', 0, 'randi');
     }
@@ -254,6 +326,7 @@ class RandiTest extends TestCase
         $key = $this->key($invite);
         $this->postJson('/randi/'.$invite['token'].'/response', $this->accepted($key))->assertStatus(419);
         $this->post('/randi/admin/login', ['password' => 'only-a-test-password'])->assertStatus(419);
+        $this->post('/randi', ['recipient_name' => 'Anna'])->assertStatus(419);
         $this->admin();
         $this->post('/randi/admin/invitations', ['sender_name' => 'Zoli'])->assertStatus(419);
         $this->assertDatabaseCount('date_responses', 0, 'randi');

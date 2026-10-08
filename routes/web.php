@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\RandiController;
 use App\Http\Controllers\RandiAdminController;
+use App\Http\Controllers\RandiController;
 use App\Http\Middleware\RandiAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +15,11 @@ Route::post('/statistics/logout', [PortfolioController::class, 'logoutStatistics
 Route::post('/contact', [ContactController::class, 'send'])->middleware('throttle:portfolio-contact')->name('contact.send');
 
 Route::prefix('randi')->name('randi.')->group(function () {
-    Route::get('/', [RandiController::class, 'show'])->name('demo');
-    Route::post('/form', [RandiController::class, 'form'])->middleware('throttle:randi-response')->name('demo.form');
-    Route::post('/response', [RandiController::class, 'respond'])->middleware('throttle:randi-response')->name('demo.response');
+    Route::get('/', [RandiController::class, 'generator'])->name('generator');
+    Route::post('/', [RandiController::class, 'create'])->middleware('throttle:randi-create')->name('create');
+    Route::get('/demo', [RandiController::class, 'show'])->name('demo');
+    Route::post('/demo/form', [RandiController::class, 'form'])->middleware('throttle:randi-response')->name('demo.form');
+    Route::post('/demo/response', [RandiController::class, 'respond'])->middleware('throttle:randi-response')->name('demo.response');
     Route::get('/admin/login', [RandiAdminController::class, 'login'])->name('admin.login');
     Route::post('/admin/login', [RandiAdminController::class, 'authenticate'])->middleware('throttle:randi-login')->name('admin.authenticate');
     Route::middleware(RandiAdmin::class)->group(function () {

@@ -22,11 +22,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        foreach (['randi-login' => 5, 'randi-response' => 30, 'randi-admin' => 20] as $name => $attempts) {
+        foreach (['randi-login' => 5, 'randi-create' => 5, 'randi-response' => 30, 'randi-admin' => 20] as $name => $attempts) {
             RateLimiter::for($name, function (Request $request) use ($attempts, $name) {
                 $identity = hash_hmac('sha256', $request->ip() ?? 'unknown', (string) config('app.key'));
+
                 return Limit::perMinute($attempts)->by($name.':'.$identity)->response(function (Request $request, array $headers) {
                     $message = 'Most túl sok próbálkozás érkezett. Várj egy percet, és próbáld újra.';
+
                     return $request->expectsJson()
                         ? response()->json(['ok' => false, 'message' => $message], 429, $headers)
                         : response()->view('randi.status', compact('message'), 429, $headers);

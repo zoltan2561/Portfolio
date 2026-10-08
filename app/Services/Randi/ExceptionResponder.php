@@ -26,6 +26,12 @@ class ExceptionResponder
             if ($request->expectsJson()) {
                 return response()->json(['ok' => false, 'message' => 'Egy apróság még hiányzik.', 'errors' => $error->errors()], 422, $headers);
             }
+            if ($request->routeIs('randi.create')) {
+                $name = $request->input('recipient_name');
+
+                return redirect()->route('randi.generator')->withErrors($error->errors())
+                    ->withInput(['recipient_name' => is_string($name) ? mb_substr($name, 0, 80) : ''])->withHeaders($headers);
+            }
             if ($request->is('randi/admin/*')) {
                 $target = $request->is('randi/admin/login') ? route('randi.admin.login') : route('randi.admin');
 
@@ -48,7 +54,7 @@ class ExceptionResponder
             return response()->json(['ok' => false, 'message' => $message], $status, $headers);
         }
         // Keep a failed HTML write reviewable, with data scoped to this invite.
-        if ($status === 503 && $request->isMethod('POST') && ! $request->is('randi/admin/*')) {
+        if ($status === 503 && $request->isMethod('POST') && ! $request->is('randi/admin/*') && ! $request->routeIs('randi.create')) {
             $this->saveDraft($request, $request->input('decision') === 'declined' ? 'invite' : 'review');
         }
 
@@ -76,6 +82,10 @@ class ExceptionResponder
 
     private function inviteUrl(Request $request): string
     {
+        if ($request->routeIs('randi.create')) {
+            return route('randi.generator');
+        }
+
         return $request->route('token') ? route('randi.show', $request->route('token')) : route('randi.demo');
     }
 }

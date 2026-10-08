@@ -148,8 +148,20 @@
     height: auto;
 }
 .cat-eyes-happy,
-.cat-spark {
+.cat-spark,
+.cat-eyes-sad,
+.cat-mouth-sad,
+.cat-tear {
     display: none;
+}
+.randi-card[data-current-step="declined"] .cat-eyes-shy,
+.randi-card[data-current-step="declined"] .cat-mouth {
+    display: none;
+}
+.randi-card[data-current-step="declined"] .cat-eyes-sad,
+.randi-card[data-current-step="declined"] .cat-mouth-sad,
+.randi-card[data-current-step="declined"] .cat-tear {
+    display: block;
 }
 .randi-card[data-current-step="joy"] .cat-eyes-shy,
 .randi-card[data-current-step="success"] .cat-eyes-shy {
@@ -255,7 +267,7 @@
 }
 .answer-arena {
     position: relative;
-    height: 115px;
+    height: 190px;
     width: 100%;
     margin-top: 6px;
     isolation: isolate;

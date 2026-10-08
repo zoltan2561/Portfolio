@@ -9,8 +9,11 @@
         <path d="M106 39 110 54m12-17v18m12-15-4 14" stroke="#d7a784" stroke-width="5" stroke-linecap="round"/>
         <g class="cat-eyes-shy" fill="#5c4038"><ellipse cx="97" cy="83" rx="4" ry="6"/><ellipse cx="146" cy="83" rx="4" ry="6"/></g>
         <g class="cat-eyes-happy" fill="none" stroke="#5c4038" stroke-width="3.5" stroke-linecap="round"><path d="M91 84q6-10 12 0m37 0q6-10 12 0"/></g>
+        <g class="cat-eyes-sad" stroke="#5c4038" stroke-width="2.5" stroke-linecap="round"><path d="M90 78q7 6 14 0m35 0q7 6 14 0" fill="none"/><ellipse cx="97" cy="89" rx="3" ry="4" fill="#5c4038"/><ellipse cx="146" cy="89" rx="3" ry="4" fill="#5c4038"/></g>
         <ellipse cx="82" cy="97" rx="10" ry="6" fill="#df9f96" opacity=".65"/><ellipse cx="159" cy="97" rx="10" ry="6" fill="#df9f96" opacity=".65"/>
-        <path d="m117 95 5 4 5-4zm5 5v5m0 0q-6 7-11 0m11 0q6 7 11 0" fill="none" stroke="#714e41" stroke-width="2" stroke-linecap="round"/>
+        <path class="cat-mouth" d="m117 95 5 4 5-4zm5 5v5m0 0q-6 7-11 0m11 0q6 7 11 0" fill="none" stroke="#714e41" stroke-width="2" stroke-linecap="round"/>
+        <path class="cat-mouth-sad" d="m117 95 5 4 5-4zm-5 5v4m-9 8q9-9 18 0" fill="none" stroke="#714e41" stroke-width="2" stroke-linecap="round"/>
+        <path class="cat-tear" d="M153 95c-2 5-5 7-5 10a5 5 0 0 0 10 0c0-3-3-5-5-10z" fill="#8bbacc"/>
         <path d="m71 88-22-3m22 12-21 4m120-13 22-3m-22 12 21 4" stroke="#714e41" stroke-width="2" stroke-linecap="round"/>
         <rect x="78" y="126" width="88" height="49" rx="6" fill="#fff9f2" stroke="#a87866" stroke-width="2"/>
         <path d="m80 129 42 27 42-27m-84 42 29-23m55 23-29-23" stroke="#d3a89a" stroke-width="2" fill="none"/>

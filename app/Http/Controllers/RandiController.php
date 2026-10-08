@@ -12,6 +12,28 @@ class RandiController extends Controller
 {
     public function __construct(private InviteStore $store, private ResponseValidator $validator) {}
 
+    public function generator()
+    {
+        return view('randi.generator');
+    }
+
+    public function create(Request $request)
+    {
+        $data = $request->validate([
+            'recipient_name' => ['required', 'string', 'max:80'],
+        ], [
+            'recipient_name.required' => 'Add meg, kinek szeretnéd küldeni a meghívót.',
+            'recipient_name.string' => 'Szöveges nevet adj meg.',
+            'recipient_name.max' => 'A név legfeljebb 80 karakter lehet.',
+        ]);
+        $created = $this->store->create($data + ['sender_name' => 'Zoli', 'expires_days' => 30]);
+
+        return response()->view('randi.created', [
+            'link' => $created['link'], 'recipientName' => $data['recipient_name'],
+            'backUrl' => route('randi.generator'), 'backLabel' => 'Új meghívó készítése',
+        ], 201);
+    }
+
     public function show(Request $request, ?string $token = null)
     {
         $demo = $token === null;

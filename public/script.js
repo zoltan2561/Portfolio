@@ -3,206 +3,161 @@ if ('scrollRestoration' in history) {
 }
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isMobile = window.matchMedia('(max-width: 600px)').matches;
 
 function setupMatrix() {
   const canvas = document.getElementById('matrix');
-  if (!canvas || prefersReducedMotion) {
-    if (canvas) {
-      canvas.style.display = 'none';
-    }
-    return;
-  }
-
+  if (!canvas) return;
+  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const ctx = canvas.getContext('2d');
-  if (!ctx) {
-    return;
-  }
+  if (!ctx) return;
 
-  const letters = '01';
-  const matrixConfig = isMobile
-    ? {
-        fontSize: 15,
-        columnWidth: 24,
-        trailAlpha: 0.16,
-        maxTrailBoost: 0.018,
-        scrollTrailFactor: 0.0035,
-        depthTrailFactor: 0.007,
-        baseSpeed: 0.7,
-        scrollSpeedFactor: 0.22,
-        depthSpeedFactor: 0.12,
-        frameDelay: 74,
-        frameBoostFactor: 0.12,
-        easing: 0.06,
-        decay: 0.9,
-        maxBoost: 1.4,
-        velocityFactor: 1.05,
-        baseBoost: 0.06,
-        resetVariance: 0.018,
-        resetBoostFactor: 0.01,
-        topColor: 'rgba(0, 255, 0, 0.55)',
-        deepColor: 'rgba(102, 255, 224, 0.62)'
-      }
-    : {
-        fontSize: 14,
-        columnWidth: 14,
-        trailAlpha: 0.055,
-        maxTrailBoost: 0.03,
-        scrollTrailFactor: 0.007,
-        depthTrailFactor: 0.012,
-        baseSpeed: 1,
-        scrollSpeedFactor: 0.55,
-        depthSpeedFactor: 0.25,
-        frameDelay: 42,
-        frameBoostFactor: 0.3,
-        easing: 0.08,
-        decay: 0.94,
-        maxBoost: 3.2,
-        velocityFactor: 2.2,
-        baseBoost: 0.15,
-        resetVariance: 0.04,
-        resetBoostFactor: 0.02,
-        topColor: 'rgba(0, 255, 0, 0.92)',
-        deepColor: 'rgba(102, 255, 224, 0.95)'
-      };
-  const { fontSize, columnWidth } = matrixConfig;
-  let columns = 0;
+  const fontSize = 20;
+  const columnWidth = 22;
+  const frameInterval = 1000 / 30;
+  // Cache glyphs once; the animation only blits small images.
+  const glyphs = ['#00ff00', '#66ffe0'].map((color) => ['0', '1'].map((letter) => {
+    const glyph = document.createElement('canvas');
+    glyph.width = columnWidth;
+    glyph.height = fontSize + 4;
+    const glyphCtx = glyph.getContext('2d');
+    glyphCtx.font = `${fontSize}px monospace`;
+    glyphCtx.fillStyle = color;
+    glyphCtx.fillText(letter, 0, fontSize);
+    return glyph;
+  }));
+  let width = 0;
+  let height = 0;
   let drops = [];
-  let animationFrameId = null;
-  let lastFrameTime = 0;
+  let frameId = null;
+  let resizeId = null;
+  let previousTime = 0;
+  let lastDraw = 0;
+  let elapsed = 0;
+  let scrollDepth = 0;
+  let scrollBoost = 0;
   let lastScrollY = window.scrollY;
   let lastScrollTime = performance.now();
-  let scrollBoost = 0;
-  let targetScrollBoost = 0;
+  let ready = false;
+
+  function updateDepth() {
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    scrollDepth = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+  }
 
   function resizeCanvas() {
-    const previousDrops = drops;
-    const previousColumns = columns;
-
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-    columns = Math.max(1, Math.floor(canvas.width / columnWidth));
-
-    if (!previousDrops.length) {
-      drops = new Array(columns).fill(1);
-      return;
-    }
-
-    if (columns === previousColumns) {
-      drops = previousDrops.slice(0, columns);
-      return;
-    }
-
-    // Preserve existing rain positions when mobile browser chrome changes viewport size.
-    drops = Array.from({ length: columns }, (_, index) => {
-      const mappedIndex = Math.floor((index / Math.max(1, columns - 1)) * Math.max(0, previousColumns - 1));
-      return previousDrops[mappedIndex] ?? 1;
-    });
-  }
-
-  function getScrollDepth() {
-    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    return window.scrollY / maxScroll;
-  }
-
-  function draw() {
-    const scrollDepth = getScrollDepth();
-    const dynamicTrail = Math.min(
-      matrixConfig.maxTrailBoost,
-      scrollBoost * matrixConfig.scrollTrailFactor + scrollDepth * matrixConfig.depthTrailFactor
-    );
-
-    ctx.fillStyle = `rgba(0, 0, 0, ${matrixConfig.trailAlpha + dynamicTrail})`;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = scrollDepth > 0.5 ? matrixConfig.deepColor : matrixConfig.topColor;
-    ctx.font = `${fontSize}px monospace`;
-
-    const speedMultiplier =
-      matrixConfig.baseSpeed +
-      scrollBoost * matrixConfig.scrollSpeedFactor +
-      scrollDepth * matrixConfig.depthSpeedFactor;
-
-    for (let index = 0; index < drops.length; index += 1) {
-      const text = letters.charAt(Math.floor(Math.random() * letters.length));
-      ctx.fillText(text, index * columnWidth, drops[index] * fontSize);
-
-      if (
-        drops[index] * fontSize > canvas.height &&
-        Math.random() > 0.975 - Math.min(matrixConfig.resetVariance, scrollBoost * matrixConfig.resetBoostFactor)
-      ) {
-        drops[index] = 0;
+    resizeId = null;
+    const nextWidth = window.innerWidth;
+    const nextHeight = window.innerHeight;
+    if (nextWidth === width && nextHeight === height) return;
+    const oldHeight = height;
+    width = nextWidth;
+    height = nextHeight;
+    // One CSS pixel per canvas pixel bounds the rendering cost on high-DPI phones.
+    canvas.width = width;
+    canvas.height = height;
+    const columns = Math.ceil(width / columnWidth);
+    drops = Array.from({ length: columns }, (_, index) => ({
+      y: drops[index] ? drops[index].y * height / Math.max(1, oldHeight) : Math.random() * height,
+      speed: drops[index]?.speed ?? 0.8 + Math.random() * 0.4,
+      bit: index % 2
+    }));
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, width, height);
+    // Seed a complete rain field so there is no synchronised start at the top.
+    drops.forEach((drop, index) => {
+      for (let trail = 8; trail >= 0; trail -= 1) {
+        ctx.globalAlpha = (1 - trail / 9) * (width <= 600 ? 0.55 : 0.92);
+        ctx.drawImage(glyphs[0][(drop.bit + trail) % 2], index * columnWidth, Math.floor(drop.y / fontSize) * fontSize - trail * fontSize);
       }
-
-      drops[index] += speedMultiplier;
-    }
+    });
+    ctx.globalAlpha = 1;
+    updateDepth();
   }
 
   function animate(timestamp) {
-    if (document.hidden) {
-      animationFrameId = null;
+    if (document.hidden || motion.matches) {
+      stop();
       return;
     }
-
-    if (!lastFrameTime) {
-      lastFrameTime = timestamp;
+    const delta = previousTime ? Math.min(50, timestamp - previousTime) : 0;
+    previousTime = timestamp;
+    elapsed += delta;
+    scrollBoost *= Math.exp(-delta / 280);
+    if (timestamp - lastDraw >= frameInterval - 1) {
+      // Fade and movement depend on elapsed time, never on monitor refresh rate.
+      const fadeDuration = width <= 600 ? 420 : 740;
+      ctx.fillStyle = `rgba(0, 0, 0, ${1 - Math.exp(-elapsed / fadeDuration)})`;
+      ctx.fillRect(0, 0, width, height);
+      const seconds = elapsed / 1000;
+      drops.forEach((drop, index) => {
+        drop.y += drop.speed * (width <= 600 ? 155 : 440) * seconds * (1 + scrollDepth * 0.2 + scrollBoost * 0.3);
+        if (drop.y > height + 12 * fontSize) drop.y = -Math.random() * height * 0.25;
+        const row = Math.floor(drop.y / fontSize);
+        if (row !== drop.row) drop.bit = Math.random() < 0.5 ? 0 : 1;
+        drop.row = row;
+        ctx.globalAlpha = width <= 600 ? 0.55 : 0.92;
+        ctx.drawImage(glyphs[scrollDepth > 0.5 ? 1 : 0][drop.bit], index * columnWidth, row * fontSize);
+      });
+      ctx.globalAlpha = 1;
+      elapsed = 0;
+      // Preserve the remainder to avoid uneven 33/50 ms frame scheduling.
+      lastDraw = timestamp - ((timestamp - lastDraw) % frameInterval);
     }
-
-    scrollBoost += (targetScrollBoost - scrollBoost) * matrixConfig.easing;
-    targetScrollBoost *= matrixConfig.decay;
-
-    const frameDelay = matrixConfig.frameDelay / (1 + scrollBoost * matrixConfig.frameBoostFactor);
-    if (timestamp - lastFrameTime >= frameDelay) {
-      draw();
-      lastFrameTime = timestamp;
-    }
-
-    animationFrameId = window.requestAnimationFrame(animate);
+    frameId = window.requestAnimationFrame(animate);
   }
 
-  function startMatrix() {
-    if (animationFrameId) {
-      return;
-    }
-
-    animationFrameId = window.requestAnimationFrame(animate);
+  function start() {
+    canvas.hidden = motion.matches;
+    if (!ready || document.hidden || motion.matches || frameId !== null) return;
+    previousTime = 0;
+    elapsed = 0;
+    lastDraw = performance.now();
+    frameId = window.requestAnimationFrame(animate);
   }
 
-  function stopMatrix() {
-    if (!animationFrameId) {
-      return;
-    }
-
-    window.cancelAnimationFrame(animationFrameId);
-    animationFrameId = null;
-    lastFrameTime = 0;
+  function stop() {
+    if (frameId !== null) window.cancelAnimationFrame(frameId);
+    frameId = null;
+    previousTime = 0;
+    elapsed = 0;
   }
 
-  window.addEventListener('scroll', () => {
-    const now = performance.now();
-    const deltaY = Math.abs(window.scrollY - lastScrollY);
-    const deltaTime = Math.max(16, now - lastScrollTime);
-    const velocity = deltaY / deltaTime;
-
-    targetScrollBoost = Math.min(
-      matrixConfig.maxBoost,
-      velocity * matrixConfig.velocityFactor + matrixConfig.baseBoost
-    );
-    lastScrollY = window.scrollY;
-    lastScrollTime = now;
-  }, { passive: true });
+  function boot() {
+    const begin = () => {
+      ready = true;
+      start();
+    };
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(begin, { timeout: 500 });
+    } else {
+      window.requestAnimationFrame(begin);
+    }
+  }
 
   resizeCanvas();
-  startMatrix();
+  canvas.hidden = motion.matches;
+  if (document.readyState === 'complete') boot();
+  else window.addEventListener('load', boot, { once: true });
 
-  window.addEventListener('resize', resizeCanvas);
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      stopMatrix();
-    } else {
-      startMatrix();
-    }
+  window.addEventListener('resize', () => {
+    if (resizeId === null) resizeId = window.requestAnimationFrame(resizeCanvas);
+  }, { passive: true });
+  window.addEventListener('scroll', () => {
+    const now = performance.now();
+    scrollBoost = Math.min(1.5, Math.abs(window.scrollY - lastScrollY) / Math.max(16, now - lastScrollTime));
+    lastScrollY = window.scrollY;
+    lastScrollTime = now;
+    updateDepth();
+  }, { passive: true });
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : start());
+  window.addEventListener('pagehide', stop);
+  window.addEventListener('pageshow', start);
+  motion.addEventListener('change', () => {
+    stop();
+    start();
   });
 }
+
 
 function setupMenu() {
   const nav = document.getElementById('main-nav');
@@ -212,9 +167,17 @@ function setupMenu() {
     return;
   }
 
+  const header = document.querySelector('.nav-container');
+  if (header && 'ResizeObserver' in window) {
+    new ResizeObserver(() => {
+      document.documentElement.style.setProperty('--navigation-height', `${header.offsetHeight}px`);
+    }).observe(header);
+  }
+
   function setMenuOpen(isOpen) {
     nav.classList.toggle('active', isOpen);
     hamburger.setAttribute('aria-expanded', String(isOpen));
+    if (header) document.documentElement.style.setProperty('--navigation-height', `${header.offsetHeight}px`);
   }
 
   function toggleMenu() {
@@ -233,7 +196,7 @@ function setupMenu() {
   });
 
   window.addEventListener('scroll', () => {
-    if (window.innerWidth <= 600) {
+    if (window.getComputedStyle(hamburger).display !== 'none') {
       closeMenu();
     }
   });
@@ -324,7 +287,7 @@ function setupProjectCarousel() {
   function scrollProjects(direction) {
     track.scrollBy({
       left: getStepSize() * direction,
-      behavior: 'smooth'
+      behavior: prefersReducedMotion ? 'auto' : 'smooth'
     });
   }
 
@@ -360,10 +323,12 @@ function setupTypewriter() {
   const typewriterEl = document.getElementById('typewriter');
   const typedLines = typeof typewriterLines !== 'undefined' && Array.isArray(typewriterLines) ? typewriterLines : [];
   if (!typewriterEl) return;
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || typewriterEl.closest('.personal-terminal')) {
     typewriterEl.textContent = typedLines.join('\n');
     return;
   }
+  // Reserve the server-rendered text height before revealing individual characters.
+  typewriterEl.style.minHeight = `${typewriterEl.getBoundingClientRect().height}px`;
   let lineIndex = 0;
   let charIndex = 0;
   function typeLine() {
@@ -374,7 +339,7 @@ function setupTypewriter() {
       window.setTimeout(typeLine, 20);
       return;
     }
-    typewriterEl.textContent += '\n';
+    if (lineIndex < typedLines.length - 1) typewriterEl.textContent += '\n';
     lineIndex += 1;
     charIndex = 0;
     window.setTimeout(typeLine, 350);

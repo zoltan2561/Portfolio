@@ -133,6 +133,9 @@ class PortfolioController extends Controller
             'person' => $person,
             'nav' => $this->resolveNav($lang),
             'page' => $pageContent,
+            'references' => collect(config("portfolio.references.{$lang}", []))
+                ->filter(fn (array $reference): bool => isset($reference['display_title']))
+                ->values()->all(),
             'homeUrl' => $homeUrl,
             'skillsUrl' => $skillsUrl,
             'statisticsUrl' => $statisticsUrl,
@@ -155,6 +158,7 @@ class PortfolioController extends Controller
             'favicon' => asset('ico.png'),
             'assets' => [
                 'css' => $this->versionedAsset('Style.css'),
+                'portfolioCss' => $this->versionedAsset('portfolio-v2.css'),
                 'js' => $this->versionedAsset('script.js'),
                 'profileWebp320' => asset('icons/profile-2026-320.webp'),
                 'profileWebp480' => asset('icons/profile-2026-480.webp'),
@@ -164,11 +168,10 @@ class PortfolioController extends Controller
             ],
             'links' => [
                 'about' => $homeUrl.'#rolam',
-                'workflow' => $homeUrl.'#folyamat',
-                'services' => $homeUrl.'#szolgaltatasok',
-                'audience' => $homeUrl.'#kinek',
+                'experience' => $homeUrl.'#eletut',
+                'knowledge' => $homeUrl.'#tudas',
                 'projects' => $homeUrl.'#projektek',
-                'faq' => $homeUrl.'#faq',
+                'approach' => $homeUrl.'#szemlelet',
                 'contact' => $homeUrl.'#kapcsolat',
             ],
         ];
@@ -249,7 +252,7 @@ class PortfolioController extends Controller
                 'recent_text' => 'Recent unique visits captured in the last 24 hours.',
                 'empty' => 'No visitor data has been recorded yet.',
                 'typewriter_sets' => [
-                    ["> Analytics module loaded...", "> Built-in tracker online", "> Visitor data ready", " Statistics dashboard unlocked"],
+                    ['> Analytics module loaded...', '> Built-in tracker online', '> Visitor data ready', ' Statistics dashboard unlocked'],
                 ],
             ]
             : [
@@ -271,7 +274,7 @@ class PortfolioController extends Controller
                 'recent_text' => 'A legfrissebb egyedi latogatasok az elmult 24 orabol.',
                 'empty' => 'Meg nincs rogzitett latogatoi adat.',
                 'typewriter_sets' => [
-                    ["> Analitika modul betoltve...", "> Beepitett kovetes aktiv", "> Latogatoi adatok elerhetok", " Statisztikai dashboard keszen"],
+                    ['> Analitika modul betoltve...', '> Beepitett kovetes aktiv', '> Latogatoi adatok elerhetok', ' Statisztikai dashboard keszen'],
                 ],
             ];
     }
@@ -285,9 +288,10 @@ class PortfolioController extends Controller
                 '@id' => $baseUrl.'#person',
                 'name' => $person['name'],
                 'url' => $baseUrl,
-                'image' => $baseUrl.'/icons/profile-bw.jpg',
+                'image' => $baseUrl.'/'.$person['image'],
                 'jobTitle' => $person['job_title'],
                 'sameAs' => $person['same_as'],
+                'knowsAbout' => $person['knows_about'],
             ],
             [
                 '@type' => 'WebSite',
@@ -297,48 +301,19 @@ class PortfolioController extends Controller
                 'inLanguage' => ['hu-HU', 'en-US'],
             ],
             [
-                '@type' => 'WebPage',
+                '@type' => $page === 'home' ? 'ProfilePage' : 'WebPage',
                 '@id' => $currentUrl.'#webpage',
                 'url' => $currentUrl,
                 'name' => $meta['title'],
                 'description' => $meta['description'],
                 'isPartOf' => ['@id' => $baseUrl.'#website'],
                 'inLanguage' => $languageCode,
+                'about' => ['@id' => $baseUrl.'#person'],
             ],
         ];
 
         if ($page === 'home') {
-            $graph[] = [
-                '@type' => 'ProfessionalService',
-                '@id' => $baseUrl.'#service',
-                'name' => 'Papp Zoltán digitális szolgáltatások',
-                'url' => $baseUrl,
-                'provider' => ['@id' => $baseUrl.'#person'],
-                'areaServed' => 'Hungary',
-                'availableLanguage' => ['Hungarian', 'English'],
-                'serviceType' => config('portfolio.service_types'),
-                'hasOfferCatalog' => $this->buildOfferCatalog($lang),
-            ];
-
-            if (isset($pageContent['faq']['items'])) {
-                $graph[] = [
-                    '@type' => 'FAQPage',
-                    '@id' => $currentUrl.'#faq',
-                    'url' => $currentUrl.'#faq',
-                    'inLanguage' => $languageCode,
-                    'mainEntity' => array_map(
-                        static fn (array $faqItem): array => [
-                            '@type' => 'Question',
-                            'name' => $faqItem['question'],
-                            'acceptedAnswer' => [
-                                '@type' => 'Answer',
-                                'text' => $faqItem['answer'],
-                            ],
-                        ],
-                        $pageContent['faq']['items']
-                    ),
-                ];
-            }
+            $graph[2]['mainEntity'] = ['@id' => $baseUrl.'#person'];
         }
 
         return [
@@ -350,39 +325,5 @@ class PortfolioController extends Controller
     private function schemaLanguage(string $lang): string
     {
         return $lang === 'en' ? 'en-US' : 'hu-HU';
-    }
-
-    private function buildOfferCatalog(string $lang): array
-    {
-        $offers = $lang === 'en'
-            ? [
-                'Website development',
-                'Webshop development',
-                'Online booking system',
-                'Business automation',
-                'Technical IT support',
-            ]
-            : [
-                'Weboldal készítés',
-                'Webshop fejlesztés',
-                'Online foglalási rendszer',
-                'Üzleti automatizálás',
-                'IT technikai támogatás',
-            ];
-
-        return [
-            '@type' => 'OfferCatalog',
-            'name' => $lang === 'en' ? 'Digital service offers' : 'Digitális szolgáltatások',
-            'itemListElement' => array_map(
-                static fn (string $offer): array => [
-                    '@type' => 'Offer',
-                    'itemOffered' => [
-                        '@type' => 'Service',
-                        'name' => $offer,
-                    ],
-                ],
-                $offers
-            ),
-        ];
     }
 }

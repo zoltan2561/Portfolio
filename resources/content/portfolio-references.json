@@ -1,0 +1,136 @@
+{
+    "hu": [
+        {
+            "tag": "Weboldal + rendelés",
+            "title": "🌯 GyrosCity",
+            "text": "Éttermi weboldal online rendelési és fizetési folyamattal, gyorsabb vásárlói útra hangolva.",
+            "url": "https://gyroscity.eu",
+            "link": "Weboldal megtekintése",
+            "display_title": "GyrosCity",
+            "display_text": "Éttermi weboldal online rendelési és fizetési folyamattal.",
+            "icon": "code"
+        },
+        {
+            "tag": "Foglalás + brand",
+            "title": "💈 ZCutzBarber",
+            "text": "Barber oldal online időpontfoglalással, erős vizuális világgal és egyszerűbb ügyfélúttal.",
+            "url": "https://zcutzbarber.com",
+            "link": "Weboldal megtekintése",
+            "display_title": "ZCutzBarber",
+            "display_text": "Barber weboldal online időpontfoglalással.",
+            "icon": "code"
+        },
+        {
+            "tag": "Sportoldal + MLSZ automatizálás",
+            "title": "⚽ TiszaszalkaSE.com",
+            "text": "Sportegyesületi weboldal automatikus MLSZ eredményfrissítéssel: az oldal lehúzza és megjeleníti a meccseredményeket, így a friss tartalom nem kézi adminon múlik.",
+            "url": "https://tiszaszalkase.com",
+            "link": "Weboldal megtekintése",
+            "display_title": "TiszaszalkaSE.com",
+            "display_text": "Sportegyesületi weboldal automatikus MLSZ-eredményfrissítéssel.",
+            "icon": "workflow"
+        },
+        {
+            "tag": "AI + Laravel híroldal",
+            "title": "📰 NapiInfo.com",
+            "text": "Teljesen automatizált híroldal AI- és Laravel-alapokon. A monetizációs és automatizálási tudásom koncentrált projektje: egy okos rendszer, amely önállóan dolgozik, tanul és folyamatosan építi a tartalmat.",
+            "url": "https://napiinfo.com",
+            "link": "Weboldal megtekintése"
+        },
+        {
+            "tag": "Hardver + stabilitás",
+            "title": "🧰 Hardveres megoldások",
+            "text": "Egyedi gépépítés, bővítés és diagnosztika úgy, hogy a végeredmény tartósan megbízható legyen.",
+            "url": null,
+            "link": null
+        },
+        {
+            "tag": "Napi IT háttér",
+            "title": "🧠 Informatikai támogatás",
+            "text": "Mindennapi hibakezelés, karbantartás és technikai segítség, hogy ne akadjon meg a működésed.",
+            "url": null,
+            "link": null
+        },
+        {
+            "title": "FotoKlikk",
+            "url": "https://fotoklikk.eu/",
+            "display_title": "FotoKlikk",
+            "display_text": "Fotográfiai portál.",
+            "icon": "monitor"
+        },
+        {
+            "title": "SzoftLab",
+            "url": "https://szoftlab.hu",
+            "display_title": "SzoftLab",
+            "icon": "code",
+            "display_text": "Saját szoftveres vállalkozásom, ahol vezető fejlesztőként dolgozom."
+        }
+    ],
+    "en": [
+        {
+            "tag": "Website + ordering",
+            "title": "🌯 GyrosCity",
+            "text": "Restaurant website with online ordering and payment flow built for faster customer action.",
+            "url": "https://gyroscity.eu",
+            "link": "View Website",
+            "display_title": "GyrosCity",
+            "display_text": "Restaurant website with online ordering and payments.",
+            "icon": "code"
+        },
+        {
+            "tag": "Booking + branding",
+            "title": "💈 ZCutzBarber",
+            "text": "Barbershop site with online booking, strong visuals, and a smoother client journey.",
+            "url": "https://zcutzbarber.com",
+            "link": "View Website",
+            "display_title": "ZCutzBarber",
+            "display_text": "Barbershop website with online appointment booking.",
+            "icon": "code"
+        },
+        {
+            "tag": "Sports site + MLSZ automation",
+            "title": "⚽ TiszaszalkaSE.com",
+            "text": "Sports club website with automatic MLSZ result updates: it pulls and displays match results from the MLSZ site, keeping the page current with less manual admin.",
+            "url": "https://tiszaszalkase.com",
+            "link": "View Website",
+            "display_title": "TiszaszalkaSE.com",
+            "display_text": "Sports club website with automatic MLSZ match result updates.",
+            "icon": "workflow"
+        },
+        {
+            "tag": "AI + Laravel news",
+            "title": "📰 NapiInfo.com",
+            "text": "A fully automated AI-powered news site built on Laravel. It concentrates my current monetization and automation knowledge into a smart system that works, learns, and keeps building content on its own.",
+            "url": "https://napiinfo.com",
+            "link": "View Website"
+        },
+        {
+            "tag": "Hardware + stability",
+            "title": "🧰 Hardware Solutions",
+            "text": "Custom builds, upgrades, and diagnostics focused on long-term reliability.",
+            "url": null,
+            "link": null
+        },
+        {
+            "tag": "Day-to-day IT",
+            "title": "🧠 IT Support",
+            "text": "Ongoing troubleshooting, maintenance, and practical support to keep work moving.",
+            "url": null,
+            "link": null
+        },
+        {
+            "title": "FotoKlikk",
+            "url": "https://fotoklikk.eu/",
+            "display_title": "FotoKlikk",
+            "display_text": "Photography portal.",
+            "icon": "monitor"
+        },
+        {
+            "title": "SzoftLab",
+            "url": "https://szoftlab.hu",
+            "display_title": "SzoftLab",
+            "icon": "code",
+            "display_text": "My own software business, where I lead development."
+        }
+    ]
+}

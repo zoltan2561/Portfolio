@@ -35,36 +35,24 @@
     <link rel="icon" href="{{ $favicon }}" type="image/png">
     <script type="application/ld+json">{!! $schemaJson !!}</script>
     <link rel="stylesheet" href="{{ $assets['css'] }}">
-    @if ($pageName === 'home')
-        <script>
-            (() => {
-                let finished = false;
-                const hide = () => {
-                    finished = true;
-                    const loader = document.getElementById('preloader');
-                    if (loader) loader.hidden = true;
-                };
-                window.addEventListener('load', hide, { once: true });
-                window.addEventListener('pageshow', hide);
-                window.setTimeout(() => {
-                    if (finished || document.readyState === 'complete') return;
-                    const loader = document.getElementById('preloader');
-                    if (loader) loader.hidden = false;
-                }, 700);
-                window.setTimeout(hide, 8000);
-            })();
-        </script>
+    @if (in_array($pageName, ['home', 'skills'], true))
+        <link rel="stylesheet" href="{{ $assets['portfolioCss'] }}">
+    @endif
+    @if (in_array($pageName, ['home', 'skills'], true))
+        <noscript><style>
+            @media (max-width: 760px) {
+                .portfolio-v2 .nav-container { position: relative; }
+                .portfolio-v2 #main-nav { display: flex; position: static; flex-basis: 100%; }
+                .portfolio-v2 .hamburger { display: none; }
+                .portfolio-v2 main { padding-top: 0; }
+            }
+        </style></noscript>
     @endif
 </head>
 
-<body>
-    @if ($pageName === 'home')
-        <div id="preloader" hidden role="status" aria-label="{{ $lang === 'hu' ? 'Betöltés' : 'Loading' }}">
-            <span class="preloader-spinner" aria-hidden="true"></span>
-        </div>
-    @endif
+<body class="{{ in_array($pageName, ['home', 'skills'], true) ? 'portfolio-v2' : '' }}">
 
-    <canvas id="matrix"></canvas>
+    <canvas id="matrix" aria-hidden="true"></canvas>
 
     <div class="language-switch">
         <a href="{{ $pageName === 'home' ? $homeHuUrl : ($pageName === 'skills' ? $skillsHuUrl : $statisticsHuUrl) }}" class="{{ $lang === 'hu' ? 'active' : '' }}" aria-label="Magyar nyelv">HUN</a>
@@ -72,6 +60,9 @@
     </div>
 
     <div class="nav-container">
+        @if (in_array($pageName, ['home', 'skills'], true))
+            <a href="{{ $homeUrl }}" class="v2-brand">PZ <span>/ Papp Zoltán</span></a>
+        @endif
         <button
             type="button"
             class="hamburger"
@@ -80,27 +71,39 @@
             aria-label="{{ $lang === 'hu' ? 'Navigáció megnyitása' : 'Open navigation' }}"
         >☰</button>
         <nav id="main-nav">
+            @unless (in_array($pageName, ['home', 'skills'], true))
+                <a href="{{ $homeUrl }}" class="personal-brand">PZ / Papp Zoltán</a>
+            @endunless
             <a href="{{ $links['about'] }}">{{ $nav['about'] }}</a>
-            <a href="{{ $links['workflow'] }}">{{ $nav['workflow'] }}</a>
-            <a href="{{ $links['services'] }}">{{ $nav['services'] }}</a>
-            <a href="{{ $links['audience'] }}">{{ $nav['audience'] }}</a>
+            <a href="{{ $links['knowledge'] }}">{{ $nav['knowledge'] }}</a>
             <a href="{{ $links['projects'] }}">{{ $nav['projects'] }}</a>
-            <a href="{{ $skillsUrl }}" class="{{ $pageName === 'skills' ? 'active' : '' }}">{{ $nav['skills'] }}</a>
-            <a href="{{ $links['faq'] }}">{{ $nav['faq'] }}</a>
             <a href="{{ $links['contact'] }}">{{ $nav['contact'] }}</a>
+            <a href="{{ config('portfolio.szoftlab_url') }}" class="company-link" target="_blank" rel="noopener noreferrer">SzoftLab ↗</a>
         </nav>
     </div>
 
-    <div class="typewriter-container fade-in">
-        <pre id="typewriter"></pre>
+    @unless (in_array($pageName, ['home', 'skills'], true))
+    <div class="typewriter-container" aria-hidden="true">
+        <pre id="typewriter">{{ implode("\n", $typewriterLines) }}</pre>
     </div>
+    @endunless
 
-    @yield('content')
+    <main>@yield('content')</main>
+
+    @if (in_array($pageName, ['home', 'skills'], true))
+        <footer class="personal-footer">
+            <p><strong>Papp Zoltán</strong><br>{{ config("portfolio.locales.{$lang}.footer.line") }}</p>
+            <a href="mailto:{{ $person['contact']['email'] }}">{{ $person['contact']['email'] }}</a>
+            <a href="{{ $pageName === 'skills' ? ($lang === 'hu' ? $skillsEnUrl : $skillsHuUrl) : ($lang === 'hu' ? $homeEnUrl : $homeHuUrl) }}">{{ $lang === 'hu' ? 'English' : 'Magyar' }}</a>
+            <a href="{{ config('portfolio.szoftlab_url') }}" class="company-link" target="_blank" rel="noopener noreferrer">SzoftLab ↗</a>
+            <p>&copy; {{ date('Y') }} Papp Zoltán</p>
+        </footer>
+    @endif
 
     <script>
         const typewriterLines = @json($typewriterLines);
     </script>
-    <script src="{{ $assets['js'] }}"></script>
+    <script src="{{ $assets['js'] }}" defer></script>
 </body>
 
 </html>

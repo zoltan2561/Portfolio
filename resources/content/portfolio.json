@@ -1,0 +1,1136 @@
+{
+    "hu": {
+        "nav": {
+            "about": "Rólam",
+            "knowledge": "Technológiák",
+            "projects": "Projektek",
+            "contact": "Kapcsolat"
+        },
+        "footer": {
+            "line": "PHP/Laravel-fejlesztő, széles IT-háttérrel."
+        },
+        "meta": {
+            "home": {
+                "title": "Papp Zoltán | PHP/Laravel-fejlesztő és IT-szakember",
+                "description": "Papp Zoltán személyes oldala. PHP/Laravel-fejlesztés, technológiák, saját projektek és 10 év tapasztalat az IT több területén."
+            },
+            "skills": {
+                "title": "Technológiák | Papp Zoltán",
+                "description": "PHP, Laravel, adatbázisok, AI-integrációk, Linux, Docker és hardver. Technológiák és területek, amelyekkel Papp Zoltán foglalkozik."
+            }
+        },
+        "home": {
+            "eyebrow": "Papp Zoltán · Fejlesztő és IT-szakember",
+            "hero_title": "A hardvertől a kódig. Ez az én világom.",
+            "hero_text": "Legyen szó kódról, szerverről vagy egy makacs hibáról, szeretek a dolgok végére járni. Tíz éve dolgozom az IT-ban, de még mindig találok valamit, amit ki akarok próbálni vagy meg akarok tanulni.",
+            "profile_alt": "Papp Zoltán portréja",
+            "actions": {
+                "primary": "Kicsit rólam",
+                "secondary": "Projektjeim"
+            },
+            "facts": [
+                {
+                    "icon": "briefcase",
+                    "value": "10 év",
+                    "label": "tapasztalat az IT-ban"
+                },
+                {
+                    "icon": "graduation",
+                    "value": "BSc",
+                    "label": "programtervező informatikus"
+                },
+                {
+                    "icon": "chat",
+                    "value": "Angol",
+                    "label": "felsőfokú nyelvtudás"
+                }
+            ],
+            "portrait_labels": [
+                {
+                    "icon": "code",
+                    "label": "Fejlesztés"
+                },
+                {
+                    "icon": "server",
+                    "label": "Rendszerek"
+                },
+                {
+                    "icon": "cpu",
+                    "label": "Hardver"
+                },
+                {
+                    "icon": "workflow",
+                    "label": "AI"
+                }
+            ],
+            "about": {
+                "title": "Kicsit rólam",
+                "milestones": [
+                    {
+                        "icon": "monitor",
+                        "title": "6 évesen",
+                        "text": "Már akkor érdekelt az informatika."
+                    },
+                    {
+                        "icon": "book",
+                        "title": "Gimnázium",
+                        "text": "Matematika–informatika irány."
+                    },
+                    {
+                        "icon": "graduation",
+                        "title": "Nyíregyházi Egyetem",
+                        "text": "Programtervező informatikus BSc."
+                    },
+                    {
+                        "icon": "server",
+                        "title": "Rendszergazda",
+                        "text": "Hétvezér Iskola"
+                    },
+                    {
+                        "icon": "chat",
+                        "title": "IT-supporter",
+                        "text": "Hoya Lens"
+                    },
+                    {
+                        "icon": "code",
+                        "title": "Junior fejlesztő",
+                        "text": "Hoya Lens"
+                    },
+                    {
+                        "icon": "code",
+                        "title": "Medior fejlesztő",
+                        "text": "Oxford One"
+                    },
+                    {
+                        "icon": "briefcase",
+                        "title": "Vezető fejlesztő",
+                        "text": "SzoftLab"
+                    }
+                ],
+                "experience": {
+                    "title": "10 év az IT több oldalán.",
+                    "areas": "Support · Hardver · Rendszerüzemeltetés · Infrastruktúra · Szoftverfejlesztés"
+                },
+                "approach": [
+                    {
+                        "icon": "search",
+                        "title": "Utánajárok.",
+                        "text": "Ha valamire nem tudom a választ, nem találgatok: megnézem, kipróbálom, megtanulom."
+                    },
+                    {
+                        "icon": "chat",
+                        "title": "Érthetően mondom el.",
+                        "text": "Nem kell informatikusnak lenned ahhoz, hogy megértsük egymást."
+                    },
+                    {
+                        "icon": "bug",
+                        "title": "Megkeresem az okát.",
+                        "text": "Nem csak azt nézem, hogyan tűnjön el a hiba, hanem azt is, mi okozta."
+                    }
+                ],
+                "paragraphs": [
+                    {
+                        "text": "Hatéves korom óta érdekel az informatika, és azóta sem untam rá. Az elmúlt tíz évben sokféle területen dolgoztam: gépeket tartottam életben, felhasználóknak segítettem, rendszereket felügyeltem, ma pedig leginkább szoftvereket fejlesztek.",
+                        "emphasis": [
+                            "tíz évben"
+                        ]
+                    },
+                    {
+                        "text": "Rendszergazdaként kezdtem, főként hardveres és üzemeltetési feladatokkal. Rengeteget dolgoztam olyan kollégákkal, akiknek az informatika egyszerűen egy eszköz volt a munkához. Tőlük legalább annyit tanultam a kommunikációról, mint a gépektől a hibakeresésről: hogyan kérdezzek jól, legyek türelmes, és magyarázzak el egy technikai problémát úgy, hogy ne kelljen hozzá informatikai végzettség.",
+                        "emphasis": [
+                            "Rendszergazdaként kezdtem"
+                        ]
+                    },
+                    {
+                        "text": "Ezután IT-supporttal és terméktámogatással foglalkoztam, L1–L3 szintű támogatási, rendszerfelügyeleti és készenléti feladatokkal. Közben egyre mélyebben megismertem a nagyvállalati környezetet: szervereket, hálózatokat és vállalatirányítási rendszereket. Itt sokat számított, hogy egy hibánál a teljes működést átlássam, ne csak azt az egy részt, ahol éppen jelentkezik.",
+                        "emphasis": [
+                            "IT-supporttal és terméktámogatással"
+                        ]
+                    },
+                    {
+                        "text": "Nemzetközi projektekben is szereztem tapasztalatot, és Thaiföldön is dolgoztam kiküldetésen. Felsőfokú angol nyelvvizsgám van, a nyelvet pedig külföldi kollégákkal, valós szakmai feladatokon keresztül is használtam.",
+                        "emphasis": [
+                            "Nemzetközi projektekben is szereztem tapasztalatot"
+                        ]
+                    },
+                    {
+                        "text": "Később a szoftverfejlesztés lett a fő irányom: PHP-alkalmazásokat fejlesztettem, riportokat és adatbázis-lekérdezéseket írtam. Jelenleg medior Laravel-fejlesztőként dolgozom, mellette pedig vezető fejlesztőként viszem a saját szoftveres vállalkozásomat, a SzoftLabot.",
+                        "emphasis": [
+                            "a szoftverfejlesztés lett a fő irányom",
+                            "SzoftLabot"
+                        ]
+                    },
+                    {
+                        "text": "A korábbi tapasztalataimat ma is magammal hozom. Fejlesztés közben gondolok arra is, hogyan fog működni a rendszer élesben, és milyen lesz annak, aki naponta használja. Szeretem, ha van min gondolkodni, van mit megoldani — és ha közben valami újat is megtanulok, annál jobb.",
+                        "emphasis": []
+                    }
+                ]
+            },
+            "knowledge": {
+                "title": "Amikkel dolgozom.",
+                "button": "Technológiák részletesen",
+                "cards": [
+                    {
+                        "icon": "code",
+                        "title": "Fejlesztés",
+                        "text": "Webes rendszereket és adminfelületeket fejlesztek, főleg PHP-val és Laravellel.",
+                        "labels": [
+                            "PHP",
+                            "Laravel",
+                            "JavaScript",
+                            "SQL"
+                        ],
+                        "level": "Fő fókusz"
+                    },
+                    {
+                        "icon": "workflow",
+                        "title": "AI és automatizálás",
+                        "text": "API-kat kötök össze, feladatokat automatizálok, és AI-t építek alkalmazásokba.",
+                        "labels": [
+                            "API-integrációk",
+                            "Python",
+                            "OpenAI API",
+                            "Ollama"
+                        ]
+                    },
+                    {
+                        "icon": "server",
+                        "title": "Rendszerek és hálózatok",
+                        "text": "Szerverekkel, konténerekkel, hálózatokkal és jogosultságokkal is foglalkoztam.",
+                        "labels": [
+                            "Linux",
+                            "Windows",
+                            "Docker",
+                            "Hálózatok"
+                        ]
+                    },
+                    {
+                        "icon": "cpu",
+                        "title": "Hardver és support",
+                        "text": "Diagnosztika, gépjavítás és segítség, amikor valami nem úgy működik, ahogy kellene.",
+                        "labels": [
+                            "Hardver",
+                            "Hibakeresés",
+                            "Mentések",
+                            "Helyreállítás"
+                        ]
+                    }
+                ]
+            },
+            "projects": {
+                "title": "Ezeken dolgozom.",
+                "closing": "A belső céges rendszereket és automatizálásokat nem mind tudom itt megmutatni.",
+                "items": [
+                    {
+                        "title": "FoodPRO",
+                        "text": "Saját online rendelési rendszer fizetéssel és adminfelülettel.",
+                        "labels": [
+                            "Online rendelés",
+                            "Fizetés",
+                            "Adminfelület"
+                        ],
+                        "image": "assets/portfolio/foodpro-cover.svg",
+                        "image_alt": "FoodPRO borító rendelési táskával és evőeszközökkel",
+                        "url": "https://foodpro.shop"
+                    },
+                    {
+                        "title": "NapiInfo",
+                        "text": "Laravel-alapú hírportál AI-támogatott tartalomfeldolgozással és automatizálással.",
+                        "labels": [
+                            "Laravel",
+                            "AI",
+                            "Automatizálás"
+                        ],
+                        "image": "assets/portfolio/napiinfo-cover.svg",
+                        "image_alt": "NapiInfo borító újságillusztrációval",
+                        "url": "https://napiinfo.com/"
+                    },
+                    {
+                        "title": "SzervizPRO",
+                        "text": "Saját szervizadminisztrációs rendszer a műhely napi munkájához.",
+                        "labels": [
+                            "Folyamatok",
+                            "Adatkezelés",
+                            "Adminfelület"
+                        ],
+                        "image": "assets/portfolio/szervizpro-cover.svg",
+                        "image_alt": "SzervizPRO borító csavarkulccsal és csavarhúzóval",
+                        "url": "https://szerviz.pro"
+                    }
+                ],
+                "more_title": "További projektek és referenciák"
+            },
+            "contact": {
+                "title": "Írj nyugodtan.",
+                "lead": "Van egy érdekes ötleted, szakmai kérdésed, vagy csak beszélgetnél a techről? Keress meg.",
+                "button": "Írok Zolinak",
+                "form_title": "Itt is írhatsz.",
+                "name": "Név",
+                "email": "E-mail-cím",
+                "message": "Üzenet",
+                "message_placeholder": "Üzenet",
+                "submit": "Üzenet küldése",
+                "success": "Köszönöm, megkaptam az üzeneted. Jelentkezem, amint tudok.",
+                "error": "Most nem ment el az üzenet. Próbáld újra, vagy írj közvetlenül e-mailt.",
+                "business": {
+                    "title": "Fejlesztési projekted van?",
+                    "text": "A szolgáltatásaimat és saját termékeimet a SzoftLabon találod.",
+                    "button": "Irány a SzoftLab ↗"
+                }
+            },
+            "typewriter_sets": [
+                []
+            ]
+        },
+        "skills": {
+            "hero_title": "Technológiák",
+            "hero_text": "PHP-val és Laravellel dolgozom a legtöbbet. Itt egy helyen megtalálod a többi technológiát és területet is, amivel foglalkoztam.",
+            "note": "A fő fókuszt, az alapismereteket és a fejlődési irányokat külön jelölöm.",
+            "back_home": "Vissza a bemutatkozáshoz",
+            "more_details": "További részletek",
+            "categories_label": "Technológiai kategóriák",
+            "groups": [
+                {
+                    "id": "fejlesztes",
+                    "title": "Fejlesztés",
+                    "nav": "Fejlesztés",
+                    "icon": "code",
+                    "text": "A fő irányom a PHP/Laravel-alapú webfejlesztés.",
+                    "items": [
+                        {
+                            "name": "PHP",
+                            "mark": "PHP",
+                            "level": "Fő fókusz"
+                        },
+                        {
+                            "name": "Laravel",
+                            "mark": "L",
+                            "level": "Fő fókusz"
+                        },
+                        {
+                            "name": "HTML",
+                            "mark": "<>"
+                        },
+                        {
+                            "name": "CSS",
+                            "mark": "#"
+                        },
+                        {
+                            "name": "JavaScript",
+                            "mark": "JS"
+                        },
+                        {
+                            "name": "Java",
+                            "mark": "J",
+                            "level": "További tapasztalat"
+                        },
+                        {
+                            "name": "Swing",
+                            "mark": "SW",
+                            "level": "További tapasztalat"
+                        },
+                        {
+                            "name": "Tailwind CSS",
+                            "mark": "TW",
+                            "level": "Alapismeret"
+                        },
+                        {
+                            "name": "Bootstrap",
+                            "mark": "B",
+                            "level": "Alapismeret"
+                        },
+                        {
+                            "name": "Spring",
+                            "mark": "SP",
+                            "level": "Alapismeret"
+                        }
+                    ]
+                },
+                {
+                    "id": "adatbazisok",
+                    "title": "Adatbázisok",
+                    "nav": "Adatbázisok",
+                    "icon": "database",
+                    "text": "Adatmodellek, lekérdezések és az alkalmazások mögötti adatok.",
+                    "items": [
+                        {
+                            "name": "MySQL",
+                            "mark": "MY"
+                        },
+                        {
+                            "name": "MariaDB",
+                            "mark": "MA"
+                        },
+                        {
+                            "name": "SQLite",
+                            "mark": "SQ"
+                        },
+                        {
+                            "name": "Oracle SQL / PL/SQL",
+                            "mark": "OR"
+                        }
+                    ],
+                    "note": "Adatmodellezés · Indexelés · Lekérdezések"
+                },
+                {
+                    "id": "ai",
+                    "title": "AI és automatizálás",
+                    "nav": "AI és automatizálás",
+                    "icon": "workflow",
+                    "text": "API-integrációk, automatizált feladatok és AI az alkalmazásokban.",
+                    "items": [
+                        {
+                            "name": "API-integrációk",
+                            "mark": "API"
+                        },
+                        {
+                            "name": "OpenAI API",
+                            "mark": "AI"
+                        },
+                        {
+                            "name": "Python-szkriptek",
+                            "mark": "PY"
+                        },
+                        {
+                            "name": "Ollama",
+                            "mark": "OL"
+                        },
+                        {
+                            "name": "LM Studio",
+                            "mark": "LM"
+                        }
+                    ],
+                    "note": "Helyi AI-modellek kipróbálása és AI-támogatott munkafolyamatok."
+                },
+                {
+                    "id": "rendszerek",
+                    "title": "Rendszerek és hálózatok",
+                    "nav": "Rendszerek",
+                    "icon": "server",
+                    "text": "Szerverek, konténerek, hálózatok és hozzáférések.",
+                    "items": [
+                        {
+                            "name": "Linux",
+                            "mark": "LX"
+                        },
+                        {
+                            "name": "Debian",
+                            "mark": "DE"
+                        },
+                        {
+                            "name": "Ubuntu",
+                            "mark": "UB"
+                        },
+                        {
+                            "name": "Windows",
+                            "mark": "W"
+                        },
+                        {
+                            "name": "Docker / Docker Compose",
+                            "mark": "DK"
+                        },
+                        {
+                            "name": "Active Directory",
+                            "mark": "AD"
+                        },
+                        {
+                            "name": "Samba",
+                            "mark": "SM"
+                        }
+                    ],
+                    "note": "LAN · Wi-Fi · DHCP · VLAN · Hálózati hibakeresés",
+                    "details": [
+                        "Dockerfile",
+                        "Apache · Lighttpd",
+                        "TP-Link · MikroTik · Ubiquiti · Cisco Meraki"
+                    ]
+                },
+                {
+                    "id": "hardver",
+                    "title": "Hardver és support",
+                    "nav": "Hardver és support",
+                    "icon": "cpu",
+                    "text": "Gépek, hibakeresés, mentések és segítség a felhasználóknak.",
+                    "items": [
+                        {
+                            "name": "PC- és laptopdiagnosztika",
+                            "mark": "PC"
+                        },
+                        {
+                            "name": "Alkatrészcsere",
+                            "mark": "+"
+                        },
+                        {
+                            "name": "Karbantartás",
+                            "mark": "HW"
+                        },
+                        {
+                            "name": "Mentés és helyreállítás",
+                            "mark": "BK"
+                        },
+                        {
+                            "name": "Távoli támogatás",
+                            "mark": "IT"
+                        }
+                    ],
+                    "details": [
+                        "Teljesítmény- és hűtési problémák",
+                        "UrBackup",
+                        "Shell- és batch-szkriptek"
+                    ]
+                },
+                {
+                    "id": "eszkozok",
+                    "title": "Eszközök és együttműködés",
+                    "nav": "Eszközök",
+                    "icon": "toolbox",
+                    "text": "Eszközök, amelyeket a fejlesztéshez és a napi munkához használok.",
+                    "items": [
+                        {
+                            "name": "Git",
+                            "mark": "G"
+                        },
+                        {
+                            "name": "GitHub",
+                            "mark": "GH"
+                        },
+                        {
+                            "name": "Postman",
+                            "mark": "PM"
+                        },
+                        {
+                            "name": "Visual Studio Code",
+                            "mark": "VS"
+                        },
+                        {
+                            "name": "Microsoft 365",
+                            "mark": "365"
+                        }
+                    ],
+                    "details": [
+                        "IntelliJ IDEA",
+                        "Power Automate · Power BI",
+                        "Trello · Jira",
+                        "Agile/Scrum — Alapismeret"
+                    ]
+                },
+                {
+                    "id": "fejlodes",
+                    "title": "Amit most mélyítek",
+                    "nav": "Fejlődési irányok",
+                    "icon": "book",
+                    "text": "",
+                    "items": [
+                        {
+                            "name": "Moduláris Laravel-alkalmazások",
+                            "mark": "L"
+                        },
+                        {
+                            "name": "Automatizált tesztelés",
+                            "mark": "T"
+                        },
+                        {
+                            "name": "CI/CD-folyamatok",
+                            "mark": "CI"
+                        },
+                        {
+                            "name": "Java",
+                            "mark": "J"
+                        },
+                        {
+                            "name": "Spring Boot",
+                            "mark": "SB"
+                        },
+                        {
+                            "name": "Node.js",
+                            "mark": "N"
+                        },
+                        {
+                            "name": "TypeScript",
+                            "mark": "TS"
+                        },
+                        {
+                            "name": "React",
+                            "mark": "R"
+                        },
+                        {
+                            "name": "Next.js",
+                            "mark": "NX"
+                        }
+                    ],
+                    "level": "Fejlődési irányok"
+                }
+            ],
+            "typewriter_sets": [
+                []
+            ]
+        }
+    },
+    "en": {
+        "nav": {
+            "about": "About",
+            "knowledge": "Technologies",
+            "projects": "Projects",
+            "contact": "Contact"
+        },
+        "footer": {
+            "line": "PHP/Laravel developer with a broad IT background."
+        },
+        "meta": {
+            "home": {
+                "title": "Papp Zoltán | PHP/Laravel Developer & IT Professional",
+                "description": "Papp Zoltán’s personal website. PHP/Laravel development, technologies, personal projects and 10 years of experience across IT."
+            },
+            "skills": {
+                "title": "Technologies | Papp Zoltán",
+                "description": "PHP, Laravel, databases, AI integrations, Linux, Docker and hardware. Technologies and areas Papp Zoltán works with."
+            }
+        },
+        "home": {
+            "eyebrow": "Papp Zoltán · Developer and IT professional",
+            "hero_title": "From hardware to code. This is my world.",
+            "hero_text": "Whether it's code, a server or a stubborn bug, I like getting to the bottom of things. I've worked in IT for ten years, but I still find things I want to try or learn.",
+            "profile_alt": "Portrait of Papp Zoltán",
+            "actions": {
+                "primary": "A bit about me",
+                "secondary": "My projects"
+            },
+            "facts": [
+                {
+                    "icon": "briefcase",
+                    "value": "10 years",
+                    "label": "of experience across IT"
+                },
+                {
+                    "icon": "graduation",
+                    "value": "BSc",
+                    "label": "Computer Science"
+                },
+                {
+                    "icon": "chat",
+                    "value": "English",
+                    "label": "advanced English proficiency"
+                }
+            ],
+            "portrait_labels": [
+                {
+                    "icon": "code",
+                    "label": "Development"
+                },
+                {
+                    "icon": "server",
+                    "label": "Systems"
+                },
+                {
+                    "icon": "cpu",
+                    "label": "Hardware"
+                },
+                {
+                    "icon": "workflow",
+                    "label": "AI"
+                }
+            ],
+            "about": {
+                "title": "A bit about me",
+                "milestones": [
+                    {
+                        "icon": "monitor",
+                        "title": "At six",
+                        "text": "Already curious about computing."
+                    },
+                    {
+                        "icon": "book",
+                        "title": "Secondary school",
+                        "text": "Mathematics and IT focus."
+                    },
+                    {
+                        "icon": "graduation",
+                        "title": "University of Nyíregyháza",
+                        "text": "BSc in Computer Science."
+                    },
+                    {
+                        "icon": "server",
+                        "title": "Systems administrator",
+                        "text": "Hétvezér Iskola"
+                    },
+                    {
+                        "icon": "chat",
+                        "title": "IT support",
+                        "text": "Hoya Lens"
+                    },
+                    {
+                        "icon": "code",
+                        "title": "Junior developer",
+                        "text": "Hoya Lens"
+                    },
+                    {
+                        "icon": "code",
+                        "title": "Mid-level developer",
+                        "text": "Oxford One"
+                    },
+                    {
+                        "icon": "briefcase",
+                        "title": "Lead developer",
+                        "text": "SzoftLab"
+                    }
+                ],
+                "experience": {
+                    "title": "10 years across different sides of IT.",
+                    "areas": "Support · Hardware · Systems administration · Infrastructure · Software development"
+                },
+                "approach": [
+                    {
+                        "icon": "search",
+                        "title": "I look into it.",
+                        "text": "If I don’t know the answer, I don’t guess: I investigate, try it out and learn."
+                    },
+                    {
+                        "icon": "chat",
+                        "title": "I explain it clearly.",
+                        "text": "You don’t need to work in IT for us to understand each other."
+                    },
+                    {
+                        "icon": "bug",
+                        "title": "I find the cause.",
+                        "text": "I look at what caused a problem as well as how to make it go away."
+                    }
+                ],
+                "paragraphs": [
+                    {
+                        "text": "I've been interested in computing since I was six, and I still haven't grown tired of it. Over the past ten years, I've worked across different areas: keeping computers running, helping users, looking after systems, and now mostly developing software.",
+                        "emphasis": [
+                            "ten years"
+                        ]
+                    },
+                    {
+                        "text": "I started as a systems administrator, mainly working with hardware and operations. I spent a lot of time with colleagues who simply used IT as a tool for their work. They taught me as much about communication as computers taught me about troubleshooting: how to ask the right questions, be patient, and explain a technical problem without expecting an IT background.",
+                        "emphasis": [
+                            "I started as a systems administrator"
+                        ]
+                    },
+                    {
+                        "text": "I then moved into IT support and product support, with L1–L3 support, system monitoring and on-call responsibilities. Along the way, I got to know enterprise environments in greater depth: servers, networks and enterprise resource planning systems. When something went wrong, understanding the whole operation mattered just as much as the part where the issue appeared.",
+                        "emphasis": [
+                            "IT support and product support"
+                        ]
+                    },
+                    {
+                        "text": "I've also gained experience in international projects and worked on assignment in Thailand. I hold an advanced English language exam qualification and have used English with colleagues abroad on real professional tasks.",
+                        "emphasis": [
+                            "experience in international projects"
+                        ]
+                    },
+                    {
+                        "text": "Later, software development became my main focus: I developed PHP applications, wrote reports and worked on database queries. I currently work as a mid-level Laravel developer, while also leading development at my own software business, SzoftLab.",
+                        "emphasis": [
+                            "software development became my main focus",
+                            "SzoftLab"
+                        ]
+                    },
+                    {
+                        "text": "I still bring those earlier experiences into my work. When developing software, I also think about how a system will run in production and what it will be like for the people using it every day. I enjoy having something to think through and a problem to solve — and if I learn something new along the way, even better.",
+                        "emphasis": []
+                    }
+                ]
+            },
+            "knowledge": {
+                "title": "What I work with.",
+                "button": "Explore my technologies",
+                "cards": [
+                    {
+                        "icon": "code",
+                        "title": "Development",
+                        "text": "I develop web systems and admin interfaces, mainly with PHP and Laravel.",
+                        "labels": [
+                            "PHP",
+                            "Laravel",
+                            "JavaScript",
+                            "SQL"
+                        ],
+                        "level": "Main focus"
+                    },
+                    {
+                        "icon": "workflow",
+                        "title": "AI and automation",
+                        "text": "I connect APIs, automate tasks and integrate AI into applications.",
+                        "labels": [
+                            "API integrations",
+                            "Python",
+                            "OpenAI API",
+                            "Ollama"
+                        ]
+                    },
+                    {
+                        "icon": "server",
+                        "title": "Systems and networks",
+                        "text": "I’ve also worked with servers, containers, networks and permissions.",
+                        "labels": [
+                            "Linux",
+                            "Windows",
+                            "Docker",
+                            "Networks"
+                        ]
+                    },
+                    {
+                        "icon": "cpu",
+                        "title": "Hardware and support",
+                        "text": "Diagnostics, computer repairs and help when something isn’t working as it should.",
+                        "labels": [
+                            "Hardware",
+                            "Troubleshooting",
+                            "Backups",
+                            "Recovery"
+                        ]
+                    }
+                ]
+            },
+            "projects": {
+                "title": "What I'm working on.",
+                "closing": "I can’t show all the internal business systems and automation I work on here.",
+                "items": [
+                    {
+                        "title": "FoodPRO",
+                        "text": "My own online ordering system with payments and an admin interface.",
+                        "labels": [
+                            "Online ordering",
+                            "Payments",
+                            "Admin interface"
+                        ],
+                        "image": "assets/portfolio/foodpro-cover.svg",
+                        "image_alt": "FoodPRO cover with an ordering bag and cutlery",
+                        "url": "https://foodpro.shop"
+                    },
+                    {
+                        "title": "NapiInfo",
+                        "text": "A Laravel-based news portal with AI-assisted content processing and automation.",
+                        "labels": [
+                            "Laravel",
+                            "AI",
+                            "Automation"
+                        ],
+                        "image": "assets/portfolio/napiinfo-cover.svg",
+                        "image_alt": "NapiInfo cover with a newspaper illustration",
+                        "url": "https://napiinfo.com/"
+                    },
+                    {
+                        "title": "SzervizPRO",
+                        "text": "My own service administration system for a workshop’s daily work.",
+                        "labels": [
+                            "Workflows",
+                            "Data management",
+                            "Admin interface"
+                        ],
+                        "image": "assets/portfolio/szervizpro-cover.svg",
+                        "image_alt": "SzervizPRO cover with a wrench and screwdriver",
+                        "url": "https://szerviz.pro"
+                    }
+                ],
+                "more_title": "More projects and references"
+            },
+            "contact": {
+                "title": "Get in touch.",
+                "lead": "Have an interesting idea, a professional question, or just want to talk about tech? Get in touch.",
+                "button": "Write to Zoli",
+                "form_title": "You can write here too.",
+                "name": "Name",
+                "email": "Email address",
+                "message": "Message",
+                "message_placeholder": "Message",
+                "submit": "Send message",
+                "success": "Thank you, I’ve received your message. I’ll get back to you when I can.",
+                "error": "Your message couldn’t be sent. Please try again or email me directly.",
+                "business": {
+                    "title": "Have a development project?",
+                    "text": "You’ll find my services and products on SzoftLab.",
+                    "button": "Head to SzoftLab ↗"
+                }
+            },
+            "typewriter_sets": [
+                []
+            ]
+        },
+        "skills": {
+            "hero_title": "Technologies",
+            "hero_text": "I work most with PHP and Laravel. Here you’ll also find the other technologies and areas I’ve worked with.",
+            "note": "I mark my main focus, basic knowledge and learning areas separately.",
+            "back_home": "Back to my introduction",
+            "more_details": "More details",
+            "categories_label": "Technology categories",
+            "groups": [
+                {
+                    "id": "fejlesztes",
+                    "title": "Development",
+                    "nav": "Development",
+                    "icon": "code",
+                    "text": "My main focus is PHP/Laravel web development.",
+                    "items": [
+                        {
+                            "name": "PHP",
+                            "mark": "PHP",
+                            "level": "Main focus"
+                        },
+                        {
+                            "name": "Laravel",
+                            "mark": "L",
+                            "level": "Main focus"
+                        },
+                        {
+                            "name": "HTML",
+                            "mark": "<>"
+                        },
+                        {
+                            "name": "CSS",
+                            "mark": "#"
+                        },
+                        {
+                            "name": "JavaScript",
+                            "mark": "JS"
+                        },
+                        {
+                            "name": "Java",
+                            "mark": "J",
+                            "level": "Further experience"
+                        },
+                        {
+                            "name": "Swing",
+                            "mark": "SW",
+                            "level": "Further experience"
+                        },
+                        {
+                            "name": "Tailwind CSS",
+                            "mark": "TW",
+                            "level": "Basic knowledge"
+                        },
+                        {
+                            "name": "Bootstrap",
+                            "mark": "B",
+                            "level": "Basic knowledge"
+                        },
+                        {
+                            "name": "Spring",
+                            "mark": "SP",
+                            "level": "Basic knowledge"
+                        }
+                    ]
+                },
+                {
+                    "id": "adatbazisok",
+                    "title": "Databases",
+                    "nav": "Databases",
+                    "icon": "database",
+                    "text": "Data models, queries and the data behind applications.",
+                    "items": [
+                        {
+                            "name": "MySQL",
+                            "mark": "MY"
+                        },
+                        {
+                            "name": "MariaDB",
+                            "mark": "MA"
+                        },
+                        {
+                            "name": "SQLite",
+                            "mark": "SQ"
+                        },
+                        {
+                            "name": "Oracle SQL / PL/SQL",
+                            "mark": "OR"
+                        }
+                    ],
+                    "note": "Data modelling · Indexing · Queries"
+                },
+                {
+                    "id": "ai",
+                    "title": "AI and automation",
+                    "nav": "AI and automation",
+                    "icon": "workflow",
+                    "text": "API integrations, automated tasks and AI in applications.",
+                    "items": [
+                        {
+                            "name": "API integrations",
+                            "mark": "API"
+                        },
+                        {
+                            "name": "OpenAI API",
+                            "mark": "AI"
+                        },
+                        {
+                            "name": "Python scripts",
+                            "mark": "PY"
+                        },
+                        {
+                            "name": "Ollama",
+                            "mark": "OL"
+                        },
+                        {
+                            "name": "LM Studio",
+                            "mark": "LM"
+                        }
+                    ],
+                    "note": "Experiments with local AI models and AI-assisted workflows."
+                },
+                {
+                    "id": "rendszerek",
+                    "title": "Systems and networks",
+                    "nav": "Systems",
+                    "icon": "server",
+                    "text": "Servers, containers, networks and access.",
+                    "items": [
+                        {
+                            "name": "Linux",
+                            "mark": "LX"
+                        },
+                        {
+                            "name": "Debian",
+                            "mark": "DE"
+                        },
+                        {
+                            "name": "Ubuntu",
+                            "mark": "UB"
+                        },
+                        {
+                            "name": "Windows",
+                            "mark": "W"
+                        },
+                        {
+                            "name": "Docker / Docker Compose",
+                            "mark": "DK"
+                        },
+                        {
+                            "name": "Active Directory",
+                            "mark": "AD"
+                        },
+                        {
+                            "name": "Samba",
+                            "mark": "SM"
+                        }
+                    ],
+                    "note": "LAN · Wi-Fi · DHCP · VLAN · Network troubleshooting",
+                    "details": [
+                        "Dockerfile",
+                        "Apache · Lighttpd",
+                        "TP-Link · MikroTik · Ubiquiti · Cisco Meraki"
+                    ]
+                },
+                {
+                    "id": "hardver",
+                    "title": "Hardware and support",
+                    "nav": "Hardware and support",
+                    "icon": "cpu",
+                    "text": "Computers, troubleshooting, backups and help for users.",
+                    "items": [
+                        {
+                            "name": "PC and laptop diagnostics",
+                            "mark": "PC"
+                        },
+                        {
+                            "name": "Component replacement",
+                            "mark": "+"
+                        },
+                        {
+                            "name": "Maintenance",
+                            "mark": "HW"
+                        },
+                        {
+                            "name": "Backup and recovery",
+                            "mark": "BK"
+                        },
+                        {
+                            "name": "Remote support",
+                            "mark": "IT"
+                        }
+                    ],
+                    "details": [
+                        "Performance and cooling issues",
+                        "UrBackup",
+                        "Shell and batch scripts"
+                    ]
+                },
+                {
+                    "id": "eszkozok",
+                    "title": "Tools and collaboration",
+                    "nav": "Tools",
+                    "icon": "toolbox",
+                    "text": "Tools I use for development and everyday work.",
+                    "items": [
+                        {
+                            "name": "Git",
+                            "mark": "G"
+                        },
+                        {
+                            "name": "GitHub",
+                            "mark": "GH"
+                        },
+                        {
+                            "name": "Postman",
+                            "mark": "PM"
+                        },
+                        {
+                            "name": "Visual Studio Code",
+                            "mark": "VS"
+                        },
+                        {
+                            "name": "Microsoft 365",
+                            "mark": "365"
+                        }
+                    ],
+                    "details": [
+                        "IntelliJ IDEA",
+                        "Power Automate · Power BI",
+                        "Trello · Jira",
+                        "Agile/Scrum — Basic knowledge"
+                    ]
+                },
+                {
+                    "id": "fejlodes",
+                    "title": "What I’m exploring further",
+                    "nav": "Learning focus",
+                    "icon": "book",
+                    "text": "",
+                    "items": [
+                        {
+                            "name": "Modular Laravel applications",
+                            "mark": "L"
+                        },
+                        {
+                            "name": "Automated testing",
+                            "mark": "T"
+                        },
+                        {
+                            "name": "CI/CD workflows",
+                            "mark": "CI"
+                        },
+                        {
+                            "name": "Java",
+                            "mark": "J"
+                        },
+                        {
+                            "name": "Spring Boot",
+                            "mark": "SB"
+                        },
+                        {
+                            "name": "Node.js",
+                            "mark": "N"
+                        },
+                        {
+                            "name": "TypeScript",
+                            "mark": "TS"
+                        },
+                        {
+                            "name": "React",
+                            "mark": "R"
+                        },
+                        {
+                            "name": "Next.js",
+                            "mark": "NX"
+                        }
+                    ],
+                    "level": "Learning focus"
+                }
+            ],
+            "typewriter_sets": [
+                []
+            ]
+        }
+    }
+}

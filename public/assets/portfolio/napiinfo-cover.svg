@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="432" viewBox="0 0 768 432">
+  <rect width="768" height="432" fill="#071b16"/>
+  <path d="M768 0H478L364 432h404Z" fill="#0b2a22"/>
+  <g fill="none" stroke="#87e6c3" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M442 76h208v206H464a22 22 0 0 1-22-22V76Z" fill="#10372c"/>
+    <path d="M650 118h30v142a22 22 0 0 1-22 22h-18m-178 0V118h-42v142a22 22 0 0 0 22 22"/>
+    <path d="M478 112h136"/>
+    <path d="M478 145h57v57h-57Z" fill="#1b5140" stroke-width="4"/>
+    <path d="M556 148h58m-58 26h58m-58 26h58m-136 30h136m-136 25h104" stroke="#62b69a" stroke-width="4"/>
+  </g>
+  <path d="M48 330h48" stroke="#87e6c3" stroke-width="4"/>
+  <text x="48" y="388" font-family="Courier New,monospace" font-size="64" font-weight="bold" fill="#ddfff1">Napi<tspan fill="#87e6c3">Info</tspan></text>
+</svg>

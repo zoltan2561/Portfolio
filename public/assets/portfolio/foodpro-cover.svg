@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="432" viewBox="0 0 768 432">
+  <rect width="768" height="432" fill="#071c12"/>
+  <path d="M768 0H478L364 432h404Z" fill="#0d2a1c"/>
+  <g fill="none" stroke="#86e8ae" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M470 130h184v146H470Z" fill="#113723"/>
+    <path d="M517 130v-24a45 45 0 0 1 90 0v24"/>
+    <path d="M513 175v31m14-31v31m14-31v31m-28 0a14 14 0 0 0 28 0m-14 14v30"/>
+    <path d="M599 175c-14 0-20 14-20 27s7 24 20 24 20-11 20-24-6-27-20-27Zm0 51v24"/>
+    <path d="M425 280h-72v-94h54l18 18v76Z" stroke="#4b9266"/>
+    <path d="M407 186v18h18m-56 23h38m-38 17h38m-38 17h22" stroke="#4b9266" stroke-width="4"/>
+  </g>
+  <path d="M48 330h48" stroke="#86e8ae" stroke-width="4"/>
+  <text x="48" y="388" font-family="Courier New,monospace" font-size="64" font-weight="bold" fill="#d8ffe7">Food<tspan fill="#86e8ae">PRO</tspan></text>
+</svg>

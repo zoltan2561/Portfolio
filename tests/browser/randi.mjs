@@ -65,6 +65,10 @@ async function newPage(options = {}) {
     return { context, page };
 }
 
+async function newAdminPage() {
+    return newPage({ storageState: await admin.storageState() });
+}
+
 async function current(page, step) {
     await page.locator(`#randi-app[data-current-step="${step}"]`).waitFor();
     assert.equal(await page.locator("[data-step]:visible").count(), 1);
@@ -119,7 +123,7 @@ try {
     await check(
         "320/390/430 px, desktop, mouse dodge and resize boundaries",
         async () => {
-            const { page } = await newPage();
+            const { page } = await newAdminPage();
             const external = [];
             page.on("request", (req) => {
                 if (!req.url().startsWith(base)) external.push(req.url());
@@ -410,7 +414,7 @@ try {
     );
 
     await check("Demo completion stays explicitly unsaved", async () => {
-        const { page } = await newPage();
+        const { page } = await newAdminPage();
         await begin(page, `${base}/randi/demo`);
         await discussLater(page);
         await page.locator('[name="activity"][value="surprise"]').check();

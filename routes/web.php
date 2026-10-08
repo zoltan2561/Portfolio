@@ -15,14 +15,15 @@ Route::post('/statistics/logout', [PortfolioController::class, 'logoutStatistics
 Route::post('/contact', [ContactController::class, 'send'])->middleware('throttle:portfolio-contact')->name('contact.send');
 
 Route::prefix('randi')->name('randi.')->group(function () {
-    Route::get('/', [RandiController::class, 'generator'])->name('generator');
-    Route::post('/', [RandiController::class, 'create'])->middleware('throttle:randi-create')->name('create');
-    Route::get('/demo', [RandiController::class, 'show'])->name('demo');
-    Route::post('/demo/form', [RandiController::class, 'form'])->middleware('throttle:randi-response')->name('demo.form');
-    Route::post('/demo/response', [RandiController::class, 'respond'])->middleware('throttle:randi-response')->name('demo.response');
     Route::get('/admin/login', [RandiAdminController::class, 'login'])->name('admin.login');
     Route::post('/admin/login', [RandiAdminController::class, 'authenticate'])->middleware('throttle:randi-login')->name('admin.authenticate');
     Route::middleware(RandiAdmin::class)->group(function () {
+        Route::redirect('/', '/randi/admin')->name('entry');
+        Route::get('/admin/new', [RandiController::class, 'generator'])->name('generator');
+        Route::post('/admin/new', [RandiController::class, 'create'])->middleware('throttle:randi-create')->name('create');
+        Route::get('/demo', [RandiController::class, 'show'])->name('demo');
+        Route::post('/demo/form', [RandiController::class, 'form'])->middleware('throttle:randi-response')->name('demo.form');
+        Route::post('/demo/response', [RandiController::class, 'respond'])->middleware('throttle:randi-response')->name('demo.response');
         Route::get('/admin', [RandiAdminController::class, 'index'])->name('admin');
         Route::post('/admin/logout', [RandiAdminController::class, 'logout'])->name('admin.logout');
         Route::post('/admin/invitations', [RandiAdminController::class, 'create'])->middleware('throttle:randi-admin')->name('admin.create');

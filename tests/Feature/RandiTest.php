@@ -59,12 +59,43 @@ class RandiTest extends TestCase
         $this->withSession(['randi.admin' => hash('sha256', config('randi.admin_password_hash'))]);
     }
 
-    public function test_root_asks_for_a_name_and_generates_a_persistent_personal_link(): void
+    public function test_only_personal_invites_are_public_and_management_requires_admin(): void
     {
-        $this->get('/randi')->assertOk()->assertSee('A meghívott keresztneve')->assertDontSee('id="randi-app"', false);
-        $this->head('/randi')->assertOk();
+        foreach (['/randi', '/randi/admin', '/randi/admin/new', '/randi/demo'] as $url) {
+            $this->get($url)->assertRedirect('/randi/admin/login')->assertDontSee('A meghívott keresztneve');
+            $this->head($url)->assertRedirect('/randi/admin/login');
+        }
+        $this->post('/randi', ['recipient_name' => 'Anna'])->assertRedirect('/randi/admin/login');
+        $this->post('/randi/admin/new', ['recipient_name' => 'Anna'])->assertRedirect('/randi/admin/login');
+        $this->post('/randi/admin/invitations', ['recipient_name' => 'Anna', 'sender_name' => 'Zoli', 'expires_days' => 30])->assertRedirect('/randi/admin/login');
+        $this->post('/randi/demo/form', ['action' => 'start'])->assertRedirect('/randi/admin/login');
+        $this->postJson('/randi/demo/response', ['decision' => 'declined'])->assertRedirect('/randi/admin/login');
         $this->assertDatabaseCount('date_invites', 0, 'randi');
-        $response = $this->withHeader('Host', 'untrusted.example')->post('/randi', [
+        $this->assertDatabaseCount('date_responses', 0, 'randi');
+        $this->get('/randi/admin/login')->assertOk()->assertDontSee('Demó megnyitása');
+
+        $invite = $this->invite();
+        $key = $this->key($invite);
+        $this->get('/randi/'.$invite['token'])->assertOk()->assertSee('Szia, Anna!');
+        $this->postJson('/randi/'.$invite['token'].'/response', $this->accepted($key))->assertOk();
+        $this->assertDatabaseHas('date_responses', ['invite_id' => $invite['id'], 'decision' => 'accepted'], 'randi');
+
+        config(['randi.admin_password_hash' => '']);
+        $this->admin();
+        $this->get('/randi/admin/new')->assertRedirect('/randi/admin/login');
+        $this->post('/randi/admin/new', ['recipient_name' => 'Other'])->assertRedirect('/randi/admin/login');
+        $this->assertDatabaseCount('date_invites', 1, 'randi');
+    }
+
+    public function test_admin_name_form_generates_a_persistent_personal_link(): void
+    {
+        $this->admin();
+        $this->get('/randi')->assertRedirect('/randi/admin');
+        $this->post('/randi', ['recipient_name' => 'Anna'])->assertRedirect('/randi/admin');
+        $this->get('/randi/admin/new')->assertOk()->assertSee('A meghívott keresztneve')->assertDontSee('id="randi-app"', false);
+        $this->head('/randi/admin/new')->assertOk();
+        $this->assertDatabaseCount('date_invites', 0, 'randi');
+        $response = $this->withHeader('Host', 'untrusted.example')->post('/randi/admin/new', [
             'recipient_name' => '  Anna  ', 'sender_name' => 'Someone else', 'expires_days' => 90,
         ]);
         $response->assertCreated()->assertSee('Anna névre készült')->assertSee('Link másolása')->assertSee('Új meghívó készítése');
@@ -87,19 +118,21 @@ class RandiTest extends TestCase
 
     public function test_generator_validates_names_without_polluting_invitation_drafts(): void
     {
+        $this->admin();
         foreach (['', '   ', str_repeat('é', 81), ['Anna']] as $name) {
-            $this->post('/randi', ['recipient_name' => $name])->assertRedirect('/randi')->assertSessionHasErrors('recipient_name');
+            $this->post('/randi/admin/new', ['recipient_name' => $name])->assertRedirect('/randi/admin/new')->assertSessionHasErrors('recipient_name');
         }
         $this->assertNull(session('randi.drafts'));
         $this->assertDatabaseCount('date_invites', 0, 'randi');
-        $this->get('/randi')->assertOk()->assertSee('role="alert"', false);
+        $this->get('/randi/admin/new')->assertOk()->assertSee('role="alert"', false);
     }
 
     public function test_same_name_invites_keep_separate_responses_and_names_are_escaped(): void
     {
+        $this->admin();
         $links = [];
         foreach (['Anna', 'Anna', '<img src=x onerror=alert(1)>'] as $name) {
-            $response = $this->post('/randi', ['recipient_name' => $name])->assertCreated();
+            $response = $this->post('/randi/admin/new', ['recipient_name' => $name])->assertCreated();
             preg_match('~/randi/([A-Za-z0-9_-]{43})~', $response->getContent(), $matches);
             $links[] = $matches[1];
             if ($name !== 'Anna') {
@@ -119,15 +152,16 @@ class RandiTest extends TestCase
 
     public function test_generator_is_rate_limited_and_never_claims_a_link_when_storage_fails(): void
     {
+        $this->admin();
         DB::connection('randi')->statement('PRAGMA query_only = ON');
-        $this->post('/randi', ['recipient_name' => 'Anna'])->assertStatus(503)->assertDontSee('id="created-link"', false);
+        $this->post('/randi/admin/new', ['recipient_name' => 'Anna'])->assertStatus(503)->assertDontSee('id="created-link"', false);
         $this->assertNull(session('randi.drafts'));
         $this->assertDatabaseCount('date_invites', 0, 'randi');
         DB::connection('randi')->statement('PRAGMA query_only = OFF');
         for ($i = 0; $i < 4; $i++) {
-            $this->post('/randi', ['recipient_name' => 'Anna'])->assertCreated();
+            $this->post('/randi/admin/new', ['recipient_name' => 'Anna'])->assertCreated();
         }
-        $this->post('/randi', ['recipient_name' => 'Anna'])->assertTooManyRequests();
+        $this->post('/randi/admin/new', ['recipient_name' => 'Anna'])->assertTooManyRequests();
         $this->assertDatabaseCount('date_invites', 4, 'randi');
     }
 
@@ -289,6 +323,7 @@ class RandiTest extends TestCase
         $this->key($invite);
         $this->head('/randi/'.$invite['token'])->assertOk();
         $this->post('/randi/'.$invite['token'].'/form', ['action' => 'start'])->assertRedirect();
+        $this->admin();
         $this->get('/randi/demo')->assertOk()->assertSee('válaszodat nem mentjük');
         $key = session('randi.keys.demo.key');
         $this->postJson('/randi/demo/response', $this->accepted($key))->assertOk()->assertJsonPath('demo', true);
@@ -308,6 +343,8 @@ class RandiTest extends TestCase
         $this->get('/randi/admin')->assertOk();
         $this->post('/randi/admin/logout')->assertRedirect('/randi/admin/login');
         $this->get('/randi/admin')->assertRedirect('/randi/admin/login');
+        $this->get('/randi/admin/new')->assertRedirect('/randi/admin/login');
+        $this->get('/randi/demo')->assertRedirect('/randi/admin/login');
         config(['randi.admin_password_hash' => '']);
         $this->post('/randi/admin/login', ['password' => 'only-a-test-password'])->assertSessionHasErrors('password');
         $this->assertDatabaseCount('date_invites', 0, 'randi');
@@ -326,7 +363,7 @@ class RandiTest extends TestCase
         $key = $this->key($invite);
         $this->postJson('/randi/'.$invite['token'].'/response', $this->accepted($key))->assertStatus(419);
         $this->post('/randi/admin/login', ['password' => 'only-a-test-password'])->assertStatus(419);
-        $this->post('/randi', ['recipient_name' => 'Anna'])->assertStatus(419);
+        $this->post('/randi/admin/new', ['recipient_name' => 'Anna'])->assertStatus(419);
         $this->admin();
         $this->post('/randi/admin/invitations', ['sender_name' => 'Zoli'])->assertStatus(419);
         $this->assertDatabaseCount('date_responses', 0, 'randi');

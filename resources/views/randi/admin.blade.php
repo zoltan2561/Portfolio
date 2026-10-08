@@ -1,7 +1,7 @@
 @extends('layouts.randi')
 @section('body-class', 'randi-admin')
 @section('content')
-<header class="admin-header"><div><p class="eyebrow">Zoli kis szervezősarka</p><h1>Meghívók &amp; randitervek</h1></div><div class="admin-nav"><a class="button secondary" href="{{ route('randi.demo') }}">Demó megnyitása</a><form method="post" action="{{ route('randi.admin.logout') }}">@csrf<button class="text-button">Kijelentkezés</button></form></div></header>
+<header class="admin-header"><div><p class="eyebrow">Zoli kis szervezősarka</p><h1>Meghívók &amp; randitervek</h1></div><div class="admin-nav"><a class="button secondary" href="{{ route('randi.generator') }}">Gyors meghívó</a><a class="button secondary" href="{{ route('randi.demo') }}">Demó megnyitása</a><form method="post" action="{{ route('randi.admin.logout') }}">@csrf<button class="text-button">Kijelentkezés</button></form></div></header>
 @if(session('status'))<p class="notice" role="status">{{ session('status') }}</p>@endif
 @if($errors->any())<div class="form-errors" role="alert">@foreach($errors->all() as $error)<p>{{ $error }}</p>@endforeach</div>@endif
 <div class="admin-grid">

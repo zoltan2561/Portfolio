@@ -1,6 +1,6 @@
 # Személyes randimeghívó – telepítés és használat
 
-A `/randi` egy magyar, mobilra készült névbekérő és személyes linkkészítő. Keresztnév megadása után egy 30 napig érvényes `/randi/{token}` linket hoz létre a külön SQLite-adatbázisban. Ezt küldd a címzettnek: a megszólításban megjelenik a neve, a válasza pedig a saját meghívójához kapcsolódik. Azonos nevű címzettek és új meghívók külön sorok maradnak. A mentés nélküli bemutató külön `/randi/demo` útvonalon érhető el. A meghívás → igen → időpont → program → összegzés → végleges beküldés folyamat végén a válasz külön SQLite-adatbázisba kerül. A fix elutasítás ugyanezen mentést használja, további adat nélkül. JavaScript nélkül szerveroldali űrlaplépések működnek.
+A `/randi` az adminfelületre irányít; belépés nélkül az adminbelépő jelenik meg. A magyar, mobilra készült névbekérő a védett `/randi/admin/new` útvonalon keresztnevet kér, majd egy 30 napig érvényes `/randi/{token}` linket hoz létre a külön SQLite-adatbázisban. Ezt küldd a címzettnek: a megszólításban megjelenik a neve, a válasza pedig a saját meghívójához kapcsolódik. Azonos nevű címzettek és új meghívók külön sorok maradnak. A mentés nélküli bemutató (`/randi/demo`) szintén adminbelépést igényel. Nyilvánosan csak az adminbelépő és a személyes meghívólinkek érhetők el. A meghívás → igen → időpont → program → összegzés → végleges beküldés folyamat végén a válasz külön SQLite-adatbázisba kerül. A fix elutasítás ugyanezen mentést használja, további adat nélkül. JavaScript nélkül szerveroldali űrlaplépések működnek.
 
 ## Ellenőrzött környezet és követelmények
 
@@ -52,7 +52,7 @@ Privát könyvtárnál például `0750`, adatbázisnál `0640`, a PHP felhaszná
 
 5. Éles konfiguráció véglegesítése után szokásos `php artisan config:cache`, szükség esetén `php artisan route:cache`. A modulhoz nincs frontend build; a `public/assets/randi/` fájljait is telepítsd. Publikus **`public/randi/` könyvtár ne legyen**, mert az felülírná a `/randi` route-ot a webszervernél.
 
-A 2026. október 8-i éles bekötés a Hostinger fájlkezelőjén keresztül történt. A külön adatbázis az alapértelmezett `storage/app/private/randi/randi.sqlite` útvonalon működik; a meglévő `APP_URL=https://pzoli.com` adja a személyes linkek eredetét. A fő alkalmazás adatbázis-beállításai és a meglévő `.env` titkai megmaradtak. Éles adminjelszóhash még nincs beállítva.
+A 2026. október 8-i éles bekötés a Hostinger fájlkezelőjén keresztül történt. A külön adatbázis az alapértelmezett `storage/app/private/randi/randi.sqlite` útvonalon működik; a meglévő `APP_URL=https://pzoli.com` adja a személyes linkek eredetét. A fő alkalmazás adatbázis-beállításai és a meglévő `.env` titkai megmaradtak. A kezdeti bekötéskor éles adminjelszóhash még nem volt beállítva.
 
 ### 2026. október 8-i ellenőrzés és kiadás
 
@@ -61,6 +61,13 @@ A 2026. október 8-i éles bekötés a Hostinger fájlkezelőjén keresztül tö
 - Élesben személyes linkkészítést és elutasításmentést ellenőriztünk; újratöltés után is a mentett válasz jelent meg. Az adatbázis közvetlen HTTP-kérése 403 választ adott. Az „Ellenőrzés” nevű próbameghívó és elutasítása megmaradt, az admin beállítása után törölhető.
 - A kód fájlkezelővel került élesbe, Git-push nélkül. A helyi változások és a szerver Git-munkakönyvtára még szinkronizálandó a következő Git-alapú telepítés előtt.
 - A `public_html/randi-update.zip` újrahasználható, kizárólag kódot tartalmazó csomag. A `public_html/randi-code-rollback.zip` az előző kódot állítja vissza, adatbázist nem tartalmaz. A helyi `artifacts/randi/release-20261008/randi-first-install-only.zip` üres kezdeti adatbázist is tartalmaz: meglévő éles adatbázisra nem szabad újra kicsomagolni.
+
+### Privát hozzáférés – 2026. október 8.
+
+- A korábbi publikus névbekérő `/randi/admin/new` alá került, adminbelépést igényel. A `/randi` az adminra irányít; a demó minden olvasó és író útvonala szintén védett. Az adminban „Gyors meghívó” gomb nyitja a névbekérőt. A személyes tokenes meghívók és válaszaik továbbra is belépés nélkül használhatók.
+- Helyben 58 PHPUnit-teszt és 863 assertion sikeres, a Blade-fordítás, Pint és diffellenőrzés sikeres. Az opcionális böngészős runner védett demótesztjei adminmunkamenetet kaptak; ebben a frissítésben csak a runner JavaScript-szintaxisát ellenőriztük, a teljes runnert nem futtattuk.
+- Éles, cookie nélküli HTTP-kéréssel a `/randi`, `/randi/admin`, `/randi/admin/new` és `/randi/demo` 302-es választ adott az adminbelépésre; a login 200-as. Böngészőben ellenőriztük a publikus belépési oldalt és a belépett admin „Gyors meghívó” navigációját. Az adatbázist és a `.env` fájlt nem módosítottuk.
+- Csak a `routes/web.php`, az admin és a login Blade-nézet frissült a Hostinger fájlkezelőjén keresztül, Git-push nélkül. A kódot tartalmazó `randi-private-access.zip` és `randi-private-access-rollback.zip` a `public_html` gyökerében van; egyik sem tartalmaz adatbázist vagy titkot.
 
 ## Helyi indítás
 
@@ -71,11 +78,11 @@ php artisan randi:install
 php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-Linkkészítő: `http://127.0.0.1:8000/randi`. Demó: `http://127.0.0.1:8000/randi/demo`. Admin: `http://127.0.0.1:8000/randi/admin`. A `php artisan randi:demo-invite` parancs csak `local`/`testing` környezetben létrehoz egy egynapos személyes próbalinket. Ez **valódi próbasor**, külön fejlesztői adatbázison használd és utána töröld az adminban. A publikus `/randi/demo` soha nem hoz létre meghívót vagy végleges válaszsort.
+Linkkészítő: `http://127.0.0.1:8000/randi/admin/new`. Demó: `http://127.0.0.1:8000/randi/demo`. Admin: `http://127.0.0.1:8000/randi/admin`. A linkkészítő és a demó is adminbelépést igényel. A `php artisan randi:demo-invite` parancs csak `local`/`testing` környezetben létrehoz egy egynapos személyes próbalinket. Ez **valódi próbasor**, külön fejlesztői adatbázison használd és utána töröld az adminban. A `/randi/demo` soha nem hoz létre meghívót vagy végleges válaszsort.
 
 ## Az első elküldhető link
 
-A gyors folyamat: nyisd meg a **`https://pzoli.com/randi`** címet, írd be a meghívott keresztnevét (például Anna), és kattints a **„Személyes link készítése”** gombra. Másold és küldd el a kapott linket. A meghívó Zoli nevében készül, 30 napig él. A publikus linkkészítés CSRF-védett és IP-nként legfeljebb 5 alkalom/perc; nem ad hozzáférést korábbi meghívókhoz vagy válaszokhoz.
+A gyors folyamat: lépj be a **`https://pzoli.com/randi/admin`** oldalon, és kattints a **„Gyors meghívó”** linkre. Írd be a meghívott keresztnevét (például Anna), és kattints a **„Személyes link készítése”** gombra. Másold és küldd el a kapott linket. A meghívó Zoli nevében készül, 30 napig él. A névbekérő a `/randi/admin/new` útvonalon működik; adminhitelesítés és CSRF-védelem mellett IP-nként legfeljebb 5 alkalom/perc használható. Belépés nélküli linkkészítés nincs.
 
 A válaszok megtekintéséhez és egyéni feladóhoz, bevezetőhöz vagy élettartamhoz a védett admin használható:
 
@@ -119,7 +126,7 @@ Visszaállításkor karbantartási időben:
 - Újranyitáskor csak az eredeti, szerveroldalon ellenőrzött munkamenet olvashatja a saját végleges részleteit. Másik munkamenet csak „Erre a meghívóra már érkezett válasz.” üzenetet lát. Visszavont/lejárt link sem névvel, sem korábbi üzenettel nem válaszol.
 - A klienspiszkozat meghívónként elkülönülő `sessionStorage`, kétórás lejárattal, végleges mentés/elutasítás után törlődik. A JavaScript nélküli piszkozat Laravel-sessionben él. Nincs megnyitáskövetés vagy pointerpróbálkozás-naplózás.
 - A válasz dátuma magyar helyi `YYYY-MM-DD`, a technikai időbélyegek UTC értékek; az admin magyar időt jelenít meg. Mai naptól +60 napig lehet választani. A már teljesen elmúlt mai idősávokat a szerver is tiltja. Nincs kapacitásfoglalás vagy végleges találkozóígéret.
-- Rate limit IP-nként, HMAC-lenyomattal és 60 másodperces érvényességgel: belépés 5/perc, válaszküldés + szerveroldali űrlaplépések együtt 30/perc, admin írások együtt 20/perc, publikus linkkészítés 5/perc. Ezek ideiglenes visszaélésvédelmi kulcsok, nem analitika. A címzett/admin adatbázisa nem tárol IP-t vagy user agentet.
+- Rate limit IP-nként, HMAC-lenyomattal és 60 másodperces érvényességgel: belépés 5/perc, válaszküldés + szerveroldali űrlaplépések együtt 30/perc, admin írások együtt 20/perc, gyors adminlinkkészítés 5/perc. Ezek ideiglenes visszaélésvédelmi kulcsok, nem analitika. A címzett/admin adatbázisa nem tárol IP-t vagy user agentet.
 - Minden írás POST + Laravel CSRF. Az oldalakon `private, no-store`, `no-referrer`, `noindex, nofollow, noarchive` és helyi erőforrásokra szűkített CSP van. A modul nincs menüben vagy sitemapben. A megosztási metaadatok statikusak, nincs bennük címzettnév vagy randiterv.
 - A `/randi` hibaválaszok és alkalmazás-hibajelentések nem teszik közzé az SQL-t, tokenes URL-t, személyes mezőket vagy stack trace-t. Ezzel szemben **a tárhely/webszerver hozzáférési naplója és a fejlesztői szerver konzolja tartalmazhatja az eredeti URL-t**. A proxy/tárhely naplózását a randimodulra maszkolással vagy kizárással külön kell beállítani; a rendszer nem ígéri, hogy a titkos URL sehol sem kerülhet naplóba. A védett megosztástól függetlenül minden felhasználói szöveg HTML/JSON escape-elt.
 - Az adminban a „Végleges törlés” rész megnyitása és `TORLES` beírása után a meghívó és a válasza FK CASCADE-del törlődik. Időszakosan töröld a már nem szükséges sorokat, a fejlesztői próbákat és a régi backupokat; a lejárat magában nem törlés. A backupok a korábbi személyes adatot továbbra is őrzik. Fizikai törléshez a szabad SQLite-lapok és a mentések megőrzését is kezeld (ellenőrzött karbantartáskor VACUUM, illetve backupmegőrzési szabály).
@@ -128,7 +135,7 @@ Visszaállításkor karbantartási időben:
 
 Apache alatt a meglévő `public/.htaccess` és `mod_rewrite` szükséges; Nginx alatt a Laravel szokásos `try_files $uri $uri/ /index.php?$query_string` beállítása kell, a `public/` dokumentumgyökérrel. Az assetek `/assets/randi/` alatt vannak, így nem ütköznek a `/randi` route-tal.
 
-Élesítéskor ellenőrizd: `/randi` nevet kér és személyes linket készít, `/randi/demo` mentés nélkül működik, `/randi/admin` belépést kér, hibás személyes link semleges állapotoldal, az assetek 200-at adnak, a **`.env`, `storage/`, `database/`, `.git/`, `.sqlite`, journal/WAL/SHM és backupfájlok HTTP-n nem tölthetők le**. A közvetlen fájlvédelem webszerverfeladat; nem elég a Laravel adminauth. A tárhely teljes projektgyökérből történő kiszolgálásánál külön tiltsd a privát könyvtárakat, vagy állítsd át a dokumentumgyökeret `public/`-ra.
+Élesítéskor ellenőrizd: belépés nélkül a `/randi`, `/randi/admin/new`, `/randi/demo` és `/randi/admin` az adminbelépésre irányít; az adminban a „Gyors meghívó” személyes linket készít, a demó mentés nélkül működik. A személyes meghívólink adminbelépés nélkül megnyitható, a hibás link semleges állapotoldal, az assetek 200-at adnak, a **`.env`, `storage/`, `database/`, `.git/`, `.sqlite`, journal/WAL/SHM és backupfájlok HTTP-n nem tölthetők le**. A közvetlen fájlvédelem webszerverfeladat; nem elég a Laravel adminauth. A tárhely teljes projektgyökérből történő kiszolgálásánál külön tiltsd a privát könyvtárakat, vagy állítsd át a dokumentumgyökeret `public/`-ra.
 
 ## Tesztek és bizonyítékok
 

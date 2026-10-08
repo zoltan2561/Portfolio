@@ -2,9 +2,9 @@
 
 ## Személyes randimeghívó
 
-A külön `/randi` minialkalmazás mentés nélküli demóval, személyes linkekkel, külön SQLite-adatbázissal és védett `/randi/admin` kezelőfelülettel működik. Telepítés, adminjelszóhash, mentés/visszaállítás, tesztek és az első elküldhető link lépései: [docs/RANDI_SETUP.md](docs/RANDI_SETUP.md).
+A külön `/randi` minialkalmazás névre szóló linkkészítővel, külön SQLite-adatbázissal és védett `/randi/admin` kezelőfelülettel működik. A mentés nélküli demó a `/randi/demo` útvonalon érhető el. Telepítés, adminjelszóhash, mentés/visszaállítás, tesztek és az első elküldhető link lépései: [docs/RANDI_SETUP.md](docs/RANDI_SETUP.md).
 
-A titkos link birtokosa válaszolhat: ez nem igazolja a címzett személyazonosságát. Csak a token lenyomatát tároljuk, de a tárhely hozzáférési naplói tartalmazhatják a teljes megosztott URL-t. A címzettnek az adminban készült személyes linket küldd, ne a `/randi` demót.
+A titkos link birtokosa válaszolhat: ez nem igazolja a címzett személyazonosságát. Csak a token lenyomatát tároljuk, de a tárhely hozzáférési naplói tartalmazhatják a teljes megosztott URL-t. A címzettnek a `/randi` névbekérőjén vagy az adminban készült személyes linket küldd; a `/randi/demo` nem ment választ.
 
 Szia, Zoli vagyok, webfejleszto. Ez az oldal a sajat portfolio oldalam, ahol igyekszem megmutatni, milyen szemlelettel dolgozom, milyen skillekben mozgok otthonosan, es hogyan tudok valodi segitseget adni ugyfeleknek.
 

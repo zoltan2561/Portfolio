@@ -369,6 +369,10 @@ function setupCareerStack() {
     steps.slice(0, activeIndex + 1).forEach((step) => layersOf(step).forEach((layer) => seen.add(layer)));
     const finished = end && end.getBoundingClientRect().top < window.innerHeight * 0.8;
     const lit = finished ? seen : new Set(activeIndex >= 0 ? layersOf(steps[activeIndex]) : []);
+    const timeline = steps[0].parentElement;
+    const box = timeline.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0, (line - box.top) / Math.max(1, box.height)));
+    timeline.style.setProperty('--progress', progress.toFixed(4));
     const key = `${activeIndex}|${finished}`;
     if (key === lastKey) return;
     lastKey = key;
@@ -386,6 +390,97 @@ function setupCareerStack() {
   update();
 }
 
+const motionOk = () => document.documentElement.classList.contains('motion-ok');
+
+// Matrix-style decode: characters cycle through glyphs and settle left to right.
+function decodeText(element, duration = 900) {
+  const finalText = element.textContent;
+  if (!finalText.trim() || element.dataset.decoded) return;
+  element.dataset.decoded = 'true';
+  const glyphs = '01<>/{}[]#$%&*+=?;:_';
+  const chars = Array.from(finalText);
+  const start = performance.now();
+  element.setAttribute('aria-label', finalText);
+  function frame(now) {
+    const t = Math.min(1, (now - start) / duration);
+    const settled = Math.floor(t * chars.length);
+    element.textContent = chars.map((char, index) => {
+      if (index < settled || char === ' ' || char === '\n') return char;
+      return glyphs[Math.floor(Math.random() * glyphs.length)];
+    }).join('');
+    if (t < 1) {
+      requestAnimationFrame(frame);
+    } else {
+      element.textContent = finalText;
+      element.removeAttribute('aria-label');
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+function setupHeroMotion() {
+  if (!motionOk()) return;
+  const title = document.querySelector('.pz-hero h1');
+  if (title) decodeText(title, 1000);
+
+  const picture = document.querySelector('.pz-portrait picture');
+  const hero = document.querySelector('.pz-hero');
+  if (picture) picture.style.setProperty('--scan-h', `${picture.offsetHeight}px`);
+  if (!picture || !hero || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  // Gentle parallax tilt toward the pointer, smoothed so it never snaps.
+  let target = { x: 0, y: 0 };
+  let current = { x: 0, y: 0 };
+  let frame = null;
+  function step() {
+    current.x += (target.x - current.x) * 0.08;
+    current.y += (target.y - current.y) * 0.08;
+    picture.style.transform = `perspective(900px) rotateX(${current.y.toFixed(3)}deg) rotateY(${current.x.toFixed(3)}deg)`;
+    if (Math.abs(target.x - current.x) > 0.01 || Math.abs(target.y - current.y) > 0.01) {
+      frame = requestAnimationFrame(step);
+    } else {
+      frame = null;
+    }
+  }
+  const kick = () => { if (frame === null) frame = requestAnimationFrame(step); };
+  hero.addEventListener('pointermove', (event) => {
+    const rect = picture.getBoundingClientRect();
+    const dx = (event.clientX - (rect.left + rect.width / 2)) / window.innerWidth;
+    const dy = (event.clientY - (rect.top + rect.height / 2)) / window.innerHeight;
+    target = { x: Math.max(-1, Math.min(1, dx)) * 7, y: Math.max(-1, Math.min(1, dy)) * -7 };
+    kick();
+  });
+  hero.addEventListener('pointerleave', () => { target = { x: 0, y: 0 }; kick(); });
+}
+
+function setupReveals() {
+  if (!motionOk() || !('IntersectionObserver' in window)) return;
+  const selectors = [
+    '.v2-section h2', '.pz-career-head p', '.pz-stack', '.pz-step', '.pz-career-end',
+    '.v2-tech-card', '.pz-knowledge + .v2-text-link', '.v2-project', '.v2-more-projects', '.v2-project-note',
+    '.pz-about-copy p', '.pz-approach li', '.v2-contact > div', '.v2-business'
+  ];
+  const targets = Array.from(document.querySelectorAll(selectors.join(',')));
+  const viewport = window.innerHeight;
+  targets.forEach((element) => {
+    // Anything already on screen at load stays put; only what is below the fold waits to reveal.
+    if (element.getBoundingClientRect().top < viewport * 0.92) return;
+    element.classList.add('pz-reveal');
+  });
+  const delays = [0, 70, 120, 160, 190, 215];
+  const observer = new IntersectionObserver((entries) => {
+    const entering = entries.filter((entry) => entry.isIntersecting).map((entry) => entry.target);
+    entering.forEach((element, index) => {
+      element.style.transitionDelay = `${delays[Math.min(index, delays.length - 1)]}ms`;
+      element.classList.add('is-in');
+      observer.unobserve(element);
+      if (element.tagName === 'H2') decodeText(element, 650);
+      element.addEventListener('transitionend', () => { element.style.transitionDelay = ''; }, { once: true });
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+  targets.filter((element) => element.classList.contains('pz-reveal')).forEach((element) => observer.observe(element));
+}
+
 setupMatrix();
 setupMenu();
 setupFadeIns();
@@ -393,3 +488,5 @@ setupProjectCarousel();
 setupFlashMessages();
 setupTypewriter();
 setupCareerStack();
+setupHeroMotion();
+setupReveals();

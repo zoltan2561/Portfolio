@@ -21,6 +21,7 @@
   --sans: 'Onest', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --nav-h: var(--navigation-height, 72px);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   height: auto;
   min-height: 100%;
   font-family: var(--sans);
@@ -69,9 +70,9 @@ html:has(> body.portfolio-v2), body.portfolio-v2 { overflow-x: clip; }
 /* Buttons and small parts */
 .portfolio-v2 .v2-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-block: 32px; }
 .portfolio-v2 .v2-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 12px 22px; border: 1px solid var(--phosphor); border-radius: 2px; background: var(--phosphor); color: var(--phosphor-ink); font-family: var(--mono); font-size: 0.9rem; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; cursor: pointer; transition: background 180ms var(--ease-out), color 180ms var(--ease-out), border-color 180ms var(--ease-out), transform 120ms var(--ease-out); }
-.portfolio-v2 .v2-button .v2-icon { width: 18px; height: 18px; color: currentColor; }
+.portfolio-v2 .v2-button .v2-icon { width: 18px; height: 18px; color: currentColor; transition: transform 220ms var(--ease-out); }
 .portfolio-v2 .v2-button:hover { background: var(--ink); border-color: var(--ink); color: var(--phosphor-ink); }
-.portfolio-v2 .v2-button:active { transform: translateY(1px); }
+.portfolio-v2 .v2-button:active { transform: scale(0.97); }
 .portfolio-v2 .v2-button-secondary { color: var(--ink); background: rgba(3, 9, 6, 0.7); border-color: var(--line-strong); }
 .portfolio-v2 .v2-button-secondary:hover { background: var(--ground-3); border-color: var(--phosphor-dim); color: var(--ink); }
 .portfolio-v2 .v2-text-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-family: var(--mono); font-size: 0.88rem; }
@@ -294,7 +295,72 @@ html:has(> body.portfolio-v2), body.portfolio-v2 { overflow-x: clip; }
   .portfolio-v2 .v2-technology-list { grid-template-columns: 1fr; }
   .portfolio-v2 .v2-profiles a { grid-template-columns: 84px minmax(0, 1fr); }
 }
+/* ---------- Motion ---------- */
+/* Everything that starts hidden lives under .motion-ok, set in <head> only when reduced motion is off. */
+
+/* Hero entrance: copy rises in, portrait is scanned in top to bottom. */
+@keyframes pz-rise { from { opacity: 0; transform: translateY(18px); filter: blur(6px); } }
+@keyframes pz-fade { from { opacity: 0; } }
+@keyframes pz-scan-in { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes pz-scan-line { 0% { transform: translateY(-4px); opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(var(--scan-h, 480px)); opacity: 0; } }
+@keyframes pz-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.motion-ok .portfolio-v2 .pz-hero-copy > * { animation: pz-rise 900ms var(--ease-out) both; }
+.motion-ok .portfolio-v2 .pz-hero-copy > .v2-intro { animation-delay: 380ms; }
+.motion-ok .portfolio-v2 .pz-hero-copy > .v2-actions { animation-delay: 520ms; }
+.motion-ok .portfolio-v2 .pz-hero-copy > .pz-facts { animation-delay: 620ms; }
+.motion-ok .portfolio-v2 .pz-hero h1::after { content: ''; display: inline-block; width: 0.42em; height: 0.82em; margin-left: 0.12em; vertical-align: -0.04em; background: var(--phosphor); animation: pz-blink 1s steps(1) 1.2s 7 both; }
+.motion-ok .portfolio-v2 .pz-portrait picture { animation: pz-scan-in 1100ms var(--ease-in-out) 200ms both; }
+.motion-ok .portfolio-v2 .pz-portrait picture::before { content: ''; position: absolute; z-index: 2; left: 0; right: 0; top: 0; height: 3px; background: var(--phosphor); box-shadow: 0 -28px 36px 4px rgba(61, 255, 138, 0.18); pointer-events: none; animation: pz-scan-line 1100ms var(--ease-in-out) 200ms both; }
+.motion-ok .portfolio-v2 .pz-portrait figcaption { animation: pz-fade 700ms var(--ease-out) 1100ms both; }
+.portfolio-v2 .pz-portrait picture { transform-style: preserve-3d; will-change: transform; }
+
+/* Scroll reveal: once per element, small non-uniform stagger set from script.js. */
+.motion-ok .portfolio-v2 .pz-reveal { opacity: 0; transform: translateY(22px); filter: blur(5px); transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out), filter 800ms var(--ease-out); }
+.motion-ok .portfolio-v2 .pz-reveal.is-in { opacity: 1; transform: none; filter: none; }
+.motion-ok .portfolio-v2 .v2-project.pz-reveal .v2-project-image { clip-path: inset(0 0 100% 0); transition: clip-path 1000ms var(--ease-in-out) 120ms; }
+.motion-ok .portfolio-v2 .v2-project.pz-reveal.is-in .v2-project-image { clip-path: inset(0 0 0 0); }
+
+/* Career: the spine fills up to the reading line; layers sweep when they light; the active marker pings. */
+.portfolio-v2 .pz-timeline::after { content: ''; position: absolute; left: 21px; top: 8px; bottom: 8px; width: 1px; background: var(--phosphor); transform-origin: top; transform: scaleY(var(--progress, 0)); transition: transform 240ms var(--ease-out); }
+.portfolio-v2 .pz-layer { position: relative; overflow: hidden; }
+@keyframes pz-sweep { from { transform: translateX(-110%); } to { transform: translateX(110%); } }
+.motion-ok .portfolio-v2 .pz-layer.is-lit::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent); animation: pz-sweep 700ms var(--ease-out) both; pointer-events: none; }
+@keyframes pz-ping { from { transform: scale(1); opacity: 0.7; } to { transform: scale(1.75); opacity: 0; } }
+.motion-ok .portfolio-v2 .pz-step.is-active .pz-step-marker::after { content: ''; position: absolute; inset: -1px; border: 1px solid var(--phosphor); border-radius: 2px; animation: pz-ping 900ms var(--ease-out) both; pointer-events: none; }
+.motion-ok .portfolio-v2 .pz-step-layers li { transition: border-color 300ms ease, color 300ms ease; }
+.motion-ok .portfolio-v2 .pz-step.is-active .pz-step-layers li { border-color: var(--phosphor-dim); color: var(--ink); }
+
+/* Hover: only for real pointers, so taps never trigger a sticky hover. */
+@media (hover: hover) and (pointer: fine) {
+  .portfolio-v2 #main-nav a:not(.company-link) { position: relative; }
+  .portfolio-v2 #main-nav a:not(.company-link)::after { content: ''; position: absolute; left: 10px; right: 10px; bottom: 5px; height: 1px; background: var(--phosphor); transform: scaleX(0); transform-origin: right; transition: transform 260ms var(--ease-out); }
+  .portfolio-v2 #main-nav a:not(.company-link):hover::after { transform: scaleX(1); transform-origin: left; }
+  .portfolio-v2 .v2-button:hover .v2-icon { transform: translateY(-2px); }
+  .portfolio-v2 .v2-button-secondary:hover .v2-icon { transform: translateY(2px); }
+  .portfolio-v2 .v2-text-link span[aria-hidden] { display: inline-block; transition: transform 220ms var(--ease-out); }
+  .portfolio-v2 .v2-text-link:hover span[aria-hidden] { transform: translateX(4px); }
+  .portfolio-v2 .v2-tech-card { position: relative; }
+  .portfolio-v2 .v2-tech-card::before { content: ''; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: var(--phosphor); transform: scaleX(0); transform-origin: left; transition: transform 500ms var(--ease-out); }
+  .portfolio-v2 .v2-tech-card:hover::before { transform: scaleX(1); }
+  .portfolio-v2 .v2-tech-card .v2-icon { transition: transform 300ms var(--ease-out); }
+  .portfolio-v2 .v2-tech-card:hover .v2-icon { transform: rotate(-8deg) scale(1.08); }
+  .portfolio-v2 .v2-project-copy h3 a span { display: inline-block; transition: transform 220ms var(--ease-out); }
+  .portfolio-v2 .v2-project:hover .v2-project-copy h3 a span { transform: translate(3px, -3px); }
+  .portfolio-v2 .pz-approach li .v2-icon { transition: transform 300ms var(--ease-out), color 300ms ease; }
+  .portfolio-v2 .pz-approach li:hover .v2-icon { transform: translateX(4px); color: var(--ink); }
+  .portfolio-v2 .v2-profiles a { transition: background-color 200ms ease, color 200ms ease, padding-left 0s; }
+  .portfolio-v2 .v2-profiles a span { transition: transform 220ms var(--ease-out); }
+  .portfolio-v2 .v2-profiles a:hover span { transform: translateX(4px); }
+}
+@media (hover: none), (pointer: coarse) {
+  .portfolio-v2 .v2-project:hover .v2-project-image img { transform: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .portfolio-v2 *, .portfolio-v2 *::before, .portfolio-v2 *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-  .portfolio-v2 .pz-layer.is-lit { transform: none; }
+  /* Fewer and gentler: colour changes stay, movement goes. */
+  .portfolio-v2 *, .portfolio-v2 *::before, .portfolio-v2 *::after { animation: none !important; scroll-behavior: auto !important; }
+  .portfolio-v2 .pz-layer.is-lit, .portfolio-v2 .v2-button:active, .portfolio-v2 .v2-project:hover .v2-project-image img { transform: none; }
+}
+@media (max-width: 760px) {
+  .portfolio-v2 .pz-timeline::after { left: 17px; }
 }

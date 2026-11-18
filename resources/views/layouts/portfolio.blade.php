@@ -35,6 +35,7 @@
     <link rel="icon" href="{{ $favicon }}" type="image/png">
     <script type="application/ld+json">{!! $schemaJson !!}</script>
     @if (in_array($pageName, ['home', 'skills'], true))
+        <script>if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion-ok');</script>
         <link rel="preload" href="{{ $assets['fontMono'] }}" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="{{ $assets['fontSans'] }}" as="font" type="font/woff2" crossorigin>
     @endif

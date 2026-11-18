@@ -1,9 +1,10 @@
 {
     "hu": {
         "nav": {
-            "about": "Rólam",
+            "career": "Pályám",
             "knowledge": "Technológiák",
             "projects": "Projektek",
+            "about": "Rólam",
             "contact": "Kapcsolat"
         },
         "footer": {
@@ -20,13 +21,12 @@
             }
         },
         "home": {
-            "eyebrow": "Papp Zoltán · Fejlesztő és IT-szakember",
-            "hero_title": "A hardvertől a kódig. Ez az én világom.",
-            "hero_text": "Legyen szó kódról, szerverről vagy egy makacs hibáról, szeretek a dolgok végére járni. Tíz éve dolgozom az IT-ban, de még mindig találok valamit, amit ki akarok próbálni vagy meg akarok tanulni.",
+            "hero_title": "A hardvertől a kódig.",
+            "hero_text": "Szia, Zoli vagyok. Tíz éve dolgozom az IT-ban: gépeket javítottam, felhasználóknak segítettem, rendszereket üzemeltettem, ma pedig főleg szoftvert fejlesztek. Ha valami nem működik, addig nem hagyom, amíg ki nem derül, miért.",
             "profile_alt": "Papp Zoltán portréja",
             "actions": {
-                "primary": "Kicsit rólam",
-                "secondary": "Projektjeim"
+                "primary": "Írj nekem",
+                "secondary": "Önéletrajz letöltése"
             },
             "facts": [
                 {
@@ -45,72 +45,20 @@
                     "label": "felsőfokú nyelvtudás"
                 }
             ],
-            "portrait_labels": [
-                {
-                    "icon": "code",
-                    "label": "Fejlesztés"
-                },
-                {
-                    "icon": "server",
-                    "label": "Rendszerek"
-                },
-                {
-                    "icon": "cpu",
-                    "label": "Hardver"
-                },
-                {
-                    "icon": "workflow",
-                    "label": "AI"
-                }
-            ],
             "about": {
                 "title": "Kicsit rólam",
-                "milestones": [
+                "paragraphs": [
                     {
-                        "icon": "monitor",
-                        "title": "6 évesen",
-                        "text": "Már akkor érdekelt az informatika."
+                        "text": "Nem csak a saját kódomat látom. Évekig a másik oldalon is álltam: én segítettem, ha valami nem működött, és én tartottam életben a rendszereket. Ez ma is ott van mindenben, amit fejlesztek: gondolok arra, aki használni fogja, és arra is, aki majd üzemelteti.",
+                        "emphasis": [
+                            "a másik oldalon is álltam"
+                        ]
                     },
                     {
-                        "icon": "book",
-                        "title": "Gimnázium",
-                        "text": "Matematika–informatika irány."
-                    },
-                    {
-                        "icon": "graduation",
-                        "title": "Nyíregyházi Egyetem",
-                        "text": "Programtervező informatikus BSc."
-                    },
-                    {
-                        "icon": "server",
-                        "title": "Rendszergazda",
-                        "text": "Hétvezér Iskola"
-                    },
-                    {
-                        "icon": "chat",
-                        "title": "IT-supporter",
-                        "text": "Hoya Lens"
-                    },
-                    {
-                        "icon": "code",
-                        "title": "Junior fejlesztő",
-                        "text": "Hoya Lens"
-                    },
-                    {
-                        "icon": "code",
-                        "title": "Medior fejlesztő",
-                        "text": "Oxford One"
-                    },
-                    {
-                        "icon": "briefcase",
-                        "title": "Vezető fejlesztő",
-                        "text": "SzoftLab"
+                        "text": "Szeretem, ha van min gondolkodni és van mit megoldani, és ha közben valami újat is megtanulok, annál jobb. Felsőfokú angol nyelvvizsgám van, és külföldi kollégákkal, nemzetközi projekteken is dolgoztam már.",
+                        "emphasis": []
                     }
                 ],
-                "experience": {
-                    "title": "10 év az IT több oldalán.",
-                    "areas": "Support · Hardver · Rendszerüzemeltetés · Infrastruktúra · Szoftverfejlesztés"
-                },
                 "approach": [
                     {
                         "icon": "search",
@@ -126,43 +74,6 @@
                         "icon": "bug",
                         "title": "Megkeresem az okát.",
                         "text": "Nem csak azt nézem, hogyan tűnjön el a hiba, hanem azt is, mi okozta."
-                    }
-                ],
-                "paragraphs": [
-                    {
-                        "text": "Hatéves korom óta érdekel az informatika, és azóta sem untam rá. Az elmúlt tíz évben sokféle területen dolgoztam: gépeket tartottam életben, felhasználóknak segítettem, rendszereket felügyeltem, ma pedig leginkább szoftvereket fejlesztek.",
-                        "emphasis": [
-                            "tíz évben"
-                        ]
-                    },
-                    {
-                        "text": "Rendszergazdaként kezdtem, főként hardveres és üzemeltetési feladatokkal. Rengeteget dolgoztam olyan kollégákkal, akiknek az informatika egyszerűen egy eszköz volt a munkához. Tőlük legalább annyit tanultam a kommunikációról, mint a gépektől a hibakeresésről: hogyan kérdezzek jól, legyek türelmes, és magyarázzak el egy technikai problémát úgy, hogy ne kelljen hozzá informatikai végzettség.",
-                        "emphasis": [
-                            "Rendszergazdaként kezdtem"
-                        ]
-                    },
-                    {
-                        "text": "Ezután IT-supporttal és terméktámogatással foglalkoztam, L1–L3 szintű támogatási, rendszerfelügyeleti és készenléti feladatokkal. Közben egyre mélyebben megismertem a nagyvállalati környezetet: szervereket, hálózatokat és vállalatirányítási rendszereket. Itt sokat számított, hogy egy hibánál a teljes működést átlássam, ne csak azt az egy részt, ahol éppen jelentkezik.",
-                        "emphasis": [
-                            "IT-supporttal és terméktámogatással"
-                        ]
-                    },
-                    {
-                        "text": "Nemzetközi projektekben is szereztem tapasztalatot, és Thaiföldön is dolgoztam kiküldetésen. Felsőfokú angol nyelvvizsgám van, a nyelvet pedig külföldi kollégákkal, valós szakmai feladatokon keresztül is használtam.",
-                        "emphasis": [
-                            "Nemzetközi projektekben is szereztem tapasztalatot"
-                        ]
-                    },
-                    {
-                        "text": "Később a szoftverfejlesztés lett a fő irányom: PHP-alkalmazásokat fejlesztettem, riportokat és adatbázis-lekérdezéseket írtam. Jelenleg medior Laravel-fejlesztőként dolgozom, mellette pedig vezető fejlesztőként viszem a saját szoftveres vállalkozásomat, a SzoftLabot.",
-                        "emphasis": [
-                            "a szoftverfejlesztés lett a fő irányom",
-                            "SzoftLabot"
-                        ]
-                    },
-                    {
-                        "text": "A korábbi tapasztalataimat ma is magammal hozom. Fejlesztés közben gondolok arra is, hogyan fog működni a rendszer élesben, és milyen lesz annak, aki naponta használja. Szeretem, ha van min gondolkodni, van mit megoldani — és ha közben valami újat is megtanulok, annál jobb.",
-                        "emphasis": []
                     }
                 ]
             },
@@ -218,7 +129,7 @@
                 ]
             },
             "projects": {
-                "title": "Ezeken dolgozom.",
+                "title": "Amiket építettem.",
                 "closing": "A belső céges rendszereket és automatizálásokat nem mind tudom itt megmutatni.",
                 "items": [
                     {
@@ -262,8 +173,8 @@
             },
             "contact": {
                 "title": "Írj nyugodtan.",
-                "lead": "Van egy érdekes ötleted, szakmai kérdésed, vagy csak beszélgetnél a techről? Keress meg.",
-                "button": "Írok Zolinak",
+                "lead": "Van egy ötleted, szakmai kérdésed, vagy csak beszélgetnél a techről? Írj bátran, szívesen válaszolok.",
+                "button": "E-mailt írok",
                 "form_title": "Itt is írhatsz.",
                 "profile_link": "Profil megnyitása",
                 "name": "Név",
@@ -281,7 +192,112 @@
             },
             "typewriter_sets": [
                 []
-            ]
+            ],
+            "portrait_caption": "Papp Zoltán · fejlesztő, széles IT-háttérrel",
+            "career": {
+                "title": "Így jutottam el a kódig.",
+                "lead": "Nem egyenes út volt, de pont ettől látok ma mást, mint aki egyből fejlesztőként kezdett. Görgess végig: oldalt látod, melyik munkámban az IT melyik rétegével dolgoztam.",
+                "stack_title": "Az IT-stackem",
+                "layers": {
+                    "hardware": "Hardver",
+                    "support": "Support",
+                    "ops": "Üzemeltetés",
+                    "infra": "Infrastruktúra",
+                    "software": "Szoftver"
+                },
+                "now": "Jelenleg",
+                "learning": "Tanulás",
+                "layers_label": "Rétegek ebben a szerepben",
+                "end_note": "Mind az öt réteget belülről ismerem. Ezért fejlesztés közben arra is gondolok, hogyan fog élesben futni a rendszer, és milyen lesz annak, aki naponta használja.",
+                "items": [
+                    {
+                        "kind": "origin",
+                        "icon": "monitor",
+                        "title": "Hatévesen",
+                        "place": "Itt kezdődött",
+                        "text": "Hatéves korom óta érdekel az informatika. Azóta sem untam rá, csak egyre mélyebbre ástam.",
+                        "layers": []
+                    },
+                    {
+                        "kind": "edu",
+                        "icon": "book",
+                        "title": "Matematika–informatika",
+                        "place": "Gimnázium",
+                        "text": "Matek és infó irány, ahol a logikus gondolkodás alapjai összeálltak.",
+                        "layers": []
+                    },
+                    {
+                        "kind": "role",
+                        "icon": "server",
+                        "title": "Rendszergazda",
+                        "place": "Hétvezér Iskola",
+                        "text": "Itt tanultam meg élesben az alapokat: gépeket tartottam karban, hálózatot és iskolai adatbázisokat kezeltem, weboldalakat üzemeltettem, és segítettem a kollégáknak, ha elakadtak. Tőlük tanultam meg türelmesen kérdezni, és emberi nyelven elmagyarázni egy technikai problémát.",
+                        "layers": [
+                            "hardware",
+                            "support",
+                            "ops",
+                            "infra"
+                        ]
+                    },
+                    {
+                        "kind": "role",
+                        "icon": "chat",
+                        "title": "IT-supporter",
+                        "place": "Hoya Lens",
+                        "text": "L1–L3 szintű támogatás, rendszerfelügyelet és készenlét egy nagyvállalatnál: szerverek, hálózatok, vállalatirányítási rendszerek. Itt tanultam meg, hogy egy hibánál az egész működést kell átlátni, nem csak azt a pontot, ahol kibukik. Nemzetközi projekteken is dolgoztam, és Thaiföldön is voltam kiküldetésen.",
+                        "layers": [
+                            "support",
+                            "ops",
+                            "infra"
+                        ]
+                    },
+                    {
+                        "kind": "edu",
+                        "icon": "graduation",
+                        "title": "Programtervező informatikus BSc",
+                        "place": "Nyíregyházi Egyetem",
+                        "text": "A gyakorlat mellé megjött az elmélet is: algoritmusok, adatbázisok, szoftvertervezés.",
+                        "layers": []
+                    },
+                    {
+                        "kind": "role",
+                        "icon": "code",
+                        "title": "Junior fejlesztő",
+                        "place": "Hoya Lens",
+                        "text": "Itt lett a fejlesztés a fő irányom. PHP-alapú belső gyártástámogató rendszereket fejlesztettem, Oracle PL/SQL lekérdezéseket és riportokat írtam, közben pedig a Dockeres, linuxos üzemeltetésből sem szálltam ki.",
+                        "layers": [
+                            "software",
+                            "ops",
+                            "infra"
+                        ]
+                    },
+                    {
+                        "kind": "role",
+                        "icon": "code",
+                        "title": "Medior fejlesztő",
+                        "place": "Oxford One",
+                        "text": "Jelenleg itt dolgozom medior Laravel-fejlesztőként, webes rendszereken és adminfelületeken.",
+                        "layers": [
+                            "software"
+                        ],
+                        "now": true
+                    },
+                    {
+                        "kind": "role",
+                        "icon": "briefcase",
+                        "title": "Vezető fejlesztő",
+                        "place": "SzoftLab",
+                        "text": "A saját szoftveres vállalkozásom. Itt minden rajtam múlik a tervezéstől az üzemeltetésig: így készült a FoodPRO, a SzervizPRO és a NapiInfo is.",
+                        "layers": [
+                            "software",
+                            "infra",
+                            "ops",
+                            "support"
+                        ],
+                        "now": true
+                    }
+                ]
+            }
         },
         "skills": {
             "hero_title": "Technológiák",
@@ -569,9 +585,10 @@
     },
     "en": {
         "nav": {
-            "about": "About",
+            "career": "Career",
             "knowledge": "Technologies",
             "projects": "Projects",
+            "about": "About",
             "contact": "Contact"
         },
         "footer": {
@@ -588,13 +605,12 @@
             }
         },
         "home": {
-            "eyebrow": "Papp Zoltán · Developer and IT professional",
-            "hero_title": "From hardware to code. This is my world.",
-            "hero_text": "Whether it's code, a server or a stubborn bug, I like getting to the bottom of things. I've worked in IT for ten years, but I still find things I want to try or learn.",
+            "hero_title": "From hardware to code.",
+            "hero_text": "Hi, I'm Zoli. I've spent ten years in IT: I've fixed machines, helped users, run systems, and these days I mostly build software. When something doesn't work, I don't let it go until I know why.",
             "profile_alt": "Portrait of Papp Zoltán",
             "actions": {
-                "primary": "A bit about me",
-                "secondary": "My projects"
+                "primary": "Write to me",
+                "secondary": "Download my CV"
             },
             "facts": [
                 {
@@ -613,72 +629,20 @@
                     "label": "advanced English proficiency"
                 }
             ],
-            "portrait_labels": [
-                {
-                    "icon": "code",
-                    "label": "Development"
-                },
-                {
-                    "icon": "server",
-                    "label": "Systems"
-                },
-                {
-                    "icon": "cpu",
-                    "label": "Hardware"
-                },
-                {
-                    "icon": "workflow",
-                    "label": "AI"
-                }
-            ],
             "about": {
                 "title": "A bit about me",
-                "milestones": [
+                "paragraphs": [
                     {
-                        "icon": "monitor",
-                        "title": "At six",
-                        "text": "Already curious about computing."
+                        "text": "I don't only see my own code. For years I stood on the other side too: I was the one helping when something broke, and the one keeping systems alive. That's still in everything I build: I think about the person who will use it, and about whoever will have to run it.",
+                        "emphasis": [
+                            "stood on the other side too"
+                        ]
                     },
                     {
-                        "icon": "book",
-                        "title": "Secondary school",
-                        "text": "Mathematics and IT focus."
-                    },
-                    {
-                        "icon": "graduation",
-                        "title": "University of Nyíregyháza",
-                        "text": "BSc in Computer Science."
-                    },
-                    {
-                        "icon": "server",
-                        "title": "Systems administrator",
-                        "text": "Hétvezér Iskola"
-                    },
-                    {
-                        "icon": "chat",
-                        "title": "IT support",
-                        "text": "Hoya Lens"
-                    },
-                    {
-                        "icon": "code",
-                        "title": "Junior developer",
-                        "text": "Hoya Lens"
-                    },
-                    {
-                        "icon": "code",
-                        "title": "Mid-level developer",
-                        "text": "Oxford One"
-                    },
-                    {
-                        "icon": "briefcase",
-                        "title": "Lead developer",
-                        "text": "SzoftLab"
+                        "text": "I like having something to think through and a problem to solve, and if I learn something new along the way, even better. I hold an advanced English language exam qualification and have worked with colleagues abroad on international projects.",
+                        "emphasis": []
                     }
                 ],
-                "experience": {
-                    "title": "10 years across different sides of IT.",
-                    "areas": "Support · Hardware · Systems administration · Infrastructure · Software development"
-                },
                 "approach": [
                     {
                         "icon": "search",
@@ -694,43 +658,6 @@
                         "icon": "bug",
                         "title": "I find the cause.",
                         "text": "I look at what caused a problem as well as how to make it go away."
-                    }
-                ],
-                "paragraphs": [
-                    {
-                        "text": "I've been interested in computing since I was six, and I still haven't grown tired of it. Over the past ten years, I've worked across different areas: keeping computers running, helping users, looking after systems, and now mostly developing software.",
-                        "emphasis": [
-                            "ten years"
-                        ]
-                    },
-                    {
-                        "text": "I started as a systems administrator, mainly working with hardware and operations. I spent a lot of time with colleagues who simply used IT as a tool for their work. They taught me as much about communication as computers taught me about troubleshooting: how to ask the right questions, be patient, and explain a technical problem without expecting an IT background.",
-                        "emphasis": [
-                            "I started as a systems administrator"
-                        ]
-                    },
-                    {
-                        "text": "I then moved into IT support and product support, with L1–L3 support, system monitoring and on-call responsibilities. Along the way, I got to know enterprise environments in greater depth: servers, networks and enterprise resource planning systems. When something went wrong, understanding the whole operation mattered just as much as the part where the issue appeared.",
-                        "emphasis": [
-                            "IT support and product support"
-                        ]
-                    },
-                    {
-                        "text": "I've also gained experience in international projects and worked on assignment in Thailand. I hold an advanced English language exam qualification and have used English with colleagues abroad on real professional tasks.",
-                        "emphasis": [
-                            "experience in international projects"
-                        ]
-                    },
-                    {
-                        "text": "Later, software development became my main focus: I developed PHP applications, wrote reports and worked on database queries. I currently work as a mid-level Laravel developer, while also leading development at my own software business, SzoftLab.",
-                        "emphasis": [
-                            "software development became my main focus",
-                            "SzoftLab"
-                        ]
-                    },
-                    {
-                        "text": "I still bring those earlier experiences into my work. When developing software, I also think about how a system will run in production and what it will be like for the people using it every day. I enjoy having something to think through and a problem to solve — and if I learn something new along the way, even better.",
-                        "emphasis": []
                     }
                 ]
             },
@@ -786,7 +713,7 @@
                 ]
             },
             "projects": {
-                "title": "What I'm working on.",
+                "title": "Things I've built.",
                 "closing": "I can’t show all the internal business systems and automation I work on here.",
                 "items": [
                     {
@@ -830,8 +757,8 @@
             },
             "contact": {
                 "title": "Get in touch.",
-                "lead": "Have an interesting idea, a professional question, or just want to talk about tech? Get in touch.",
-                "button": "Write to Zoli",
+                "lead": "Got an idea, a professional question, or just want to talk tech? Drop me a line, I'm happy to reply.",
+                "button": "Send an email",
                 "form_title": "You can write here too.",
                 "profile_link": "Open profile",
                 "name": "Name",
@@ -849,7 +776,112 @@
             },
             "typewriter_sets": [
                 []
-            ]
+            ],
+            "portrait_caption": "Papp Zoltán · developer with a broad IT background",
+            "career": {
+                "title": "How I got to code.",
+                "lead": "It wasn't a straight line, and that's exactly why I see things differently from someone who started out as a developer. Scroll through: on the side you'll see which layers of IT each job had me working in.",
+                "stack_title": "My IT stack",
+                "layers": {
+                    "hardware": "Hardware",
+                    "support": "Support",
+                    "ops": "Operations",
+                    "infra": "Infrastructure",
+                    "software": "Software"
+                },
+                "now": "Now",
+                "learning": "Learning",
+                "layers_label": "Layers in this role",
+                "end_note": "I know all five layers from the inside. So when I build software, I also think about how it will run in production and what it will be like for the people using it every day.",
+                "items": [
+                    {
+                        "kind": "origin",
+                        "icon": "monitor",
+                        "title": "At six",
+                        "place": "Where it started",
+                        "text": "I've been interested in computing since I was six. I never got tired of it, I just kept digging deeper.",
+                        "layers": []
+                    },
+                    {
+                        "kind": "edu",
+                        "icon": "book",
+                        "title": "Mathematics and IT",
+                        "place": "Secondary school",
+                        "text": "A maths and IT track, where the basics of logical thinking came together.",
+                        "layers": []
+                    },
+                    {
+                        "kind": "role",
+                        "icon": "server",
+                        "title": "Systems administrator",
+                        "place": "Hétvezér Iskola",
+                        "text": "This is where I learned the basics for real: maintaining computers, managing the network and school databases, running websites, and helping colleagues when they got stuck. They taught me to ask patient questions and explain a technical problem in plain language.",
+                        "layers": [
+                            "hardware",
+                            "support",
+                            "ops",
+                            "infra"
+                        ]
+                    },
+                    {
+                        "kind": "role",
+                        "icon": "chat",
+                        "title": "IT support",
+                        "place": "Hoya Lens",
+                        "text": "L1–L3 support, system monitoring and on-call duty at a large company: servers, networks, enterprise resource planning systems. I learned that with any issue you need to understand the whole operation, not just the spot where it surfaces. I also worked on international projects, including an assignment in Thailand.",
+                        "layers": [
+                            "support",
+                            "ops",
+                            "infra"
+                        ]
+                    },
+                    {
+                        "kind": "edu",
+                        "icon": "graduation",
+                        "title": "BSc in Computer Science",
+                        "place": "University of Nyíregyháza",
+                        "text": "Theory to go with the practice: algorithms, databases, software design.",
+                        "layers": []
+                    },
+                    {
+                        "kind": "role",
+                        "icon": "code",
+                        "title": "Junior developer",
+                        "place": "Hoya Lens",
+                        "text": "This is where development became my main focus. I built PHP-based internal production support systems, wrote Oracle PL/SQL queries and reports, and stayed involved in running things on Docker and Linux.",
+                        "layers": [
+                            "software",
+                            "ops",
+                            "infra"
+                        ]
+                    },
+                    {
+                        "kind": "role",
+                        "icon": "code",
+                        "title": "Mid-level developer",
+                        "place": "Oxford One",
+                        "text": "I currently work here as a mid-level Laravel developer, on web systems and admin interfaces.",
+                        "layers": [
+                            "software"
+                        ],
+                        "now": true
+                    },
+                    {
+                        "kind": "role",
+                        "icon": "briefcase",
+                        "title": "Lead developer",
+                        "place": "SzoftLab",
+                        "text": "My own software business. Everything is on me, from design to operations: this is where FoodPRO, SzervizPRO and NapiInfo were built.",
+                        "layers": [
+                            "software",
+                            "infra",
+                            "ops",
+                            "support"
+                        ],
+                        "now": true
+                    }
+                ]
+            }
         },
         "skills": {
             "hero_title": "Technologies",

@@ -34,6 +34,10 @@
 
     <link rel="icon" href="{{ $favicon }}" type="image/png">
     <script type="application/ld+json">{!! $schemaJson !!}</script>
+    @if (in_array($pageName, ['home', 'skills'], true))
+        <link rel="preload" href="{{ $assets['fontMono'] }}" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="{{ $assets['fontSans'] }}" as="font" type="font/woff2" crossorigin>
+    @endif
     <link rel="stylesheet" href="{{ $assets['css'] }}">
     @if (in_array($pageName, ['home', 'skills'], true))
         <link rel="stylesheet" href="{{ $assets['portfolioCss'] }}">
@@ -61,7 +65,7 @@
 
     <div class="nav-container">
         @if (in_array($pageName, ['home', 'skills'], true))
-            <a href="{{ $homeUrl }}" class="v2-brand">PZ <span>/ Papp Zoltán</span></a>
+            <a href="{{ $homeUrl }}" class="v2-brand"><span class="v2-brand-mark">PZ</span><span class="v2-brand-name">Papp Zoltán</span></a>
         @endif
         <button
             type="button"
@@ -74,9 +78,10 @@
             @unless (in_array($pageName, ['home', 'skills'], true))
                 <a href="{{ $homeUrl }}" class="personal-brand">PZ / Papp Zoltán</a>
             @endunless
-            <a href="{{ $links['about'] }}">{{ $nav['about'] }}</a>
+            @isset($nav['career'])<a href="{{ $links['career'] }}">{{ $nav['career'] }}</a>@endisset
             <a href="{{ $links['knowledge'] }}">{{ $nav['knowledge'] }}</a>
             <a href="{{ $links['projects'] }}">{{ $nav['projects'] }}</a>
+            <a href="{{ $links['about'] }}">{{ $nav['about'] }}</a>
             <a href="{{ $links['contact'] }}">{{ $nav['contact'] }}</a>
             <a href="{{ config('portfolio.szoftlab_url') }}" class="company-link" target="_blank" rel="noopener noreferrer">SzoftLab ↗</a>
         </nav>

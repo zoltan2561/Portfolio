@@ -77,9 +77,10 @@ class PortfolioSeoTest extends TestCase
             ->assertSee('id="szemlelet"', false)
             ->assertSee('Technológiák')
             ->assertSee('Kicsit rólam')
-            ->assertSee('Papp Zoltán · Fejlesztő és IT-szakember')
-            ->assertSee('A hardvertől a kódig. Ez az én világom.')
-            ->assertSee('10 év az IT több oldalán.')
+            ->assertSee('href="'.route('home').'#palya"', false)
+            ->assertSee('Így jutottam el a kódig.')
+            ->assertSee('A hardvertől a kódig.')
+            ->assertSee('Mind az öt réteget belülről ismerem.')
             ->assertSee('Megkeresem az okát.')
             ->assertSee('Programtervező informatikus BSc')
             ->assertSee('Nyíregyházi Egyetem')
@@ -97,11 +98,11 @@ class PortfolioSeoTest extends TestCase
             ->assertOk()
             ->assertSee('href="'.route('home', ['lang' => 'en']).'#tudas"', false)
             ->assertSee('Technologies')
-            ->assertSee('Papp Zoltán · Developer and IT professional')
-            ->assertSee('From hardware to code. This is my world.')
-            ->assertSee('10 years across different sides of IT.')
+            ->assertSee('How I got to code.')
+            ->assertSee('From hardware to code.')
+            ->assertSee('I know all five layers from the inside.')
             ->assertSee('I find the cause.')
-            ->assertSee('BSc in Computer Science.')
+            ->assertSee('BSc in Computer Science')
             ->assertSee('University of Nyíregyháza')
             ->assertSee('advanced English proficiency')
             ->assertDontSee('It started with curiosity.')
@@ -149,7 +150,7 @@ class PortfolioSeoTest extends TestCase
             $response = $this->get($lang === 'en' ? '/?lang=en' : '/')->assertOk();
             $html = $response->getContent();
             $previous = -1;
-            foreach (['rolam', 'eletut', 'szemlelet', 'tudas', 'projektek', 'kapcsolat'] as $id) {
+            foreach (['palya', 'eletut', 'tudas', 'projektek', 'rolam', 'szemlelet', 'kapcsolat'] as $id) {
                 $position = strpos($html, 'id="'.$id.'"');
                 $this->assertNotFalse($position);
                 $this->assertGreaterThan($previous, $position);
@@ -183,34 +184,38 @@ class PortfolioSeoTest extends TestCase
             $document = new \DOMDocument;
             @$document->loadHTML('<?xml encoding="utf-8" ?>'.$response->getContent());
             $xpath = new \DOMXPath($document);
-            $paragraphs = $xpath->query('//section[@id="rolam"]//div[@class="v2-about-top"]/div/p | //div[@class="v2-about-story"]/p');
-            $this->assertSame(6, $paragraphs->length);
+            $paragraphs = $xpath->query('//section[@id="rolam"]//div[@class="pz-about-copy"]/p');
+            $this->assertSame(2, $paragraphs->length);
             foreach (config("portfolio.locales.{$lang}.home.about.paragraphs") as $index => $paragraph) {
                 $this->assertSame($paragraph['text'], $paragraphs->item($index)->textContent);
             }
-            $milestones = $xpath->query('//ol[@id="eletut"]/li');
-            $this->assertSame(8, $milestones->length);
+            $steps = $xpath->query('//ol[@id="eletut"]/li');
+            $this->assertSame(8, $steps->length);
             $roles = $lang === 'hu'
                 ? ['Rendszergazda', 'IT-supporter', 'Junior fejlesztő', 'Medior fejlesztő', 'Vezető fejlesztő']
                 : ['Systems administrator', 'IT support', 'Junior developer', 'Mid-level developer', 'Lead developer'];
+            $roleSteps = $xpath->query('//ol[@id="eletut"]/li[contains(@class, "pz-step-role")]');
+            $this->assertSame(5, $roleSteps->length);
             foreach (['Hétvezér Iskola', 'Hoya Lens', 'Hoya Lens', 'Oxford One', 'SzoftLab'] as $index => $employer) {
-                $milestone = $milestones->item($index + 3);
-                $this->assertSame($roles[$index], $xpath->query('.//h3', $milestone)->item(0)->textContent);
-                $this->assertSame($employer, $xpath->query('.//p', $milestone)->item(0)->textContent);
+                $step = $roleSteps->item($index);
+                $this->assertSame($roles[$index], $xpath->query('.//h3', $step)->item(0)->textContent);
+                $this->assertStringStartsWith($employer, $xpath->query('.//p[@class="pz-step-place"]', $step)->item(0)->textContent);
+                $this->assertNotSame('', trim($step->getAttribute('data-layers')));
             }
+            $this->assertSame(5, $xpath->query('//aside[@data-stack]//li[@data-layer]')->length);
             $this->assertSame(config("portfolio.locales.{$lang}.home.hero_text"), $xpath->query('//p[@class="v2-intro"]')->item(0)->textContent);
             $response->assertDontSee('1-esek és 0-k');
             $response->assertDontSee('ones and zeros');
             if ($lang === 'hu') {
                 $response->assertSee('Thaiföldön');
                 $response->assertSee('Felsőfokú angol nyelvvizsgám van');
-                $response->assertSee('Jelenleg medior Laravel-fejlesztőként dolgozom');
-                $response->assertSee('vezető fejlesztőként');
+                $response->assertSee('medior Laravel-fejlesztőként');
+                $response->assertSee('Vezető fejlesztő');
             } else {
                 $response->assertSee('Thailand');
                 $response->assertSee('advanced English language exam qualification');
                 $response->assertSee('mid-level Laravel developer');
-                $response->assertSee('leading development');
+                $response->assertSee('Lead developer');
             }
         }
     }

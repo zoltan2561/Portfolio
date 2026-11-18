@@ -347,9 +347,49 @@ function setupTypewriter() {
   typewriterEl.textContent = '';
   typeLine();
 }
+function setupCareerStack() {
+  const stack = document.querySelector('[data-stack]');
+  const steps = Array.from(document.querySelectorAll('.pz-step'));
+  if (!stack || !steps.length) return;
+  const layers = Array.from(stack.querySelectorAll('.pz-layer'));
+  const status = stack.querySelector('[data-stack-status]');
+  const end = document.querySelector('.pz-career-end');
+  const layersOf = (step) => (step.dataset.layers || '').split(' ').filter(Boolean);
+  let frame = null;
+  let lastKey = '';
+
+  function update() {
+    frame = null;
+    const line = window.innerHeight * 0.45;
+    let activeIndex = -1;
+    steps.forEach((step, index) => {
+      if (step.getBoundingClientRect().top <= line) activeIndex = index;
+    });
+    const seen = new Set();
+    steps.slice(0, activeIndex + 1).forEach((step) => layersOf(step).forEach((layer) => seen.add(layer)));
+    const finished = end && end.getBoundingClientRect().top < window.innerHeight * 0.8;
+    const lit = finished ? seen : new Set(activeIndex >= 0 ? layersOf(steps[activeIndex]) : []);
+    const key = `${activeIndex}|${finished}`;
+    if (key === lastKey) return;
+    lastKey = key;
+    steps.forEach((step, index) => step.classList.toggle('is-active', index === activeIndex && !finished));
+    layers.forEach((layer) => {
+      layer.classList.toggle('is-lit', lit.has(layer.dataset.layer));
+      layer.classList.toggle('is-seen', seen.has(layer.dataset.layer));
+    });
+    if (status) status.textContent = finished ? '' : (activeIndex >= 0 ? steps[activeIndex].dataset.title : '');
+  }
+
+  const schedule = () => { if (frame === null) frame = requestAnimationFrame(update); };
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  update();
+}
+
 setupMatrix();
 setupMenu();
 setupFadeIns();
 setupProjectCarousel();
 setupFlashMessages();
 setupTypewriter();
+setupCareerStack();

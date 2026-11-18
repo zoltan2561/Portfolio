@@ -165,8 +165,11 @@ class PortfolioController extends Controller
                 'profileWebp720' => asset('icons/profile-2026-720.webp'),
                 'profileFallback' => asset('icons/profile-2026-720.jpg'),
                 'cv' => asset('cv.pdf'),
+                'fontMono' => asset('fonts/jetbrains-mono-latin-wght-normal.woff2'),
+                'fontSans' => asset('fonts/onest-latin-wght-normal.woff2'),
             ],
             'links' => [
+                'career' => $homeUrl.'#palya',
                 'about' => $homeUrl.'#rolam',
                 'experience' => $homeUrl.'#eletut',
                 'knowledge' => $homeUrl.'#tudas',

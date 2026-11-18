@@ -3,6 +3,9 @@
 // A single local outline family. Brand assets are unavailable; technology
 // initials live beside their names in resources/content/portfolio.json.
 return [
+    'network' => ['M9 3h6v5H9Z', 'M3 16h6v5H3Z', 'M15 16h6v5h-6Z', 'M12 8v4M6 16v-4h12v4'],
+    'download' => ['M12 3v12', 'm7 10 5 5 5-5', 'M4 21h16'],
+    'mail' => ['M3 5h18v14H3Z', 'm3 6 9 7 9-7'],
     'code' => ['M8 6 2 12l6 6', 'm16 6 6 6-6 6', 'm14 3-4 18'],
     'database' => ['M20 6c0 2-4 3-8 3S4 8 4 6s4-3 8-3 8 1 8 3Z', 'M4 6v12c0 2 4 3 8 3s8-1 8-3V6', 'M4 12c0 2 4 3 8 3s8-1 8-3'],
     'workflow' => ['M6 6h12v12H6V6Z', 'M2 6h4M18 6h4M6 2v4M18 18v4M2 18h4M18 18h4M6 18v4M18 2v4', 'M9 9h6v6H9Z'],
